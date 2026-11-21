@@ -1,0 +1,2539 @@
+Profile: base85-rotor-3bank-v1
+Source SHA-256: 0e4d2588aaa6f118dcdfe9999ccb84c0115ad058b3f3c61bca5ced500757edd0
+Payload: 2248 bytes / 562 words
+Decoded range: (194, 506)
+Root: prototype 194 / PC 243
+States: 162 / addresses: 42 / structured blocks: 29
+
+PC 243..249 family=3080 selector=1414
+  state=State { pc: 243, key: 394499739, bank: 15, token: 58811, salt: 31541, phase: 0, window: 0, bank_end: 0, pool_key: 1109638509 }
+  W[243] = 394518949
+  W[244] = 3900467578
+  W[245] = 3660658410
+  W[246] = 2690124906
+  W[247] = 450327603
+  W[248] = 3900467557
+  Jump { target: 249 }
+  Next -> State { pc: 249, key: 3836786610, bank: 15, token: 58811, salt: 31541, phase: 55827864, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 249..254 family=3080 selector=1205
+  state=State { pc: 249, key: 3836786610, bank: 15, token: 58811, salt: 31541, phase: 55827864, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[249] = 3836790717
+  W[250] = 2365347313
+  W[251] = 3780954495
+  W[252] = 459123096
+  W[253] = 903632890
+  Jump { target: 279 }
+  Next -> State { pc: 279, key: 1504866917, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 279..292 family=1408 selector=2001
+  state=State { pc: 279, key: 1504866917, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[279] = 1944172905
+  W[280] = 1505506302
+  W[281] = 1505568679
+  W[282] = 2790100386
+  W[283] = 2790100382
+  W[284] = 1505568691
+  W[285] = 1504866923
+  W[286] = 2790100392
+  W[287] = 2790100399
+  W[288] = 1504866922
+  W[289] = 1505525228
+  W[290] = 1505568719
+  W[291] = 2790100383
+  LoadConst { dst: Register { physical_slot: 26 }, value: Integer(0) }
+  LoadConst { dst: Register { physical_slot: 13 }, value: Integer(0) }
+  GetTable { dst: Register { physical_slot: 18112 }, table: Environment, index: Constant(String([103, 97, 109, 101])) }
+  Move { dst: Register { physical_slot: 18113 }, src: Register(Register { physical_slot: 18112 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 18113 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([82, 101, 112, 108, 105, 99, 97, 116, 101, 100, 83, 116, 111, 114, 97, 103, 101]) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 18113 }) }
+  LoadConst { dst: Register { physical_slot: 49 }, value: String([71, 101, 116, 83, 101, 114, 118, 105, 99, 101]) }
+  GetTable { dst: Register { physical_slot: 18114 }, table: Register(Register { physical_slot: 18113 }), index: Constant(String([71, 101, 116, 83, 101, 114, 118, 105, 99, 101])) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 18114 }) }
+  Jump { target: 292 }
+  Next -> State { pc: 292, key: 1540333538, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 292..296 family=1408 selector=823
+  state=State { pc: 292, key: 1540333538, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[292] = 2192438074
+  W[293] = 1540333545
+  W[294] = 2754633763
+  W[295] = 1540333541
+  Call { dst: Some(Register { physical_slot: 18944 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 18945 }, table: Register(Register { physical_slot: 18944 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 18945 }) }
+  Jump { target: 296 }
+  Next -> State { pc: 296, key: 988407483, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 296..304 family=1408 selector=1284
+  state=State { pc: 296, key: 988407483, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[296] = 2623923446
+  W[297] = 988407490
+  W[298] = 3306559819
+  W[299] = 988407486
+  W[300] = 988407487
+  W[301] = 3306559818
+  W[302] = 3307261667
+  W[303] = 3307261651
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([69, 118, 101, 110, 116, 115]) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 110, 100, 70, 105, 114, 115, 116, 67, 104, 105, 108, 100]) }
+  GetTable { dst: Register { physical_slot: 19200 }, table: Register(Register { physical_slot: 49 }), index: Constant(String([70, 105, 110, 100, 70, 105, 114, 115, 116, 67, 104, 105, 108, 100])) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 19200 }) }
+  Jump { target: 304 }
+  Next -> State { pc: 304, key: 968396658, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 304..308 family=1408 selector=823
+  state=State { pc: 304, key: 968396658, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[304] = 2483847210
+  W[305] = 968396665
+  W[306] = 3326570643
+  W[307] = 968396661
+  Call { dst: Some(Register { physical_slot: 19712 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 19713 }, table: Register(Register { physical_slot: 19712 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 19713 }) }
+  Jump { target: 308 }
+  Next -> State { pc: 308, key: 2269664139, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 308..320 family=1408 selector=2023
+  state=State { pc: 308, key: 2269664139, bank: 36, token: 48861, salt: 31541, phase: 445452204, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[308] = 3002786185
+  W[309] = 2269664144
+  W[310] = 865935721
+  W[311] = 2269664143
+  W[312] = 2026258217
+  W[313] = 2276337588
+  W[314] = 1579846193
+  W[315] = 2025303160
+  W[316] = 2270610056
+  W[317] = 3260714645
+  W[318] = 2716307707
+  W[319] = 1579846193
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 49 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  Branch { condition: Truthy(Register(Register { physical_slot: 49 })), then_target: 368, else_target: 221 }
+  True -> State { pc: 368, key: 3950634055, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 221, key: 1311494149, bank: 57, token: 48352, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 368..376 family=1952 selector=976
+  state=State { pc: 368, key: 3950634055, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[368] = 3950686499
+  W[369] = 3950634061
+  W[370] = 3950634062
+  W[371] = 3950634063
+  W[372] = 344333244
+  W[373] = 345035079
+  W[374] = 3950634059
+  W[375] = 345035103
+  LoadConst { dst: Register { physical_slot: 19 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101]) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 49 }, value: String([70, 105, 110, 100, 70, 105, 114, 115, 116, 67, 104, 105, 108, 100]) }
+  GetTable { dst: Register { physical_slot: 23808 }, table: Register(Register { physical_slot: 50 }), index: Constant(String([70, 105, 110, 100, 70, 105, 114, 115, 116, 67, 104, 105, 108, 100])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 23808 }) }
+  Jump { target: 376 }
+  Next -> State { pc: 376, key: 2586132418, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 221..225 family=1952 selector=305
+  state=State { pc: 221, key: 1311494149, bank: 57, token: 48352, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[221] = 1311545922
+  W[222] = 2984191083
+  W[223] = 1311494169
+  W[224] = 2984167298
+  Binary { op: Sub, dst: Register { physical_slot: 13 }, left: Constant(Integer(1)), right: Register(Register { physical_slot: 13 }) }
+  Jump { target: 225 }
+  Next -> State { pc: 225, key: 2865174100, bank: 57, token: 48352, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 376..378 family=1952 selector=1298
+  state=State { pc: 376, key: 2586132418, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[376] = 2586185184
+  W[377] = 1708834886
+  Jump { target: 378 }
+  Next -> State { pc: 378, key: 10527309, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 225..237 family=1952 selector=709
+  state=State { pc: 225, key: 2865174100, bank: 57, token: 48352, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[225] = 2865226277
+  W[226] = 2865174120
+  W[227] = 2858475552
+  W[228] = 2861825442
+  W[229] = 2866177962
+  W[230] = 2858495891
+  W[231] = 771605145
+  W[232] = 2866339620
+  W[233] = 1958175690
+  W[234] = 3251737588
+  W[235] = 260085937
+  W[236] = 1678260217
+  Branch { condition: Compare { op: Equal, left: Register(Register { physical_slot: 13 }), right: Constant(Integer(0)) }, then_target: 199, else_target: 210 }
+  True -> State { pc: 199, key: 778352045, bank: 15, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 210, key: 8965611, bank: 36, token: 48352, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 378..382 family=1952 selector=1993
+  state=State { pc: 378, key: 10527309, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[378] = 10580770
+  W[379] = 10527312
+  W[380] = 10527317
+  W[381] = 10527315
+  Call { dst: Some(Register { physical_slot: 24448 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 7 }), Register(Register { physical_slot: 19 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 24449 }, table: Register(Register { physical_slot: 24448 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 24449 }) }
+  Jump { target: 382 }
+  Next -> State { pc: 382, key: 3495322200, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 199..210 family=1952 selector=981
+  state=State { pc: 199, key: 778352045, bank: 15, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[199] = 778404494
+  W[200] = 746202720
+  W[201] = 778892078
+  W[202] = 2988185631
+  W[203] = 778352058
+  W[204] = 779453926
+  W[205] = 1489091726
+  W[206] = 4196804454
+  W[207] = 2988185631
+  W[208] = 3517747796
+  W[209] = 679225308
+  Branch { condition: Compare { op: Less, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(2)) }, then_target: 354, else_target: 237 }
+  True -> State { pc: 354, key: 2831415867, bank: 36, token: 26325, salt: 31541, phase: 710739681, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 237, key: 2764438455, bank: 57, token: 26325, salt: 31541, phase: 680189203, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 210..221 family=1952 selector=595
+  state=State { pc: 210, key: 8965611, bank: 36, token: 48352, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[210] = 9017674
+  W[211] = 2057466289
+  W[212] = 10157085
+  W[213] = 8965624
+  W[214] = 9632740
+  W[215] = 1635805865
+  W[216] = 167623571
+  W[217] = 3899411410
+  W[218] = 757083214
+  W[219] = 4287007161
+  W[220] = 3917364659
+  Branch { condition: Compare { op: Less, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(2)) }, then_target: 361, else_target: 254 }
+  True -> State { pc: 361, key: 2444136001, bank: 57, token: 26325, salt: 31541, phase: 766048825, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 254, key: 2022475577, bank: 15, token: 48352, salt: 31541, phase: 176589182, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 382..389 family=1952 selector=12
+  state=State { pc: 382, key: 3495322200, bank: 15, token: 48352, salt: 31541, phase: 446643568, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[382] = 3495373680
+  W[383] = 3048651845
+  W[384] = 864797469
+  W[385] = 806318545
+  W[386] = 799645101
+  W[387] = 3496484550
+  W[388] = 799645099
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  Jump { target: 221 }
+  Next -> State { pc: 221, key: 1311494149, bank: 57, token: 26325, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 354..361 family=1952 selector=1028
+  state=State { pc: 354, key: 2831415867, bank: 36, token: 26325, salt: 31541, phase: 710739681, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[354] = 2831468363
+  W[355] = 2831957726
+  W[356] = 1463551442
+  W[357] = 2120641347
+  W[358] = 1850114917
+  W[359] = 1464656066
+  W[360] = 3593140114
+  Binary { op: Add, dst: Register { physical_slot: 26 }, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(1)) }
+  Jump { target: 210 }
+  Next -> State { pc: 210, key: 8965611, bank: 15, token: 18273, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 237..242 family=1952 selector=1883
+  state=State { pc: 237, key: 2764438455, bank: 57, token: 26325, salt: 31541, phase: 680189203, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[237] = 2764491806
+  W[238] = 2118945157
+  W[239] = 850334878
+  W[240] = 259513530
+  W[241] = 1531719800
+  Jump { target: 260 }
+  Next -> State { pc: 260, key: 939755845, bank: 36, token: 48352, salt: 31541, phase: 588416316, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 361..368 family=1952 selector=1467
+  state=State { pc: 361, key: 2444136001, bank: 57, token: 26325, salt: 31541, phase: 766048825, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[361] = 2444188936
+  W[362] = 2972538834
+  W[363] = 1851988240
+  W[364] = 1851441756
+  W[365] = 2444136014
+  W[366] = 1678082416
+  W[367] = 3713912698
+  Binary { op: Add, dst: Register { physical_slot: 26 }, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(1)) }
+  Jump { target: 199 }
+  Next -> State { pc: 199, key: 778352045, bank: 36, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 254..259 family=1952 selector=1883
+  state=State { pc: 254, key: 2022475577, bank: 15, token: 48352, salt: 31541, phase: 176589182, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[254] = 2022528928
+  W[255] = 2730519936
+  W[256] = 2095875750
+  W[257] = 805384013
+  W[258] = 2273682741
+  Jump { target: 340 }
+  Next -> State { pc: 340, key: 982026307, bank: 57, token: 26325, salt: 31541, phase: 458028217, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 221..225 family=1952 selector=305
+  state=State { pc: 221, key: 1311494149, bank: 57, token: 26325, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[221] = 1311545922
+  W[222] = 2984191083
+  W[223] = 1311494169
+  W[224] = 2984167298
+  Binary { op: Sub, dst: Register { physical_slot: 13 }, left: Constant(Integer(1)), right: Register(Register { physical_slot: 13 }) }
+  Jump { target: 225 }
+  Next -> State { pc: 225, key: 2865174100, bank: 57, token: 26325, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 210..221 family=1952 selector=595
+  state=State { pc: 210, key: 8965611, bank: 15, token: 18273, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[210] = 9017674
+  W[211] = 2057466289
+  W[212] = 10157085
+  W[213] = 8965624
+  W[214] = 9632740
+  W[215] = 1635805865
+  W[216] = 167623571
+  W[217] = 3899411410
+  W[218] = 757083214
+  W[219] = 4287007161
+  W[220] = 3917364659
+  Branch { condition: Compare { op: Less, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(2)) }, then_target: 361, else_target: 254 }
+  True -> State { pc: 361, key: 2444136001, bank: 36, token: 26325, salt: 31541, phase: 766048825, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 254, key: 2022475577, bank: 57, token: 48352, salt: 31541, phase: 176589182, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 260..274 family=1952 selector=1613
+  state=State { pc: 260, key: 939755845, bank: 36, token: 48352, salt: 31541, phase: 588416316, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[260] = 939808926
+  W[261] = 3355211457
+  W[262] = 3710029797
+  W[263] = 2766768348
+  W[264] = 3920250411
+  W[265] = 351334769
+  W[266] = 3355211456
+  W[267] = 1011913853
+  W[268] = 940714750
+  W[269] = 940952658
+  W[270] = 3355211454
+  W[271] = 939755849
+  W[272] = 940457735
+  W[273] = 1751939617
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 42 }) }
+  GetTable { dst: Register { physical_slot: 16896 }, table: Environment, index: Constant(String([97, 115, 115, 101, 114, 116])) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 16896 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Branch { condition: Truthy(Register(Register { physical_slot: 42 })), then_target: 274, else_target: 389 }
+  True -> State { pc: 274, key: 2340462157, bank: 15, token: 26325, salt: 31541, phase: 354818346, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 389, key: 2093317345, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 199..210 family=1952 selector=981
+  state=State { pc: 199, key: 778352045, bank: 36, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[199] = 778404494
+  W[200] = 746202720
+  W[201] = 778892078
+  W[202] = 2988185631
+  W[203] = 778352058
+  W[204] = 779453926
+  W[205] = 1489091726
+  W[206] = 4196804454
+  W[207] = 2988185631
+  W[208] = 3517747796
+  W[209] = 679225308
+  Branch { condition: Compare { op: Less, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(2)) }, then_target: 354, else_target: 237 }
+  True -> State { pc: 354, key: 2831415867, bank: 57, token: 26325, salt: 31541, phase: 710739681, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 237, key: 2764438455, bank: 15, token: 26325, salt: 31541, phase: 680189203, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 340..354 family=1952 selector=1499
+  state=State { pc: 340, key: 982026307, bank: 57, token: 26325, salt: 31541, phase: 458028217, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[340] = 982079274
+  W[341] = 982929734
+  W[342] = 3312940995
+  W[343] = 983059102
+  W[344] = 2854877933
+  W[345] = 2971312548
+  W[346] = 1635182904
+  W[347] = 523971303
+  W[348] = 3385098997
+  W[349] = 982026310
+  W[350] = 3312940994
+  W[351] = 1046014842
+  W[352] = 982026311
+  W[353] = 982728197
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 42 }) }
+  GetTable { dst: Register { physical_slot: 22016 }, table: Environment, index: Constant(String([97, 115, 115, 101, 114, 116])) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 22016 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Branch { condition: Truthy(Register(Register { physical_slot: 42 })), then_target: 320, else_target: 389 }
+  True -> State { pc: 320, key: 1098532307, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 389, key: 2093317345, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 225..237 family=1952 selector=709
+  state=State { pc: 225, key: 2865174100, bank: 57, token: 26325, salt: 31541, phase: 6673449, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[225] = 2865226277
+  W[226] = 2865174120
+  W[227] = 2858475552
+  W[228] = 2861825442
+  W[229] = 2866177962
+  W[230] = 2858495891
+  W[231] = 771605145
+  W[232] = 2866339620
+  W[233] = 1958175690
+  W[234] = 3251737588
+  W[235] = 260085937
+  W[236] = 1678260217
+  Branch { condition: Compare { op: Equal, left: Register(Register { physical_slot: 13 }), right: Constant(Integer(0)) }, then_target: 199, else_target: 210 }
+  True -> State { pc: 199, key: 778352045, bank: 15, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 210, key: 8965611, bank: 36, token: 48352, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 361..368 family=1952 selector=1467
+  state=State { pc: 361, key: 2444136001, bank: 36, token: 26325, salt: 31541, phase: 766048825, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[361] = 2444188936
+  W[362] = 2972538834
+  W[363] = 1851988240
+  W[364] = 1851441756
+  W[365] = 2444136014
+  W[366] = 1678082416
+  W[367] = 3713912698
+  Binary { op: Add, dst: Register { physical_slot: 26 }, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(1)) }
+  Jump { target: 199 }
+  Next -> State { pc: 199, key: 778352045, bank: 15, token: 48352, salt: 31541, phase: 528402833, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 254..259 family=1952 selector=1883
+  state=State { pc: 254, key: 2022475577, bank: 57, token: 48352, salt: 31541, phase: 176589182, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[254] = 2022528928
+  W[255] = 2730519936
+  W[256] = 2095875750
+  W[257] = 805384013
+  W[258] = 2273682741
+  Jump { target: 340 }
+  Next -> State { pc: 340, key: 982026307, bank: 36, token: 26325, salt: 31541, phase: 458028217, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 274..279 family=1952 selector=167
+  state=State { pc: 274, key: 2340462157, bank: 15, token: 26325, salt: 31541, phase: 354818346, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[274] = 2340513792
+  W[275] = 1985639051
+  W[276] = 357703831
+  W[277] = 2018493674
+  W[278] = 1955558670
+  Jump { target: 320 }
+  Next -> State { pc: 320, key: 1098532307, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 354..361 family=1952 selector=1028
+  state=State { pc: 354, key: 2831415867, bank: 57, token: 26325, salt: 31541, phase: 710739681, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[354] = 2831468363
+  W[355] = 2831957726
+  W[356] = 1463551442
+  W[357] = 2120641347
+  W[358] = 1850114917
+  W[359] = 1464656066
+  W[360] = 3593140114
+  Binary { op: Add, dst: Register { physical_slot: 26 }, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(1)) }
+  Jump { target: 210 }
+  Next -> State { pc: 210, key: 8965611, bank: 36, token: 18273, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 237..242 family=1952 selector=1883
+  state=State { pc: 237, key: 2764438455, bank: 15, token: 26325, salt: 31541, phase: 680189203, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[237] = 2764491806
+  W[238] = 2118945157
+  W[239] = 850334878
+  W[240] = 259513530
+  W[241] = 1531719800
+  Jump { target: 260 }
+  Next -> State { pc: 260, key: 939755845, bank: 57, token: 48352, salt: 31541, phase: 588416316, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 320..328 family=1952 selector=976
+  state=State { pc: 320, key: 1098532307, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[320] = 1098584751
+  W[321] = 1098532314
+  W[322] = 1098532315
+  W[323] = 1098532316
+  W[324] = 3196434994
+  W[325] = 3197136919
+  W[326] = 1098532310
+  W[327] = 3197136927
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([66, 105, 110, 100, 97, 98, 108, 101, 69, 118, 101, 110, 116]) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([73, 115, 65]) }
+  GetTable { dst: Register { physical_slot: 20736 }, table: Register(Register { physical_slot: 49 }), index: Constant(String([73, 115, 65])) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 20736 }) }
+  Jump { target: 328 }
+  Next -> State { pc: 328, key: 4156705614, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 340..354 family=1952 selector=1499
+  state=State { pc: 340, key: 982026307, bank: 36, token: 26325, salt: 31541, phase: 458028217, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[340] = 982079274
+  W[341] = 982929734
+  W[342] = 3312940995
+  W[343] = 983059102
+  W[344] = 2854877933
+  W[345] = 2971312548
+  W[346] = 1635182904
+  W[347] = 523971303
+  W[348] = 3385098997
+  W[349] = 982026310
+  W[350] = 3312940994
+  W[351] = 1046014842
+  W[352] = 982026311
+  W[353] = 982728197
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 42 }) }
+  GetTable { dst: Register { physical_slot: 22016 }, table: Environment, index: Constant(String([97, 115, 115, 101, 114, 116])) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 22016 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Branch { condition: Truthy(Register(Register { physical_slot: 42 })), then_target: 320, else_target: 389 }
+  True -> State { pc: 320, key: 1098532307, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 389, key: 2093317345, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 320..328 family=1952 selector=976
+  state=State { pc: 320, key: 1098532307, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[320] = 1098584751
+  W[321] = 1098532314
+  W[322] = 1098532315
+  W[323] = 1098532316
+  W[324] = 3196434994
+  W[325] = 3197136919
+  W[326] = 1098532310
+  W[327] = 3197136927
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([66, 105, 110, 100, 97, 98, 108, 101, 69, 118, 101, 110, 116]) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([73, 115, 65]) }
+  GetTable { dst: Register { physical_slot: 20736 }, table: Register(Register { physical_slot: 49 }), index: Constant(String([73, 115, 65])) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 20736 }) }
+  Jump { target: 328 }
+  Next -> State { pc: 328, key: 4156705614, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 210..221 family=1952 selector=595
+  state=State { pc: 210, key: 8965611, bank: 36, token: 18273, salt: 31541, phase: 386563488, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[210] = 9017674
+  W[211] = 2057466289
+  W[212] = 10157085
+  W[213] = 8965624
+  W[214] = 9632740
+  W[215] = 1635805865
+  W[216] = 167623571
+  W[217] = 3899411410
+  W[218] = 757083214
+  W[219] = 4287007161
+  W[220] = 3917364659
+  Branch { condition: Compare { op: Less, left: Register(Register { physical_slot: 26 }), right: Constant(Integer(2)) }, then_target: 361, else_target: 254 }
+  True -> State { pc: 361, key: 2444136001, bank: 57, token: 26325, salt: 31541, phase: 766048825, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 254, key: 2022475577, bank: 15, token: 48352, salt: 31541, phase: 176589182, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 260..274 family=1952 selector=1613
+  state=State { pc: 260, key: 939755845, bank: 57, token: 48352, salt: 31541, phase: 588416316, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[260] = 939808926
+  W[261] = 3355211457
+  W[262] = 3710029797
+  W[263] = 2766768348
+  W[264] = 3920250411
+  W[265] = 351334769
+  W[266] = 3355211456
+  W[267] = 1011913853
+  W[268] = 940714750
+  W[269] = 940952658
+  W[270] = 3355211454
+  W[271] = 939755849
+  W[272] = 940457735
+  W[273] = 1751939617
+  Move { dst: Register { physical_slot: 49 }, src: Register(Register { physical_slot: 42 }) }
+  GetTable { dst: Register { physical_slot: 16896 }, table: Environment, index: Constant(String([97, 115, 115, 101, 114, 116])) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 16896 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Branch { condition: Truthy(Register(Register { physical_slot: 42 })), then_target: 274, else_target: 389 }
+  True -> State { pc: 274, key: 2340462157, bank: 36, token: 26325, salt: 31541, phase: 354818346, window: 21, bank_end: 57, pool_key: 135918109 }
+  False -> State { pc: 389, key: 2093317345, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 328..332 family=1952 selector=460
+  state=State { pc: 328, key: 4156705614, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[328] = 4156757542
+  W[329] = 4156705621
+  W[330] = 138261687
+  W[331] = 4156705623
+  Call { dst: Some(Register { physical_slot: 21248 }), function: Register(Register { physical_slot: 2 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 21249 }, table: Register(Register { physical_slot: 21248 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 21249 }) }
+  Jump { target: 332 }
+  Next -> State { pc: 332, key: 3964925337, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 320..328 family=1952 selector=976
+  state=State { pc: 320, key: 1098532307, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[320] = 1098584751
+  W[321] = 1098532314
+  W[322] = 1098532315
+  W[323] = 1098532316
+  W[324] = 3196434994
+  W[325] = 3197136919
+  W[326] = 1098532310
+  W[327] = 3197136927
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([66, 105, 110, 100, 97, 98, 108, 101, 69, 118, 101, 110, 116]) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([73, 115, 65]) }
+  GetTable { dst: Register { physical_slot: 20736 }, table: Register(Register { physical_slot: 49 }), index: Constant(String([73, 115, 65])) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 20736 }) }
+  Jump { target: 328 }
+  Next -> State { pc: 328, key: 4156705614, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 328..332 family=1952 selector=460
+  state=State { pc: 328, key: 4156705614, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[328] = 4156757542
+  W[329] = 4156705621
+  W[330] = 138261687
+  W[331] = 4156705623
+  Call { dst: Some(Register { physical_slot: 21248 }), function: Register(Register { physical_slot: 2 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 21249 }, table: Register(Register { physical_slot: 21248 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 21249 }) }
+  Jump { target: 332 }
+  Next -> State { pc: 332, key: 3964925337, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 274..279 family=1952 selector=167
+  state=State { pc: 274, key: 2340462157, bank: 36, token: 26325, salt: 31541, phase: 354818346, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[274] = 2340513792
+  W[275] = 1985639051
+  W[276] = 357703831
+  W[277] = 2018493674
+  W[278] = 1955558670
+  Jump { target: 320 }
+  Next -> State { pc: 320, key: 1098532307, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 332..335 family=1952 selector=1213
+  state=State { pc: 332, key: 3964925337, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[332] = 3964978018
+  W[333] = 3964925342
+  W[334] = 330041963
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Jump { target: 335 }
+  Next -> State { pc: 335, key: 222962166, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 328..332 family=1952 selector=460
+  state=State { pc: 328, key: 4156705614, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[328] = 4156757542
+  W[329] = 4156705621
+  W[330] = 138261687
+  W[331] = 4156705623
+  Call { dst: Some(Register { physical_slot: 21248 }), function: Register(Register { physical_slot: 2 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 21249 }, table: Register(Register { physical_slot: 21248 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 21249 }) }
+  Jump { target: 332 }
+  Next -> State { pc: 332, key: 3964925337, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 332..335 family=1952 selector=1213
+  state=State { pc: 332, key: 3964925337, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[332] = 3964978018
+  W[333] = 3964925342
+  W[334] = 330041963
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Jump { target: 335 }
+  Next -> State { pc: 335, key: 222962166, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 320..328 family=1952 selector=976
+  state=State { pc: 320, key: 1098532307, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[320] = 1098584751
+  W[321] = 1098532314
+  W[322] = 1098532315
+  W[323] = 1098532316
+  W[324] = 3196434994
+  W[325] = 3197136919
+  W[326] = 1098532310
+  W[327] = 3197136927
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([66, 105, 110, 100, 97, 98, 108, 101, 69, 118, 101, 110, 116]) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([73, 115, 65]) }
+  GetTable { dst: Register { physical_slot: 20736 }, table: Register(Register { physical_slot: 49 }), index: Constant(String([73, 115, 65])) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 20736 }) }
+  Jump { target: 328 }
+  Next -> State { pc: 328, key: 4156705614, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 335..340 family=1952 selector=1605
+  state=State { pc: 335, key: 222962166, bank: 36, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[335] = 223015239
+  W[336] = 2029275698
+  W[337] = 295120174
+  W[338] = 4007981756
+  W[339] = 4073200261
+  Jump { target: 389 }
+  Next -> State { pc: 389, key: 2093317345, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 332..335 family=1952 selector=1213
+  state=State { pc: 332, key: 3964925337, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[332] = 3964978018
+  W[333] = 3964925342
+  W[334] = 330041963
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Jump { target: 335 }
+  Next -> State { pc: 335, key: 222962166, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 335..340 family=1952 selector=1605
+  state=State { pc: 335, key: 222962166, bank: 57, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[335] = 223015239
+  W[336] = 2029275698
+  W[337] = 295120174
+  W[338] = 4007981756
+  W[339] = 4073200261
+  Jump { target: 389 }
+  Next -> State { pc: 389, key: 2093317345, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 328..332 family=1952 selector=460
+  state=State { pc: 328, key: 4156705614, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[328] = 4156757542
+  W[329] = 4156705621
+  W[330] = 138261687
+  W[331] = 4156705623
+  Call { dst: Some(Register { physical_slot: 21248 }), function: Register(Register { physical_slot: 2 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 21249 }, table: Register(Register { physical_slot: 21248 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 21249 }) }
+  Jump { target: 332 }
+  Next -> State { pc: 332, key: 3964925337, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 335..340 family=1952 selector=1605
+  state=State { pc: 335, key: 222962166, bank: 15, token: 18273, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[335] = 223015239
+  W[336] = 2029275698
+  W[337] = 295120174
+  W[338] = 4007981756
+  W[339] = 4073200261
+  Jump { target: 389 }
+  Next -> State { pc: 389, key: 2093317345, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 332..335 family=1952 selector=1213
+  state=State { pc: 332, key: 3964925337, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[332] = 3964978018
+  W[333] = 3964925342
+  W[334] = 330041963
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 42 }) }
+  Jump { target: 335 }
+  Next -> State { pc: 335, key: 222962166, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 389..394 family=1952 selector=1011
+  state=State { pc: 389, key: 2093317345, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[389] = 2093369824
+  W[390] = 2094018807
+  W[391] = 2093317353
+  W[392] = 2093317352
+  W[393] = 2093317349
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 50 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: String([77, 111, 116, 104, 68, 105, 97, 108, 111, 103, 117, 101, 66, 105, 110, 100, 97, 98, 108, 101, 32, 110, 111, 116, 32, 102, 111, 117, 110, 100, 46, 32, 82, 117, 110, 32, 116, 104, 105, 115, 32, 105, 110, 115, 105, 100, 101, 32, 78, 117, 108, 108, 115, 99, 97, 112, 101, 46]) }
+  Jump { target: 394 }
+  Next -> State { pc: 394, key: 4002447666, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 335..340 family=1952 selector=1605
+  state=State { pc: 335, key: 222962166, bank: 15, token: 48352, salt: 31541, phase: 63988535, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[335] = 223015239
+  W[336] = 2029275698
+  W[337] = 295120174
+  W[338] = 4007981756
+  W[339] = 4073200261
+  Jump { target: 389 }
+  Next -> State { pc: 389, key: 2093317345, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 394..397 family=1952 selector=1229
+  state=State { pc: 394, key: 4002447666, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[394] = 4002500363
+  W[395] = 292519636
+  W[396] = 292519637
+  Call { dst: Some(Register { physical_slot: 25472 }), function: Register(Register { physical_slot: 7 }), args: [Register(Register { physical_slot: 19 }), Register(Register { physical_slot: 22 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 25473 }, table: Register(Register { physical_slot: 25472 }), index: Constant(Integer(1)) }
+  Jump { target: 397 }
+  Next -> State { pc: 397, key: 821770631, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 397..408 family=1952 selector=1835
+  state=State { pc: 397, key: 821770631, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[397] = 821823934
+  W[398] = 3473898175
+  W[399] = 822472293
+  W[400] = 822472173
+  W[401] = 821770637
+  W[402] = 3473898279
+  W[403] = 3473898235
+  W[404] = 3473196669
+  W[405] = 3473898195
+  W[406] = 3473196670
+  W[407] = 3473898287
+  NewTable { dst: Register { physical_slot: 25664 } }
+  Move { dst: Register { physical_slot: 25665 }, src: Register(Register { physical_slot: 25664 }) }
+  Move { dst: Register { physical_slot: 50 }, src: Register(Register { physical_slot: 25665 }) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([84, 101, 120, 116])), value: Constant(String([104, 101, 121, 32, 105, 116, 115, 32, 109, 101, 32, 105, 116, 115, 32, 99, 101, 108, 101, 115, 116, 105, 97, 108])) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 110, 116, 114, 97, 110, 99, 101, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([104, 111, 114, 105, 122, 111, 110, 116, 97, 108])) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: String([102, 108, 97, 115, 104]) }
+  SetTable { table: Register(Register { physical_slot: 25665 }), index: Constant(String([69, 120, 105, 116, 65, 110, 105, 109, 97, 116, 105, 111, 110])), value: Constant(String([102, 108, 97, 115, 104])) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([76, 105, 102, 101, 116, 105, 109, 101]) }
+  Jump { target: 408 }
+  Next -> State { pc: 408, key: 574571016, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 408..419 family=1952 selector=374
+  state=State { pc: 408, key: 574571016, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[408] = 574622858
+  W[409] = 3720396285
+  W[410] = 3720396288
+  W[411] = 3720396286
+  W[412] = 3721097926
+  W[413] = 575272694
+  W[414] = 575900040
+  W[415] = 575900042
+  W[416] = 575272710
+  W[417] = 3720396284
+  W[418] = 3720396287
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Constant(NumberBits(4620130267728707584)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([80, 111, 115, 105, 116, 105, 111, 110]) }
+  GetTable { dst: Register { physical_slot: 26368 }, table: Environment, index: Constant(String([85, 68, 105, 109, 50])) }
+  Move { dst: Register { physical_slot: 26369 }, src: Register(Register { physical_slot: 26368 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 26369 }) }
+  GetTable { dst: Register { physical_slot: 26370 }, table: Register(Register { physical_slot: 26369 }), index: Constant(String([102, 114, 111, 109, 83, 99, 97, 108, 101])) }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 26370 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4602678819172646912) }
+  Jump { target: 419 }
+  Next -> State { pc: 419, key: 2702618399, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 419..424 family=1952 selector=440
+  state=State { pc: 419, key: 2702618399, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[419] = 2702670307
+  W[420] = 1593677924
+  W[421] = 2702618408
+  W[422] = 2702618405
+  W[423] = 1592348907
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 7 }) }
+  LoadConst { dst: Register { physical_slot: 7 }, value: NumberBits(4606732058837280358) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: NumberBits(4606732058837280358) }
+  Jump { target: 424 }
+  Next -> State { pc: 424, key: 394105204, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 424..428 family=1952 selector=1993
+  state=State { pc: 424, key: 394105204, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[424] = 394158665
+  W[425] = 394105210
+  W[426] = 394105212
+  W[427] = 394105213
+  Call { dst: Some(Register { physical_slot: 27392 }), function: Register(Register { physical_slot: 22 }), args: [Register(Register { physical_slot: 2 }), Register(Register { physical_slot: 8 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 27393 }, table: Register(Register { physical_slot: 27392 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27393 }) }
+  Jump { target: 428 }
+  Next -> State { pc: 428, key: 1190738431, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 428..439 family=1952 selector=1301
+  state=State { pc: 428, key: 1190738431, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[428] = 1190791200
+  W[429] = 1190738439
+  W[430] = 1190738438
+  W[431] = 3104228865
+  W[432] = 1190738437
+  W[433] = 1190738436
+  W[434] = 1190738435
+  W[435] = 1191440681
+  W[436] = 1191440641
+  W[437] = 1191440697
+  W[438] = 1191312727
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  NewTable { dst: Register { physical_slot: 27648 } }
+  Move { dst: Register { physical_slot: 27649 }, src: Register(Register { physical_slot: 27648 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([73, 110, 105, 116, 105, 97, 108, 83, 111, 117, 110, 100, 115])), value: Register(Register { physical_slot: 27649 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Constant(String([78, 111, 73, 100, 108, 101])), value: Constant(Boolean(false)) }
+  LoadConst { dst: Register { physical_slot: 42 }, value: String([77, 97, 114, 107, 117, 112, 115]) }
+  NewTable { dst: Register { physical_slot: 27650 } }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 27650 }) }
+  LoadConst { dst: Register { physical_slot: 19 }, value: Integer(1) }
+  NewTable { dst: Register { physical_slot: 27651 } }
+  Move { dst: Register { physical_slot: 22 }, src: Register(Register { physical_slot: 27651 }) }
+  Jump { target: 439 }
+  Next -> State { pc: 439, key: 2012268680, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 439..454 family=1952 selector=598
+  state=State { pc: 439, key: 2012268680, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[439] = 2012320746
+  W[440] = 2282698624
+  W[441] = 2012268691
+  W[442] = 2283400954
+  W[443] = 2012268694
+  W[444] = 2012268701
+  W[445] = 2012268689
+  W[446] = 2012268695
+  W[447] = 2283400902
+  W[448] = 2012268687
+  W[449] = 2012970978
+  W[450] = 2283400970
+  W[451] = 2283400950
+  W[452] = 2283400966
+  W[453] = 2012268690
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([77, 97, 114, 107, 117, 112, 84, 121, 112, 101])), value: Constant(String([67, 111, 108, 111, 114])) }
+  LoadConst { dst: Register { physical_slot: 8 }, value: String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120]) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Constant(String([83, 116, 97, 114, 116, 73, 110, 100, 101, 120])), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 14 }, value: String([69, 110, 100, 73, 110, 100, 101, 120]) }
+  LoadConst { dst: Register { physical_slot: 10 }, value: String([109, 97, 116, 104]) }
+  GetTable { dst: Register { physical_slot: 28352 }, table: Environment, index: Constant(String([109, 97, 116, 104])) }
+  Move { dst: Register { physical_slot: 6 }, src: Register(Register { physical_slot: 28352 }) }
+  LoadConst { dst: Register { physical_slot: 48 }, value: String([104, 117, 103, 101]) }
+  Jump { target: 454 }
+  Next -> State { pc: 454, key: 3266183585, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 454..463 family=1952 selector=2026
+  state=State { pc: 454, key: 3266183585, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[454] = 3266237079
+  W[455] = 3266886011
+  W[456] = 3266183597
+  W[457] = 1029486089
+  W[458] = 3266183606
+  W[459] = 1029486105
+  W[460] = 1028783722
+  W[461] = 1028783725
+  W[462] = 1028783719
+  GetTable { dst: Register { physical_slot: 29312 }, table: Register(Register { physical_slot: 6 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 29313 }, src: Register(Register { physical_slot: 29312 }) }
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 29313 }) }
+  LoadConst { dst: Register { physical_slot: 6 }, value: String([86, 97, 108, 117, 101, 49]) }
+  GetTable { dst: Register { physical_slot: 29314 }, table: Environment, index: Constant(String([67, 111, 108, 111, 114, 51])) }
+  Move { dst: Register { physical_slot: 29315 }, src: Register(Register { physical_slot: 29314 }) }
+  GetTable { dst: Register { physical_slot: 29316 }, table: Register(Register { physical_slot: 29315 }), index: Constant(String([102, 114, 111, 109, 82, 71, 66])) }
+  Move { dst: Register { physical_slot: 28 }, src: Register(Register { physical_slot: 29316 }) }
+  Jump { target: 463 }
+  Next -> State { pc: 463, key: 3510712158, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 463..469 family=1952 selector=677
+  state=State { pc: 463, key: 3510712158, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[463] = 3510764303
+  W[464] = 784255156
+  W[465] = 3510712177
+  W[466] = 784963986
+  W[467] = 784868237
+  W[468] = 784255155
+  LoadConst { dst: Register { physical_slot: 15 }, value: Integer(255) }
+  LoadConst { dst: Register { physical_slot: 24 }, value: Integer(45) }
+  LoadConst { dst: Register { physical_slot: 20 }, value: Integer(45) }
+  Jump { target: 469 }
+  Next -> State { pc: 469, key: 2024181033, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 57, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 15, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 469..473 family=1952 selector=925
+  state=State { pc: 469, key: 2024181033, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[469] = 2024233426
+  W[470] = 2270786280
+  W[471] = 2270786275
+  W[472] = 2024181049
+  Call { dst: Some(Register { physical_slot: 30272 }), function: Register(Register { physical_slot: 28 }), args: [Register(Register { physical_slot: 15 }), Register(Register { physical_slot: 24 }), Register(Register { physical_slot: 20 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 30273 }, table: Register(Register { physical_slot: 30272 }), index: Constant(Integer(1)) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30273 }) }
+  Jump { target: 473 }
+  Next -> State { pc: 473, key: 428474876, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 473..486 family=1952 selector=545
+  state=State { pc: 473, key: 428474876, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[473] = 428526889
+  W[474] = 3866492427
+  W[475] = 3866492430
+  W[476] = 3866492434
+  W[477] = 3867194830
+  W[478] = 3866492428
+  W[479] = 3866492436
+  W[480] = 3867193764
+  W[481] = 3866492431
+  W[482] = 3866492429
+  W[483] = 3866492441
+  W[484] = 3866492435
+  W[485] = 3866492426
+  SetTable { table: Register(Register { physical_slot: 22 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 19 }), value: Register(Register { physical_slot: 22 }) }
+  LoadConst { dst: Register { physical_slot: 22 }, value: Integer(2) }
+  NewTable { dst: Register { physical_slot: 30528 } }
+  Move { dst: Register { physical_slot: 30529 }, src: Register(Register { physical_slot: 30528 }) }
+  Move { dst: Register { physical_slot: 18 }, src: Register(Register { physical_slot: 30529 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 2 }), value: Constant(String([83, 104, 97, 107, 121])) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 8 }), value: Register(Register { physical_slot: 19 }) }
+  GetTable { dst: Register { physical_slot: 30530 }, table: Environment, index: Register(Register { physical_slot: 10 }) }
+  Move { dst: Register { physical_slot: 30531 }, src: Register(Register { physical_slot: 30530 }) }
+  Move { dst: Register { physical_slot: 2 }, src: Register(Register { physical_slot: 30531 }) }
+  GetTable { dst: Register { physical_slot: 30532 }, table: Register(Register { physical_slot: 30531 }), index: Register(Register { physical_slot: 48 }) }
+  Move { dst: Register { physical_slot: 30533 }, src: Register(Register { physical_slot: 30532 }) }
+  Move { dst: Register { physical_slot: 8 }, src: Register(Register { physical_slot: 30533 }) }
+  SetTable { table: Register(Register { physical_slot: 30529 }), index: Register(Register { physical_slot: 14 }), value: Register(Register { physical_slot: 30533 }) }
+  Jump { target: 486 }
+  Next -> State { pc: 486, key: 1134548465, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 57, token: 26325, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 15, token: 48352, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 486..498 family=1952 selector=993
+  state=State { pc: 486, key: 1134548465, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[486] = 1134600926
+  W[487] = 1134548481
+  W[488] = 1134548476
+  W[489] = 1135250907
+  W[490] = 3161121289
+  W[491] = 1134548473
+  W[492] = 3160418840
+  W[493] = 1134548469
+  W[494] = 1134548468
+  W[495] = 1134548471
+  W[496] = 3160418838
+  W[497] = 1134548470
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Register(Register { physical_slot: 6 }), value: Register(Register { physical_slot: 19 }) }
+  LoadConst { dst: Register { physical_slot: 2 }, value: String([86, 97, 108, 117, 101, 50]) }
+  SetTable { table: Register(Register { physical_slot: 18 }), index: Constant(String([86, 97, 108, 117, 101, 50])), value: Register(Register { physical_slot: 19 }) }
+  SetTable { table: Register(Register { physical_slot: 7 }), index: Register(Register { physical_slot: 22 }), value: Register(Register { physical_slot: 18 }) }
+  SetTable { table: Register(Register { physical_slot: 50 }), index: Register(Register { physical_slot: 42 }), value: Register(Register { physical_slot: 7 }) }
+  Move { dst: Register { physical_slot: 7 }, src: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 42 }, src: Register(Register { physical_slot: 49 }) }
+  LoadConst { dst: Register { physical_slot: 50 }, value: String([70, 105, 114, 101]) }
+  Jump { target: 498 }
+  Next -> State { pc: 498, key: 1540270854, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 498..502 family=1952 selector=841
+  state=State { pc: 498, key: 1540270854, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[498] = 1540323163
+  W[499] = 1540270858
+  W[500] = 2754696445
+  W[501] = 1540270861
+  GetTable { dst: Register { physical_slot: 32128 }, table: Register(Register { physical_slot: 49 }), index: Register(Register { physical_slot: 50 }) }
+  Move { dst: Register { physical_slot: 19 }, src: Register(Register { physical_slot: 32128 }) }
+  Jump { target: 502 }
+  Next -> State { pc: 502, key: 2361729527, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 15, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 502..505 family=1952 selector=1229
+  state=State { pc: 502, key: 2361729527, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[502] = 2361782224
+  W[503] = 1933237776
+  W[504] = 1933237774
+  Call { dst: Some(Register { physical_slot: 32384 }), function: Register(Register { physical_slot: 19 }), args: [Register(Register { physical_slot: 42 }), Register(Register { physical_slot: 7 })], result_count: Some(1) }
+  GetTable { dst: Register { physical_slot: 32385 }, table: Register(Register { physical_slot: 32384 }), index: Constant(Integer(1)) }
+  Jump { target: 505 }
+  Next -> State { pc: 505, key: 243425656, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 36, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }
+PC 505..506 family=1952 selector=933
+  state=State { pc: 505, key: 243425656, bank: 57, token: 18273, salt: 31541, phase: 72158008, window: 21, bank_end: 57, pool_key: 135918109 }
+  W[505] = 243478057
+  Return { values: [] }

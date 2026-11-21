@@ -1,0 +1,26 @@
+[package]
+name = "luau-devirt"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.83"
+description = "Static devirtualizer and Luau emitter for the protected Luau VM format"
+license = "MIT"
+readme = "README.md"
+keywords = ["luau", "deobfuscator", "devirtualization", "static-analysis"]
+categories = ["command-line-utilities", "development-tools"]
+
+[lib]
+name = "luau_devirt"
+path = "src/lib.rs"
+
+[[bin]]
+name = "luau-devirt"
+path = "src/main.rs"
+
+[workspace]
+members = ["."]
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = "debuginfo"

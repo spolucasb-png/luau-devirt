@@ -1,0 +1,21 @@
+/target/
+/dist/
+/tools/luau-*/
+/tools/validator-build/
+*.pdb
+*.log
+
+# Commit only the reviewed recovery deliverables, not local investigation data.
+/decompilation/*
+!/decompilation/message/
+/decompilation/message/*
+!/decompilation/message/target.original.lua
+!/decompilation/message/target.decoded.bin
+!/decompilation/message/target.bytecode.txt
+!/decompilation/message/target.handlers.md
+!/decompilation/message/target.deobfuscated.lua
+!/decompilation/message/target.analysis.md
+!/decompilation/message/target.validation.md
+!/decompilation/message/target.concise.luau
+!/decompilation/message/target.line-count-review.md
+!/decompilation/message/SHA256SUMS.txt

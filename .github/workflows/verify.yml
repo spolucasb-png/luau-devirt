@@ -1,0 +1,31 @@
+name: Static VM verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Install verified compile-only Luau tools
+        shell: pwsh
+        run: ./tools/install_luau.ps1
+      - name: Static regression and output verification
+        shell: pwsh
+        run: ./tools/verify.ps1 -RequireExternalTools
+      - name: Package allowlisted release
+        shell: pwsh
+        run: ./tools/package.ps1 -SkipBuild
+      - uses: actions/upload-artifact@v4
+        with:
+          name: luau-devirt-release
+          path: dist/*
