@@ -1,0 +1,3159 @@
+LiftedProgram {
+    blocks: {
+        190: BasicBlock {
+            start_pc: 190,
+            end_pc: 201,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Branch {
+                    condition: Compare {
+                        op: Less,
+                        left: Register(
+                            Register {
+                                physical_slot: 51,
+                            },
+                        ),
+                        right: Constant(
+                            Integer(
+                                2,
+                            ),
+                        ),
+                    },
+                    then_target: 388,
+                    else_target: 436,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: True,
+                    target_pc: Some(
+                        388,
+                    ),
+                    state: None,
+                },
+                Successor {
+                    label: False,
+                    target_pc: Some(
+                        436,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        201: BasicBlock {
+            start_pc: 201,
+            end_pc: 212,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Branch {
+                    condition: Compare {
+                        op: Less,
+                        left: Register(
+                            Register {
+                                physical_slot: 51,
+                            },
+                        ),
+                        right: Constant(
+                            Integer(
+                                2,
+                            ),
+                        ),
+                    },
+                    then_target: 494,
+                    else_target: 395,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: True,
+                    target_pc: Some(
+                        494,
+                    ),
+                    state: None,
+                },
+                Successor {
+                    label: False,
+                    target_pc: Some(
+                        395,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        212: BasicBlock {
+            start_pc: 212,
+            end_pc: 217,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 401,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        401,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        217: BasicBlock {
+            start_pc: 217,
+            end_pc: 222,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    value: String(
+                        [
+                            77,
+                            111,
+                            116,
+                            104,
+                            68,
+                            105,
+                            97,
+                            108,
+                            111,
+                            103,
+                            117,
+                            101,
+                            66,
+                            105,
+                            110,
+                            100,
+                            97,
+                            98,
+                            108,
+                            101,
+                            32,
+                            110,
+                            111,
+                            116,
+                            32,
+                            102,
+                            111,
+                            117,
+                            110,
+                            100,
+                            46,
+                            32,
+                            82,
+                            117,
+                            110,
+                            32,
+                            116,
+                            104,
+                            105,
+                            115,
+                            32,
+                            105,
+                            110,
+                            115,
+                            105,
+                            100,
+                            101,
+                            32,
+                            78,
+                            117,
+                            108,
+                            108,
+                            115,
+                            99,
+                            97,
+                            112,
+                            101,
+                            46,
+                        ],
+                    ),
+                },
+                Jump {
+                    target: 222,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        222,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        222: BasicBlock {
+            start_pc: 222,
+            end_pc: 225,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 14464,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 34,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 9,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 14465,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 14464,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Jump {
+                    target: 225,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        225,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        225: BasicBlock {
+            start_pc: 225,
+            end_pc: 236,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                NewTable {
+                    dst: Register {
+                        physical_slot: 14656,
+                    },
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 14657,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 14656,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 14657,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 14657,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                84,
+                                101,
+                                120,
+                                116,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        String(
+                            [
+                                104,
+                                101,
+                                121,
+                                32,
+                                105,
+                                116,
+                                115,
+                                32,
+                                109,
+                                101,
+                                32,
+                                105,
+                                116,
+                                115,
+                                32,
+                                99,
+                                101,
+                                108,
+                                101,
+                                115,
+                                116,
+                                105,
+                                97,
+                                108,
+                            ],
+                        ),
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 14657,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                69,
+                                110,
+                                116,
+                                114,
+                                97,
+                                110,
+                                99,
+                                101,
+                                65,
+                                110,
+                                105,
+                                109,
+                                97,
+                                116,
+                                105,
+                                111,
+                                110,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        String(
+                            [
+                                104,
+                                111,
+                                114,
+                                105,
+                                122,
+                                111,
+                                110,
+                                116,
+                                97,
+                                108,
+                            ],
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    value: String(
+                        [
+                            102,
+                            108,
+                            97,
+                            115,
+                            104,
+                        ],
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 14657,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                69,
+                                120,
+                                105,
+                                116,
+                                65,
+                                110,
+                                105,
+                                109,
+                                97,
+                                116,
+                                105,
+                                111,
+                                110,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        String(
+                            [
+                                102,
+                                108,
+                                97,
+                                115,
+                                104,
+                            ],
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    value: String(
+                        [
+                            76,
+                            105,
+                            102,
+                            101,
+                            116,
+                            105,
+                            109,
+                            101,
+                        ],
+                    ),
+                },
+                Jump {
+                    target: 236,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        236,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        236: BasicBlock {
+            start_pc: 236,
+            end_pc: 249,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                    value: Constant(
+                        NumberBits(
+                            4620130267728707584,
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    value: String(
+                        [
+                            80,
+                            111,
+                            115,
+                            105,
+                            116,
+                            105,
+                            111,
+                            110,
+                        ],
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 15360,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                85,
+                                68,
+                                105,
+                                109,
+                                50,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 15361,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 15360,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 15361,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 15362,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 15361,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                102,
+                                114,
+                                111,
+                                109,
+                                83,
+                                99,
+                                97,
+                                108,
+                                101,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 15362,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 32,
+                    },
+                    value: NumberBits(
+                        4602678819172646912,
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    value: NumberBits(
+                        4606732058837280358,
+                    ),
+                },
+                Jump {
+                    target: 249,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        249,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        249: BasicBlock {
+            start_pc: 249,
+            end_pc: 252,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 5,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 252,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        252,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        252: BasicBlock {
+            start_pc: 252,
+            end_pc: 256,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 16384,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 32,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 5,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 16385,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 16384,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 16385,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 256,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        256,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        256: BasicBlock {
+            start_pc: 256,
+            end_pc: 264,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                },
+                NewTable {
+                    dst: Register {
+                        physical_slot: 16640,
+                    },
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 16641,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 16640,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                73,
+                                110,
+                                105,
+                                116,
+                                105,
+                                97,
+                                108,
+                                83,
+                                111,
+                                117,
+                                110,
+                                100,
+                                115,
+                            ],
+                        ),
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 16641,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    value: Boolean(
+                        false,
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                78,
+                                111,
+                                73,
+                                100,
+                                108,
+                                101,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        Boolean(
+                            false,
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    value: String(
+                        [
+                            77,
+                            97,
+                            114,
+                            107,
+                            117,
+                            112,
+                            115,
+                        ],
+                    ),
+                },
+                Jump {
+                    target: 264,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        264,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        264: BasicBlock {
+            start_pc: 264,
+            end_pc: 279,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                NewTable {
+                    dst: Register {
+                        physical_slot: 17152,
+                    },
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 17152,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    value: Integer(
+                        1,
+                    ),
+                },
+                NewTable {
+                    dst: Register {
+                        physical_slot: 17153,
+                    },
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 17154,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 17153,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 17154,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 32,
+                    },
+                    value: String(
+                        [
+                            77,
+                            97,
+                            114,
+                            107,
+                            117,
+                            112,
+                            84,
+                            121,
+                            112,
+                            101,
+                        ],
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 17154,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                77,
+                                97,
+                                114,
+                                107,
+                                117,
+                                112,
+                                84,
+                                121,
+                                112,
+                                101,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        String(
+                            [
+                                67,
+                                111,
+                                108,
+                                111,
+                                114,
+                            ],
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 5,
+                    },
+                    value: String(
+                        [
+                            83,
+                            116,
+                            97,
+                            114,
+                            116,
+                            73,
+                            110,
+                            100,
+                            101,
+                            120,
+                        ],
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 17154,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                83,
+                                116,
+                                97,
+                                114,
+                                116,
+                                73,
+                                110,
+                                100,
+                                101,
+                                120,
+                            ],
+                        ),
+                    ),
+                    value: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 12,
+                    },
+                    value: String(
+                        [
+                            69,
+                            110,
+                            100,
+                            73,
+                            110,
+                            100,
+                            101,
+                            120,
+                        ],
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 47,
+                    },
+                    value: String(
+                        [
+                            109,
+                            97,
+                            116,
+                            104,
+                        ],
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 17155,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                109,
+                                97,
+                                116,
+                                104,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 8,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 17155,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 279,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        279,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        279: BasicBlock {
+            start_pc: 279,
+            end_pc: 292,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 7,
+                    },
+                    value: String(
+                        [
+                            104,
+                            117,
+                            103,
+                            101,
+                        ],
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 18112,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 8,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                104,
+                                117,
+                                103,
+                                101,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 18113,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 18112,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 12,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 18113,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 8,
+                    },
+                    value: String(
+                        [
+                            86,
+                            97,
+                            108,
+                            117,
+                            101,
+                            49,
+                        ],
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 18114,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                67,
+                                111,
+                                108,
+                                111,
+                                114,
+                                51,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 18115,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 18114,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 53,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 18115,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 18116,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 18115,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                102,
+                                114,
+                                111,
+                                109,
+                                82,
+                                71,
+                                66,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 45,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 18116,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 54,
+                    },
+                    value: Integer(
+                        255,
+                    ),
+                },
+                Jump {
+                    target: 292,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        292,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        292: BasicBlock {
+            start_pc: 292,
+            end_pc: 298,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 14,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 54,
+                    },
+                    value: Integer(
+                        45,
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 3,
+                    },
+                    value: Integer(
+                        45,
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 6,
+                    },
+                    value: Integer(
+                        45,
+                    ),
+                },
+                Jump {
+                    target: 298,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        298,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        298: BasicBlock {
+            start_pc: 298,
+            end_pc: 302,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 19328,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 45,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 14,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 3,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 6,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 19329,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 19328,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 54,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19329,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 302,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        302,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        302: BasicBlock {
+            start_pc: 302,
+            end_pc: 314,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 8,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    value: Integer(
+                        2,
+                    ),
+                },
+                NewTable {
+                    dst: Register {
+                        physical_slot: 19584,
+                    },
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 19585,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19584,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 54,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19585,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 53,
+                    },
+                    value: String(
+                        [
+                            83,
+                            104,
+                            97,
+                            107,
+                            121,
+                        ],
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 19585,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 32,
+                        },
+                    ),
+                    value: Constant(
+                        String(
+                            [
+                                83,
+                                104,
+                                97,
+                                107,
+                                121,
+                            ],
+                        ),
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 19585,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 5,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 19586,
+                    },
+                    table: Environment,
+                    index: Register(
+                        Register {
+                            physical_slot: 47,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 32,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19586,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 314,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        314,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        314: BasicBlock {
+            start_pc: 314,
+            end_pc: 327,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                GetTable {
+                    dst: Register {
+                        physical_slot: 20352,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 32,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 7,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 20353,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 20352,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 5,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 20353,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 12,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 20353,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 8,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 32,
+                    },
+                    value: String(
+                        [
+                            86,
+                            97,
+                            108,
+                            117,
+                            101,
+                            50,
+                        ],
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                86,
+                                97,
+                                108,
+                                117,
+                                101,
+                                50,
+                            ],
+                        ),
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 54,
+                        },
+                    ),
+                },
+                SetTable {
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                    value: Register(
+                        Register {
+                            physical_slot: 39,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 327,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        327,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        327: BasicBlock {
+            start_pc: 327,
+            end_pc: 332,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 21184,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                70,
+                                105,
+                                114,
+                                101,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 21184,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 332,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        332,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        332: BasicBlock {
+            start_pc: 332,
+            end_pc: 335,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 21504,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 2,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 39,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 21505,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 21504,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Jump {
+                    target: 335,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        335,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        335: BasicBlock {
+            start_pc: 335,
+            end_pc: 336,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Return {
+                    values: [],
+                },
+            ],
+            successors: [],
+        },
+        337: BasicBlock {
+            start_pc: 337,
+            end_pc: 344,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    value: String(
+                        [
+                            77,
+                            111,
+                            116,
+                            104,
+                            68,
+                            105,
+                            97,
+                            108,
+                            111,
+                            103,
+                            117,
+                            101,
+                            66,
+                            105,
+                            110,
+                            100,
+                            97,
+                            98,
+                            108,
+                            101,
+                        ],
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 21824,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                70,
+                                105,
+                                110,
+                                100,
+                                70,
+                                105,
+                                114,
+                                115,
+                                116,
+                                67,
+                                104,
+                                105,
+                                108,
+                                100,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 21824,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 344,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        344,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        344: BasicBlock {
+            start_pc: 344,
+            end_pc: 346,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 346,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        346,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        346: BasicBlock {
+            start_pc: 346,
+            end_pc: 350,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 22400,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 9,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 39,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 34,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 22401,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 22400,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 19,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 22401,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 350,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        350,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        350: BasicBlock {
+            start_pc: 350,
+            end_pc: 357,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 357,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        357,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        357: BasicBlock {
+            start_pc: 357,
+            end_pc: 361,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Binary {
+                    op: Sub,
+                    dst: Register {
+                        physical_slot: 49,
+                    },
+                    left: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                    right: Register(
+                        Register {
+                            physical_slot: 49,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 361,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        361,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        361: BasicBlock {
+            start_pc: 361,
+            end_pc: 374,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 201,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        201,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        374: BasicBlock {
+            start_pc: 374,
+            end_pc: 388,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 19,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 24192,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                97,
+                                115,
+                                115,
+                                101,
+                                114,
+                                116,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 24192,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                },
+                Branch {
+                    condition: Truthy(
+                        Register(
+                            Register {
+                                physical_slot: 2,
+                            },
+                        ),
+                    ),
+                    then_target: 401,
+                    else_target: 217,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: True,
+                    target_pc: Some(
+                        401,
+                    ),
+                    state: None,
+                },
+                Successor {
+                    label: False,
+                    target_pc: Some(
+                        217,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        388: BasicBlock {
+            start_pc: 388,
+            end_pc: 395,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Binary {
+                    op: Add,
+                    dst: Register {
+                        physical_slot: 51,
+                    },
+                    left: Register(
+                        Register {
+                            physical_slot: 51,
+                        },
+                    ),
+                    right: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Jump {
+                    target: 201,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        201,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        395: BasicBlock {
+            start_pc: 395,
+            end_pc: 401,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 374,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        374,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        401: BasicBlock {
+            start_pc: 401,
+            end_pc: 409,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 9,
+                    },
+                    value: String(
+                        [
+                            66,
+                            105,
+                            110,
+                            100,
+                            97,
+                            98,
+                            108,
+                            101,
+                            69,
+                            118,
+                            101,
+                            110,
+                            116,
+                        ],
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    value: String(
+                        [
+                            73,
+                            115,
+                            65,
+                        ],
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 25920,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                73,
+                                115,
+                                65,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 32,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 25920,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 409,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        409,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        409: BasicBlock {
+            start_pc: 409,
+            end_pc: 413,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 26432,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 32,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 34,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 9,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 26433,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 26432,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 26433,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 413,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        413,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        413: BasicBlock {
+            start_pc: 413,
+            end_pc: 417,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 417,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        417,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        417: BasicBlock {
+            start_pc: 417,
+            end_pc: 422,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 217,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        217,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        422: BasicBlock {
+            start_pc: 422,
+            end_pc: 436,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 19,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 27264,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                97,
+                                115,
+                                115,
+                                101,
+                                114,
+                                116,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 27264,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 2,
+                        },
+                    ),
+                },
+                Branch {
+                    condition: Truthy(
+                        Register(
+                            Register {
+                                physical_slot: 2,
+                            },
+                        ),
+                    ),
+                    then_target: 212,
+                    else_target: 217,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: True,
+                    target_pc: Some(
+                        212,
+                    ),
+                    state: None,
+                },
+                Successor {
+                    label: False,
+                    target_pc: Some(
+                        217,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        436: BasicBlock {
+            start_pc: 436,
+            end_pc: 442,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 422,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        422,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        442: BasicBlock {
+            start_pc: 442,
+            end_pc: 448,
+            handler_family: 2199,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 448,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        448,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        448: BasicBlock {
+            start_pc: 448,
+            end_pc: 453,
+            handler_family: 2199,
+            entry_states: [],
+            instructions: [
+                Jump {
+                    target: 453,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        453,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        453: BasicBlock {
+            start_pc: 453,
+            end_pc: 463,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 51,
+                    },
+                    value: Integer(
+                        0,
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 49,
+                    },
+                    value: Integer(
+                        0,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 29248,
+                    },
+                    table: Environment,
+                    index: Constant(
+                        String(
+                            [
+                                103,
+                                97,
+                                109,
+                                101,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 29249,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 29248,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 29249,
+                        },
+                    ),
+                },
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    value: String(
+                        [
+                            82,
+                            101,
+                            112,
+                            108,
+                            105,
+                            99,
+                            97,
+                            116,
+                            101,
+                            100,
+                            83,
+                            116,
+                            111,
+                            114,
+                            97,
+                            103,
+                            101,
+                        ],
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 29249,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 463,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        463,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        463: BasicBlock {
+            start_pc: 463,
+            end_pc: 467,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                GetTable {
+                    dst: Register {
+                        physical_slot: 29888,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 4,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                71,
+                                101,
+                                116,
+                                83,
+                                101,
+                                114,
+                                118,
+                                105,
+                                99,
+                                101,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 29888,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 467,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        467,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        467: BasicBlock {
+            start_pc: 467,
+            end_pc: 471,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 30144,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 2,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 39,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 30145,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 30144,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 19,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 30145,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 471,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        471,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        471: BasicBlock {
+            start_pc: 471,
+            end_pc: 478,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                LoadConst {
+                    dst: Register {
+                        physical_slot: 39,
+                    },
+                    value: String(
+                        [
+                            69,
+                            118,
+                            101,
+                            110,
+                            116,
+                            115,
+                        ],
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 30400,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                    index: Constant(
+                        String(
+                            [
+                                70,
+                                105,
+                                110,
+                                100,
+                                70,
+                                105,
+                                114,
+                                115,
+                                116,
+                                67,
+                                104,
+                                105,
+                                108,
+                                100,
+                            ],
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 34,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 30400,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 478,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        478,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        478: BasicBlock {
+            start_pc: 478,
+            end_pc: 482,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                Call {
+                    dst: Some(
+                        Register {
+                            physical_slot: 30848,
+                        },
+                    ),
+                    function: Register(
+                        Register {
+                            physical_slot: 34,
+                        },
+                    ),
+                    args: [
+                        Register(
+                            Register {
+                                physical_slot: 2,
+                            },
+                        ),
+                        Register(
+                            Register {
+                                physical_slot: 39,
+                            },
+                        ),
+                    ],
+                    result_count: Some(
+                        1,
+                    ),
+                },
+                GetTable {
+                    dst: Register {
+                        physical_slot: 30849,
+                    },
+                    table: Register(
+                        Register {
+                            physical_slot: 30848,
+                        },
+                    ),
+                    index: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 19,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 30849,
+                        },
+                    ),
+                },
+                Jump {
+                    target: 482,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        482,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        482: BasicBlock {
+            start_pc: 482,
+            end_pc: 494,
+            handler_family: 1901,
+            entry_states: [],
+            instructions: [
+                Move {
+                    dst: Register {
+                        physical_slot: 4,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                Move {
+                    dst: Register {
+                        physical_slot: 2,
+                    },
+                    src: Register(
+                        Register {
+                            physical_slot: 19,
+                        },
+                    ),
+                },
+                Branch {
+                    condition: Truthy(
+                        Register(
+                            Register {
+                                physical_slot: 19,
+                            },
+                        ),
+                    ),
+                    then_target: 337,
+                    else_target: 357,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: True,
+                    target_pc: Some(
+                        337,
+                    ),
+                    state: None,
+                },
+                Successor {
+                    label: False,
+                    target_pc: Some(
+                        357,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+        494: BasicBlock {
+            start_pc: 494,
+            end_pc: 501,
+            handler_family: 359,
+            entry_states: [],
+            instructions: [
+                Binary {
+                    op: Add,
+                    dst: Register {
+                        physical_slot: 51,
+                    },
+                    left: Register(
+                        Register {
+                            physical_slot: 51,
+                        },
+                    ),
+                    right: Constant(
+                        Integer(
+                            1,
+                        ),
+                    ),
+                },
+                Jump {
+                    target: 190,
+                },
+            ],
+            successors: [
+                Successor {
+                    label: Next,
+                    target_pc: Some(
+                        190,
+                    ),
+                    state: None,
+                },
+            ],
+        },
+    },
+    entry_points: [
+        442,
+    ],
+    reachable_pcs: {
+        190,
+        201,
+        212,
+        217,
+        222,
+        225,
+        236,
+        249,
+        252,
+        256,
+        264,
+        279,
+        292,
+        298,
+        302,
+        314,
+        327,
+        332,
+        335,
+        337,
+        344,
+        346,
+        350,
+        357,
+        361,
+        374,
+        388,
+        395,
+        401,
+        409,
+        413,
+        417,
+        422,
+        436,
+        442,
+        448,
+        453,
+        463,
+        467,
+        471,
+        478,
+        482,
+        494,
+    },
+    state_variants: 178,
+    root_entry: Some(
+        442,
+    ),
+    prototype_entries: {
+        501: 442,
+    },
+    parameters: {
+        442: None,
+    },
+}

@@ -4,6 +4,13 @@ use std::collections::{BTreeMap, BTreeSet};
 
 pub const U32_MODULUS: u64 = 1u64 << 32;
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum VmProfile {
+    Adler32Lcg5Word,
+    Base85Rotor3Bank,
+    Sarp,
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct TableIntegrity {
     pub index: usize,
@@ -13,6 +20,7 @@ pub struct TableIntegrity {
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct DecodedVm {
+    pub profile: VmProfile,
     pub source_text: String,
     pub source_sha256: Option<String>,
     pub payload: Vec<u8>,

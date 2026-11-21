@@ -5,6 +5,12 @@
 - Preserve explicit unsupported-profile/instruction errors. Do not fabricate
   clean output, register bindings, tuple arities, or source metadata.
 - Contracts live in `src/ir.rs`. Packed tuples retain explicit `.n` counts.
+- Profile selection must use certified token evidence and `VmProfile`, never
+  `_b85` identifier presence or inferred register-map length.
+- Keep SARP formulas/state isolated in `src/sarp.rs`. Hash-gate analysis may
+  evaluate only proved constant cipher inputs; never brute-force int32 preimages.
+- The independent Python SARP reference is diagnostic-only. It may transcribe
+  cipher math, but never invoke Lua, the VM, or recovered program functions.
 - Alias proofs include live/live and destination/live-out interference.
 - Fixtures are bundled under `tests/fixtures`; no private files are required.
 - Run `cargo fmt --check`, `cargo test -- --nocapture`, `cargo build --release`.

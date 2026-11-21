@@ -32,7 +32,7 @@ try {
     $sourceStage = Join-Path $stage $sourceName
     $binaryStage = Join-Path $stage $binaryName
     New-Item -ItemType Directory -Path $sourceStage,$binaryStage | Out-Null
-    foreach ($file in @('Cargo.toml','Cargo.lock','README.md','LICENSE','CHANGELOG.md','VM_FORMAT.md','VALIDATION.md','AGENTS.md','.gitignore')) {
+    foreach ($file in @('Cargo.toml','Cargo.lock','README.md','LICENSE','CHANGELOG.md','VM_FORMAT.md','VALIDATION.md','AGENTS.md','.gitignore','.gitattributes')) {
         Copy-Item -LiteralPath (Join-Path $project $file) -Destination (Join-Path $sourceStage $file)
     }
     foreach ($folder in @('src','tests','examples','.github')) {
@@ -62,6 +62,26 @@ try {
             New-Item -ItemType Directory -Path $recoveryStage -Force | Out-Null
             foreach ($file in $recoveryFiles) {
                 Copy-Item -LiteralPath (Join-Path $recovery $file) -Destination (Join-Path $recoveryStage $file)
+            }
+        }
+    }
+    $sarpFiles = @(
+        'target.original.lua','target.decoded.bin','target.bytecode.txt',
+        'target.handlers.md','target.ir.txt','target.structured-ir.txt',
+        'target.deobfuscated.lua','target.analysis.md','target.validation.md',
+        'SHA256SUMS.txt','acquisition.json',
+        'diagnostics\reference.py','diagnostics\reference-review.md',
+        'diagnostics\hash_reference.py'
+    )
+    $sarpRecovery = Join-Path $project 'decompilation\sarp'
+    if (Test-Path -LiteralPath $sarpRecovery -PathType Container) {
+        foreach ($stageRoot in @($sourceStage,$binaryStage)) {
+            $sarpStage = Join-Path $stageRoot 'decompilation\sarp'
+            New-Item -ItemType Directory -Path $sarpStage -Force | Out-Null
+            foreach ($file in $sarpFiles) {
+                $destination = Join-Path $sarpStage $file
+                New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($destination)) -Force | Out-Null
+                Copy-Item -LiteralPath (Join-Path $sarpRecovery $file) -Destination $destination
             }
         }
     }

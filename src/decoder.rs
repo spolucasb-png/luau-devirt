@@ -2559,8 +2559,16 @@ pub fn decode_source(source: &str) -> Result<DecodedVm, String> {
         ));
     }
     let tokens = tokenize(source)?;
-    if tokens.iter().any(|token| token.text == "_b85") {
+    let rotor = crate::base85::certify(&tokens).is_ok();
+    let sarp = crate::sarp::certify(&tokens).is_ok();
+    if rotor && sarp {
+        return Err("ambiguous certified VM profiles".to_owned());
+    }
+    if rotor {
         return crate::base85::decode(source, &tokens);
+    }
+    if sarp {
+        return crate::sarp::decode(source, &tokens);
     }
     let bindings = library_bindings(&tokens);
     validate_profile(&tokens, &bindings)?;
@@ -2688,6 +2696,7 @@ pub fn decode_source(source: &str) -> Result<DecodedVm, String> {
         .collect();
 
     Ok(DecodedVm {
+        profile: crate::ir::VmProfile::Adler32Lcg5Word,
         source_text: source.to_owned(),
         source_sha256: Some(sha256_hex(source.as_bytes())),
         payload: payload.clone(),

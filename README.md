@@ -2,8 +2,9 @@
 
 **A standalone, static-only Luau VM deobfuscator and devirtualizer.**
 
-Release **0.1.0** supports the checked Adler-32 / LCG / five-word-prototype VM
-and the certified Base85 / rotated-key / three-bank VM profiles represented by
+Release **0.2.0** supports the checked Adler-32 / LCG / five-word-prototype VM,
+the certified Base85 / rotated-key / three-bank VM, and an independently
+certified SARP fragment / dual-stream / seven-word VM profile represented by
 the bundled specimens. It extracts protected bytecode,
 recovers constants and register slots, explores symbolic dispatcher states,
 and emits readable `--!strict` Luau where the instruction semantics and control
@@ -14,7 +15,7 @@ network service, or Cargo dependency.
 
 ## Windows binary
 
-Extract `luau-devirt-0.1.0-windows-x86_64.zip`, open a terminal in that folder:
+Extract `luau-devirt-0.2.0-windows-x86_64.zip`, open a terminal in that folder:
 
 ```powershell
 .\luau-devirt.exe --version
@@ -23,7 +24,7 @@ Extract `luau-devirt-0.1.0-windows-x86_64.zip`, open a terminal in that folder:
 ```
 
 The binary is unsigned. Verify its archive against the accompanying
-`luau-devirt-0.1.0-SHA256SUMS.txt`, or build it yourself from the source archive.
+`luau-devirt-0.2.0-SHA256SUMS.txt`, or build it yourself from the source archive.
 
 ## Build from source
 
@@ -50,7 +51,7 @@ luau-devirt <input.lua> [options]
 
   -o, --output <path>  Save the result; otherwise write to stdout
   --force             Safely replace an existing output
-  --inspect           Decode metadata only, without lifting/emission
+  --inspect           Inspect metadata/profile analysis without Luau emission
   --comments          Include source-address comments
   --no-strict         Omit the --!strict directive
   -V, --version       Print version
@@ -90,9 +91,10 @@ old profile. Nonempty closure capture binding and reachable dispatch halts
 requiring wrapper return-tag analysis are not yet emitted; neither occurs in
 the bundled specimen.
 
-The current source-model matcher expects formatted handler comparison trees.
-Minified/reordered wrapper variants are not certified by this release; use a
-trusted source formatter first, without executing the input.
+The original Adler source-model matcher expects formatted handler comparison
+trees. The Base85 rotor and SARP adapters use the shared tokenizer directly;
+their certified minified inputs need no formatter. Reordered/different wrapper
+formulas are not automatically accepted.
 
 The high-level scanner style is derived from a complete matched IR/statement
 tree. The CLI never reads or copies the golden output fixture.
@@ -133,7 +135,8 @@ Packaging uses an allowlist: no build caches, PDBs, logs, Real installations,
 credentials, deployment files, or local-account paths are included.
 
 Reviewed Base85 recovery examples and reports are included under
-`decompilation/message`. Original protected sources are inert analysis inputs;
+`decompilation/message`, and SARP artifacts under `decompilation/sarp`.
+Original protected sources are inert analysis inputs;
 do not execute them. The readable examples were compiled and analyzed only.
 
 ## Additional checked Base85 profile
@@ -153,10 +156,39 @@ The detailed recovery, all 33 transition helpers, raw instruction/state listing,
 static validation, and reproducibility commands are under
 `decompilation/message/target.analysis.md` and `target.validation.md`.
 
+## Certified SARP profile
+
+`sarp-fragment-dualstream-7word-v1` is isolated in `src/sarp.rs`. It certifies
+the complete wrapper token skeleton with only five payload fragment literals
+excluded. Its transport assembles those fragments by buffer offsets, decodes
+low-digit-first Base85, swaps each u32 and applies a separate XOR stream. The
+word initializer, tagged permutations, second word cipher, seven-word root,
+operation tables and dispatcher state are independently derived.
+
+```powershell
+cargo run --release --locked --example recover_sarp -- tests\fixtures\sarp.lua decompilation\sarp
+.\target\release\luau-devirt.exe tests\fixtures\sarp.lua --inspect
+.\target\release\luau-devirt.exe tests\fixtures\sarp.lua -o recovered-sarp.luau
+```
+
+The specimen has 43 instruction addresses / 178 bounded states, one reachable
+prototype, 35 strings, three referenced numbers and zero unresolved instructions.
+The readable result passes official Luau compile-only and strict analysis.
+It reproduces the earlier specimen's dialogue logic without reading its golden
+output. The old profile outputs remain unchanged.
+
+Unknown inputs to the 60-round hash gate, capture bindings, fixed-parameter
+roots, unsupported operation-table entries and unproved structures fail
+explicitly. There is no arbitrary expression interpreter or target execution.
+See `decompilation/sarp/target.analysis.md`, `target.handlers.md` and
+`target.validation.md` for certification fingerprints, exact math, evidence,
+commands and limits.
+
 ## Project layout
 
 ```text
 src/decoder.rs     Literal/integrity/profile and protected-buffer decoder
+src/sarp.rs        Independently certified SARP decoder/state/lifter
 src/cfg.rs         Bounded symbolic dispatcher traversal
 src/lifter.rs      Comparison-tree and variable-length instruction lifting
 src/ir.rs          Shared typed IR and explicit tuple/return semantics

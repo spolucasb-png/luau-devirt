@@ -1,0 +1,22 @@
+{
+  "source_url": "https://raw.githubusercontent.com/spolucasb-png/Obfuscated-scripts/refs/heads/main/message.txt",
+  "final_url": "https://raw.githubusercontent.com/spolucasb-png/Obfuscated-scripts/refs/heads/main/message.txt",
+  "http_status": 200,
+  "redirect_chain": [],
+  "retrieved_utc": "2026-11-21T18:48:38.657207+00:00",
+  "headers": {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Content-Length": "118433",
+    "ETag": "\"6064c3a6004692248c80607f4c97ccfde5d54b57024a888e3118b32c024c7f1e\"",
+    "Last-Modified": null
+  },
+  "bytes": 118433,
+  "lines": 2,
+  "longest_line": 118399,
+  "sha256": "4518ff6626677a946e60b1f1fbf5e0e0bd6c2aa95a674c163864e763fff3d45f",
+  "git_blob_sha1": "b05c800c569376cc9f99c9be13e484f938d3949f",
+  "expected_blob_matches": true,
+  "utf8_valid": true,
+  "baseline_commit": "3ffea1943b15feffeceb29f6193238163d055511",
+  "baseline_version": "0.1.0"
+}

@@ -114,3 +114,32 @@ initialized integer control facts reduce the typed CFG to 29 data blocks. An
 order-preserving captured-environment renderer uses the shared CFG validation
 and postdominators and emits eight external calls exactly once. Unsupported
 captures, roots, operations, loops and structures remain explicit errors.
+
+## Additional profile: sarp-fragment-dualstream-7word-v1
+
+Certified wrapper token hash:
+`e81814ff9d295dc39e3888a8e60b4a484140b627f52ef3b8c3215b17afe92f3b`.
+Only `_pc0.._pc4` payload literals are masked. Alphabet, fragment copy offsets,
+handler trees and all formulas remain in the certificate. The tokenizer
+handles the two-line minified source directly.
+
+`src/sarp.rs` implements low-digit-first Base85, u32 byteswap and transport XOR,
+an independent byteswap/xorshift word stream, f64/count-zero master-key math,
+tagged 16-bit permutations and a second word-cipher layer. The root has seven
+words: entry, frame/bank bits, arity/capture/salt bits, factory code start, key,
+dispatch token and factory code length. It follows only proved root references.
+
+Selectors 1901, 359 and 2199 differ; only source-grounded leaves/operation-table
+entries are lifted. The state tracks PC, key, bank, token, salt, normalized
+phase, stride, ceiling, K1 and finite exact 0/1 facts. The hash gate is evaluated
+only for a proved constant int32, not inverted by guessing or brute force.
+Exploration is capped at 512 states and 8192 worklist pops; public overrides
+can tighten these caps, not remove them.
+
+The fixture has 566 raw words, 322 populated words (headers plus 190..507),
+118 map entries, one root at word 501/entry 442, 43 addresses/178 states,
+35 referenced strings, three numbers, and no unresolved instructions.
+Source SHA-256 and decoded payload hashes are in the SARP analysis report.
+Unknown hash subjects, captures/fixed roots, new helpers and unproved behaviors
+remain unsupported. Both 0.1.0 profile formula/certification contracts remain
+unchanged.

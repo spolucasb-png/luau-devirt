@@ -3,3 +3,4 @@
 # These are byte-verified inputs/artifacts; checkout must preserve their hashes.
 /tests/fixtures/** -text
 /decompilation/message/** -text
+/decompilation/sarp/** -text

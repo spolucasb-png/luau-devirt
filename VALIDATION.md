@@ -62,3 +62,25 @@ scalar call counts, nil/false branches, and explicit unsupported cases. The
 original 109-state and 211-token profile checks are retained. Exact commands,
 logs, exit codes, remaining limits and deliverable hashes are recorded under
 `decompilation/message`.
+
+## 0.2.0 SARP extension
+
+Baseline was exact commit `3ffea1943b15feffeceb29f6193238163d055511`.
+Both prior emitted outputs remain byte-identical to their existing examples.
+The SARP fixture is 118,433 bytes, source SHA-256
+`4518ff6626677a946e60b1f1fbf5e0e0bd6c2aa95a674c163864e763fff3d45f`.
+Independent arithmetic and Rust agree on 2,264 payload bytes (SHA-256
+`0b27a42d1fcea8d6a268848800b7cd04681167b15d007094a5082e3dd1f52d0f`),
+all decoded word positions, map/bias entries, root and entry rekey.
+
+The new profile lifts 43 addresses / 178 states, then proves 30 structured
+data blocks. It has one reachable function, 35 strings, three referenced f64
+records and zero unresolved instructions. Generated Luau passes compile-only
+and strict analysis; no original/recovered program was executed.
+
+`tests/sarp_profile.rs` covers transport vectors/wrapping, source certification,
+fragment ordering, corruption, all reached families, state/control targets,
+limits and mandatory old-output equality. Synthetic unit tests pin standard
+key-check identities, tagged permutations and both bank directions.
+`tools/verify.ps1` checks all three profiles. Exact final commands/results,
+test count and remaining limits are in `decompilation/sarp/target.validation.md`.

@@ -8,6 +8,7 @@ pub mod decoder;
 pub mod ir;
 pub mod lifter;
 pub mod optimizer;
+pub mod sarp;
 mod specialize;
 
 pub use cfg::walk_cfg;

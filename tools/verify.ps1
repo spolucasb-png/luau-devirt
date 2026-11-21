@@ -33,6 +33,17 @@ try {
         Invoke-Checked $binary @($samplePath, '-o', $output, '--force')
         if ($hasCompiler) { Invoke-Checked $compiler @('--null', $output) }
         if ($hasAnalyzer) { Invoke-Checked $analyzer @($output) }
+        foreach ($fixtureName in @('base85-rotor.lua','sarp.lua')) {
+            $fixture = Join-Path $project "tests\fixtures\$fixtureName"
+            if (-not (Test-Path -LiteralPath $fixture -PathType Leaf)) { throw "Bundled profile fixture missing: $fixtureName" }
+            $fixtureHash = (Get-FileHash -LiteralPath $fixture -Algorithm SHA256).Hash
+            $profileOutput = Join-Path $project ("target\verified-" + [IO.Path]::GetFileNameWithoutExtension($fixtureName) + '.luau')
+            Invoke-Checked $binary @($fixture,'-o',$profileOutput,'--force')
+            Invoke-Checked $binary @($fixture,'--inspect')
+            if ($hasCompiler) { Invoke-Checked $compiler @('--null',$profileOutput) }
+            if ($hasAnalyzer) { Invoke-Checked $analyzer @($profileOutput) }
+            if ($fixtureHash -ne (Get-FileHash -LiteralPath $fixture -Algorithm SHA256).Hash) { throw "Protected profile fixture changed: $fixtureName" }
+        }
         $after = (Get-FileHash -LiteralPath $samplePath -Algorithm SHA256).Hash
         if ($before -ne $after) { throw 'Specimen changed during verification.' }
         Write-Output "Verified output: $output"

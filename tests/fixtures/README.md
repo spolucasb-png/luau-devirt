@@ -15,3 +15,7 @@ Luau.
 
 Python is not needed to run these tests. No hub, private game script, account
 identifier, Real credential, or deployment file is included.
+
+`base85-rotor.lua` and `sarp.lua` are separately certified custom-VM fixtures.
+They are read as text only. SARP's preserved input SHA-256 is
+`4518ff6626677a946e60b1f1fbf5e0e0bd6c2aa95a674c163864e763fff3d45f`.

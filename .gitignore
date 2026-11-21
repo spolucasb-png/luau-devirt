@@ -8,6 +8,7 @@
 # Commit only the reviewed recovery deliverables, not local investigation data.
 /decompilation/*
 !/decompilation/message/
+!/decompilation/sarp/
 /decompilation/message/*
 !/decompilation/message/target.original.lua
 !/decompilation/message/target.decoded.bin
@@ -19,3 +20,20 @@
 !/decompilation/message/target.concise.luau
 !/decompilation/message/target.line-count-review.md
 !/decompilation/message/SHA256SUMS.txt
+/decompilation/sarp/*
+!/decompilation/sarp/target.original.lua
+!/decompilation/sarp/target.decoded.bin
+!/decompilation/sarp/target.bytecode.txt
+!/decompilation/sarp/target.handlers.md
+!/decompilation/sarp/target.ir.txt
+!/decompilation/sarp/target.structured-ir.txt
+!/decompilation/sarp/target.deobfuscated.lua
+!/decompilation/sarp/target.analysis.md
+!/decompilation/sarp/target.validation.md
+!/decompilation/sarp/SHA256SUMS.txt
+!/decompilation/sarp/acquisition.json
+!/decompilation/sarp/diagnostics/
+/decompilation/sarp/diagnostics/*
+!/decompilation/sarp/diagnostics/reference.py
+!/decompilation/sarp/diagnostics/reference-review.md
+!/decompilation/sarp/diagnostics/hash_reference.py

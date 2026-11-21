@@ -11,12 +11,13 @@ use luau_devirt::{decode_file, emit_luau, walk_cfg};
 fn help() {
     println!(
         "luau-devirt {}\n\
-         Static deobfuscator for the Adler-32 / LCG / five-word Luau VM profile.\n\n\
+         Static devirtualizer for independently certified Luau VM profiles.\n\
+         Profiles: Adler-32/LCG, Base85/rotor, and SARP/dual-stream.\n\n\
          Usage: luau-devirt <input.lua> [options]\n\n\
          Options:\n\
            -o, --output <path>  Write the result to a file; otherwise use stdout\n\
            --force              Replace an existing output file safely\n\
-           --inspect            Decode metadata only, without lifting/emission\n\
+            --inspect            Inspect metadata/profile analysis without Luau emission\n\
            --comments           Include source-address comments in Luau output\n\
            --no-strict          Omit the --!strict directive\n\
            -V, --version        Print the release version\n\
@@ -42,6 +43,38 @@ fn argument_error(message: impl AsRef<str>) -> ! {
 }
 
 fn inspect(vm: &DecodedVm) -> Result<String, String> {
+    if luau_devirt::sarp::is_profile(vm) {
+        let analysis = luau_devirt::sarp::analyze(vm)?;
+        let unresolved = analysis
+            .raw_program
+            .blocks
+            .values()
+            .flat_map(|b| &b.instructions)
+            .filter(|i| matches!(i, Instruction::Raw { .. }))
+            .count();
+        let mut out=format!("Profile: {}\nWrapper fingerprint: {}\nSource SHA-256: {}\nPayload bytes: {}\nRaw u32 words: {}\nDecoded words: {}\nDecoded range: {}..={} (one-based)\nInitializer argument: {}\nMaster key: {} (0x{:08x})\nSlot-map entries: {}\nRoot prototype word: {}\nPrototypes: {}\nString records referenced: {}\nNumber records referenced: {}\nReachable instruction addresses: {}\nSymbolic dispatcher states: {}\nStructured data blocks: {}\nUnresolved instructions: {}\n",luau_devirt::sarp::PROFILE,luau_devirt::sarp::WRAPPER_SHA256,vm.source_sha256.as_deref().unwrap_or("unknown"),vm.payload.len(),vm.raw_words.len(),vm.decoded_words.iter().flatten().count(),vm.decoded_range.0,vm.decoded_range.1,vm.initialization_argument,vm.master_key,vm.master_key,vm.slot_map.len()-1,vm.entry_prototype,vm.prototypes.len(),analysis.strings.len(),analysis.numbers.len(),analysis.raw_program.blocks.len(),analysis.trace.len(),analysis.program.blocks.len(),unresolved);
+        for p in &vm.prototypes {
+            writeln!(out,"  prototype={} entry={} key={} token={} bank={} salt={} frame={} parameters={:?} captures={}",p.word,p.entry_pc,p.initial_decode_state,p.dispatch_token,p.bank_base,p.prototype_salt,p.frame_capacity,p.fixed_parameter_count,p.captures.len()).map_err(|e|e.to_string())?;
+        }
+        for (r, v) in &analysis.strings {
+            writeln!(
+                out,
+                "  string reference={r} bytes={} value={:?}",
+                v.len(),
+                String::from_utf8_lossy(v)
+            )
+            .map_err(|e| e.to_string())?;
+        }
+        for (r, v) in &analysis.numbers {
+            writeln!(
+                out,
+                "  number reference={r} bits={v:016x} value={}",
+                f64::from_bits(*v)
+            )
+            .map_err(|e| e.to_string())?;
+        }
+        return Ok(out);
+    }
     if luau_devirt::base85::is_profile(vm) {
         let analysis = luau_devirt::base85::analyze(vm)?;
         return Ok(format!(

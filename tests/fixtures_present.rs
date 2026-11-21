@@ -12,6 +12,8 @@ fn distributed_regression_fixtures_are_present() {
         "VM-DISASSEMBLY.md",
         "T001-VM-ANALYSIS.md",
         "T001-deobfuscated.luau",
+        "base85-rotor.lua",
+        "sarp.lua",
     ] {
         assert!(root.join(name).is_file(), "release fixture missing: {name}");
     }

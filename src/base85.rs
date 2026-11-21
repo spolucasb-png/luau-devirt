@@ -22,7 +22,7 @@ const INITIAL_K1: u32 = 1542308556 ^ 432963489;
 const CM_INDEX: [usize; 15] = [13, 5, 11, 9, 2, 7, 4, 10, 8, 6, 15, 3, 14, 12, 1];
 
 pub fn is_profile(vm: &DecodedVm) -> bool {
-    vm.slot_map.len() == 112 && vm.source_text.contains("_b85")
+    vm.profile == VmProfile::Base85Rotor3Bank
 }
 
 fn unique_sequence(ts: &[Token], text: &[&str]) -> Result<usize, String> {
@@ -41,7 +41,7 @@ fn unique_sequence(ts: &[Token], text: &[&str]) -> Result<usize, String> {
     }
 }
 
-fn certify(ts: &[Token]) -> Result<usize, String> {
+pub(crate) fn certify(ts: &[Token]) -> Result<usize, String> {
     let literal = unique_sequence(ts, &["_b85", "=", "bfrom", "("])? + 4;
     if ts.get(literal).map(|t| t.kind) != Some(TokenKind::String) {
         return Err(format!("{PROFILE}: payload must be a literal"));
@@ -208,6 +208,7 @@ pub(crate) fn decode(source: &str, ts: &[Token]) -> Result<DecodedVm, String> {
     ]);
     let entry_prototype = (master_key ^ 2137129886u32.wrapping_add(347380486) ^ 731522) as usize;
     let mut vm = DecodedVm {
+        profile: VmProfile::Base85Rotor3Bank,
         source_text: source.to_owned(),
         source_sha256: Some(sha256_hex(source.as_bytes())),
         payload,
@@ -287,8 +288,8 @@ fn prototype(vm: &DecodedVm, p: usize, mask: u32) -> Result<Prototype, String> {
 
 // A small, bounded expression/statement parser for certified handler leaves.
 // It does not parse or evaluate the target program as Lua.
-#[derive(Clone, Debug)]
-enum E {
+#[derive(Clone, Debug, PartialEq)]
+pub(crate) enum E {
     Int(i64),
     Str(Vec<u8>),
     Id(String),
@@ -299,7 +300,7 @@ enum E {
     Table,
 }
 #[derive(Clone, Debug)]
-enum S {
+pub(crate) enum S {
     Local(Vec<String>, Vec<E>),
     Assign(Vec<E>, Vec<E>),
     Do(Vec<S>),
@@ -307,17 +308,17 @@ enum S {
     Return(Vec<E>),
     Expr(E),
 }
-struct Parser<'a> {
-    ts: &'a [Token],
-    source: &'a str,
-    at: usize,
-    depth: usize,
+pub(crate) struct Parser<'a> {
+    pub(crate) ts: &'a [Token],
+    pub(crate) source: &'a str,
+    pub(crate) at: usize,
+    pub(crate) depth: usize,
 }
 impl<'a> Parser<'a> {
     fn peek(&self) -> &str {
         self.ts.get(self.at).map(|t| t.text.as_str()).unwrap_or("")
     }
-    fn eat(&mut self, s: &str) -> bool {
+    pub(crate) fn eat(&mut self, s: &str) -> bool {
         if self.peek() == s {
             self.at += 1;
             true
@@ -325,7 +326,7 @@ impl<'a> Parser<'a> {
             false
         }
     }
-    fn expect(&mut self, s: &str) -> Result<(), String> {
+    pub(crate) fn expect(&mut self, s: &str) -> Result<(), String> {
         if self.eat(s) {
             Ok(())
         } else {
@@ -351,7 +352,7 @@ impl<'a> Parser<'a> {
         }
         Ok(v)
     }
-    fn expr(&mut self, min: u8) -> Result<E, String> {
+    pub(crate) fn expr(&mut self, min: u8) -> Result<E, String> {
         self.depth += 1;
         if self.depth > 96 {
             return Err("expression nesting budget exceeded".to_owned());
@@ -427,7 +428,7 @@ impl<'a> Parser<'a> {
         self.depth -= 1;
         Ok(left)
     }
-    fn block(&mut self) -> Result<Vec<S>, String> {
+    pub(crate) fn block(&mut self) -> Result<Vec<S>, String> {
         self.depth += 1;
         if self.depth > 96 {
             return Err("statement nesting budget exceeded".to_owned());
@@ -1956,7 +1957,7 @@ fn fact_condition(c: &Condition, f: &BTreeMap<u16, i64>) -> Option<bool> {
 /// No calls, table reads/writes, source functions, or virtual instructions are
 /// executed. Only already-lifted integer SSA facts are propagated. Each removed
 /// operation has a closed constant dependency set and cannot escape to data.
-fn specialize_control(program: &LiftedProgram) -> Result<LiftedProgram, String> {
+pub(crate) fn specialize_control(program: &LiftedProgram) -> Result<LiftedProgram, String> {
     use std::collections::BTreeSet;
     let mut candidates = BTreeSet::new();
     for b in program.blocks.values() {
@@ -2156,7 +2157,7 @@ fn specialize_control(program: &LiftedProgram) -> Result<LiftedProgram, String> 
 /// Remove only dead pure definitions. Calls and potentially effectful table
 /// reads/writes retain their exact order. Reading the first element of the
 /// adapter's private packed call packet is pure; user table reads are not.
-fn compact_data(program: &LiftedProgram) -> Result<LiftedProgram, String> {
+pub(crate) fn compact_data(program: &LiftedProgram) -> Result<LiftedProgram, String> {
     use std::collections::BTreeSet;
     fn private_projection(block: &BasicBlock, index: usize) -> bool {
         if index == 0 {
