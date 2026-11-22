@@ -15,7 +15,8 @@ fn written_slot(instruction: &Instruction) -> Option<u16> {
         | Instruction::NewPackedTable { dst }
         | Instruction::NewClosure { dst, .. }
         | Instruction::Concat { dst, .. }
-        | Instruction::Call { dst: Some(dst), .. } => Some(dst.physical_slot),
+        | Instruction::Call { dst: Some(dst), .. }
+        | Instruction::CallWithPackedArgs { dst: Some(dst), .. } => Some(dst.physical_slot),
         _ => None,
     }
 }

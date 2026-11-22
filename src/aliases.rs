@@ -99,6 +99,22 @@ fn instruction_registers(instruction: &mut Instruction, visit: &mut impl FnMut(&
                 operand_registers(operand, visit);
             }
         }
+        CallWithPackedArgs {
+            dst,
+            function,
+            prefix,
+            arguments,
+            ..
+        } => {
+            if let Some(dst) = dst {
+                visit(dst);
+            }
+            operand_registers(function, visit);
+            for operand in prefix {
+                operand_registers(operand, visit);
+            }
+            operand_registers(arguments, visit);
+        }
         Concat { dst, values } => {
             visit(dst);
             for operand in values {
@@ -160,7 +176,8 @@ fn definition(instruction: &Instruction) -> Option<u16> {
         | NewPackedTable { dst }
         | Concat { dst, .. }
         | NewClosure { dst, .. }
-        | Call { dst: Some(dst), .. } => Some(dst.physical_slot),
+        | Call { dst: Some(dst), .. }
+        | CallWithPackedArgs { dst: Some(dst), .. } => Some(dst.physical_slot),
         HaltDispatch { pc_slot, .. } => Some(pc_slot.physical_slot),
         _ => None,
     }

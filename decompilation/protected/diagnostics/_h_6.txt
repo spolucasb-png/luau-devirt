@@ -1,0 +1,26 @@
+_h [ 6 ] = function ( _hd0 , _u2s , _c , _F , _sf , _ct , _u1s , _cf , _st , _df , _st0 , _pys , _ht , _hf , _ip , _pxs , _rb , _dt ) local _r = bxor ( _F [ _pxs ] , 3809559325 ) ;
+local _cur = ( ( _r + _smb ) + _F [ _pys ] ) % 4294967296 ;
+local _nr = ( _r * 76977 + 2932483154 ) % 4294967296 ;
+local _ls = _F [ _cm [ 12 ] ] ;
+local _sbz = ( ( r16 ( BL_C , lshift ( _F [ _cm [ 4 ] ] , 1 ) ) - _F [ _cm [ 2 ] ] ) % 65536 ) ;
+local _v1 , _v2 = _F [ _u1s ] , _F [ _u2s ] ;
+local _nrb = _rb + _ls ;
+if _rb >= _F [ _cm [ 16 ] ] then
+_nrb = _rb - 2 * _ls
+end
+;
+_F [ _pxs ] , _F [ _u2s ] , _F [ _u1s ] , _F [ _cm [ 3 ] ] = _v2 , _v1 , bxor ( _nr , _sma ) , _nrb ;
+if not _c then
+_F [ _pys ] = ( _ct - ( _nr + _smb ) ) % 4294967296 ;
+local _mip = ( ( _ip + _dt + _nr * 23 ) % 4294967296 ) ;
+local _mst = bxor ( ( _st + _st0 + _cur + _sbz ) % 4294967296 , ( _nr * 93 ) % 4294967296 ) ;
+local _msh = ( ( ( _ht + _cur + _sbz ) % 4294967296 + _nr * 125 ) % 4294967296 ) ;
+return _mst , _msh , _mip
+else
+_F [ _pys ] = ( _cf - ( _nr + _smb ) ) % 4294967296 ;
+local _mip = ( ( _ip + _df + _nr * 23 ) % 4294967296 ) ;
+local _mst = bxor ( ( _st + _sf + _cur + _sbz ) % 4294967296 , ( _nr * 93 ) % 4294967296 ) ;
+local _msh = ( ( ( _hf + _cur + _sbz ) % 4294967296 + _nr * 125 ) % 4294967296 ) ;
+return _mst , _msh , _mip
+end
+end

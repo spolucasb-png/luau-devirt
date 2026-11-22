@@ -1,0 +1,158 @@
+{
+  "source_sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "constants": {
+    "K0": 3350847355,
+    "SALT": 43122,
+    "K1_initial": 675551875,
+    "activated_K1_direct_root_entry_formula": 1648390755,
+    "derived_mask": 1648417297,
+    "decode_key": 2784560490
+  },
+  "root_entry_activation": {
+    "boot_root_word": 134628,
+    "boot_root_entry": 138920,
+    "root_est": 4225420928,
+    "tg_from_U270": 67311,
+    "st": 4225488239,
+    "ps": 53417,
+    "ip": 138920,
+    "words": {
+      "ip+1": 1537213599,
+      "ip+2": 4225488253,
+      "ip+3": 69479057,
+      "ip+4": 226336097,
+      "ip+5": 221527022
+    },
+    "entry_cs": 156857040,
+    "stride": 18,
+    "rotor": 152047965,
+    "a0": 0,
+    "formula": "K1 = ((W[ip+1]+st)%2^32) ^ K0 ^ ps ^ st ^ ((W[ip+4]+st)%2^32)"
+  },
+  "root": {
+    "word": 134628,
+    "entry": 138920,
+    "bank": 40,
+    "frame": 71,
+    "salt": 53417,
+    "token": 4515,
+    "code_start": 0,
+    "code_length": 0
+  },
+  "mask_trials": {
+    "initial_K1": {
+      "mask": 675590897,
+      "key": 4026363274,
+      "valid": false,
+      "reasons": [
+        "entry outside decoded range",
+        "code_start outside range",
+        "code_length outside range"
+      ]
+    },
+    "activated_K1": {
+      "mask": 1648417297,
+      "key": 2784560490,
+      "valid": true,
+      "reasons": []
+    }
+  },
+  "first_child": {
+    "word": 140545,
+    "est": 1528981884,
+    "entry": 136924,
+    "token": 48510,
+    "code_start": 136680,
+    "code_length": 559,
+    "fixed": 1,
+    "bank": 94,
+    "arity": 1,
+    "captures": 0,
+    "frame": 71,
+    "salt": 38408,
+    "packed_a": 536871101,
+    "packed_b": 18716168,
+    "parameter_operands": [
+      9
+    ],
+    "captures_low_dest_high_source": []
+  },
+  "make_AF_roundtrip": {
+    "pcs": 157579,
+    "pcl": 16989,
+    "phk": 3350820617,
+    "cs": 136680,
+    "cl": 559,
+    "hk0": 2784560490
+  },
+  "af_lazy_cipher": {
+    "seed": 1212652016,
+    "ps": 38408,
+    "est": 1528981884,
+    "lcg": "state = (state*6405 + 483291509) % 2^32",
+    "mix": "state = bxor(lrot(state,6), rshift(state,13))",
+    "writeback": "W[cs+i] = bxor(W[cs+i], keystream[i])",
+    "rounds": 559,
+    "first_8_keystream": [
+      255649926,
+      3976616310,
+      716133762,
+      1697854306,
+      3032588637,
+      1445935974,
+      568809702,
+      2154433754
+    ],
+    "last_4_keystream": [
+      1609758913,
+      3054254188,
+      595787783,
+      1468853463
+    ],
+    "first_8_decoded_words": [
+      901804203,
+      3234662875,
+      3393843272,
+      2530519904,
+      476078138,
+      902908239,
+      1039459704,
+      3896181562
+    ],
+    "decoded_words_sha256": "75a889db15746511c3fcbfe5bcf159dc7d5f756c067076f02de1ba295837cc63"
+  },
+  "capture_half_rule": "low 16 bits = child-bank destination operand; high 16 bits = parent-bank source offset",
+  "checks": {
+    "root_entry": true,
+    "root_fields": true,
+    "root_no_code_extent": true,
+    "root_entry_boot_derived": true,
+    "root_est_from_W": true,
+    "entry_probe_st": true,
+    "entry_probe_cs": true,
+    "derived_activated_K1_direct": true,
+    "derived_mask": true,
+    "entry_probe_stride_18": true,
+    "entry_probe_rotor_odd": true,
+    "entry_probe_a0": true,
+    "initial_mask_rejected": true,
+    "activated_mask_accepted": true,
+    "child_entry": true,
+    "child_bank": true,
+    "child_fixed": true,
+    "child_captures_zero": true,
+    "child_frame": true,
+    "child_code_extent": true,
+    "child_arity_one": true,
+    "child_est": true,
+    "make_AF_code_start_roundtrip": true,
+    "make_AF_code_length_roundtrip": true,
+    "make_AF_hashkey_roundtrip": true,
+    "code_extent_in_range": true
+  },
+  "checks_total": 26,
+  "checks_passed": 26,
+  "derivation_note": "activatedK1 is derived from the certified root-entry formula only; no Rust report child entry is an input. The child descriptor decode is a downstream check.",
+  "executed": false,
+  "devirtualization_claim": false
+}

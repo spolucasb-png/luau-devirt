@@ -1,0 +1,15 @@
+{
+  "url": "https://raw.githubusercontent.com/spolucasb-png/Obfuscated-scripts/refs/heads/main/protected.luau",
+  "final_url": "https://raw.githubusercontent.com/spolucasb-png/Obfuscated-scripts/refs/heads/main/protected.luau",
+  "acquired_utc": "2026-11-22T04:44:13.519555+00:00",
+  "bytes": 1014109,
+  "physical_lines": 2,
+  "sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "git_blob_sha1": "e78c7329b3b98793f79c5268e4ad42abf5a24018",
+  "previously_observed_git_blob_sha1": "e78c7329b3b98793f79c5268e4ad42abf5a24018",
+  "matches_previous_observation": true,
+  "http_etag": "\"e6e2ce96ce97dee4351e93e0d1c85a388e00428ccf6e09f36da16fa3444afd4c\"",
+  "executed": false,
+  "attached_sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "attached_equals_download": true
+}

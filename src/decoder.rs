@@ -84,6 +84,9 @@ pub(crate) fn tokenize(source: &str) -> Result<Vec<Token>, String> {
     let mut tokens: Vec<Token> = Vec::new();
     let mut pos = 0usize;
     while pos < bytes.len() {
+        if tokens.len() >= 500_000 {
+            return Err("source token count exceeds the 500000-token analysis budget".to_owned());
+        }
         let byte = bytes[pos];
         if matches!(byte, b' ' | b'\t' | b'\n' | b'\r' | b'\x0B' | b'\x0C') {
             pos += 1;
@@ -2561,7 +2564,8 @@ pub fn decode_source(source: &str) -> Result<DecodedVm, String> {
     let tokens = tokenize(source)?;
     let rotor = crate::base85::certify(&tokens).is_ok();
     let sarp = crate::sarp::certify(&tokens).is_ok();
-    if rotor && sarp {
+    let sarp_large = crate::sarp_large::certify(&tokens).is_ok();
+    if usize::from(rotor) + usize::from(sarp) + usize::from(sarp_large) > 1 {
         return Err("ambiguous certified VM profiles".to_owned());
     }
     if rotor {
@@ -2569,6 +2573,9 @@ pub fn decode_source(source: &str) -> Result<DecodedVm, String> {
     }
     if sarp {
         return crate::sarp::decode(source, &tokens);
+    }
+    if sarp_large {
+        return crate::sarp_large::decode(source, &tokens);
     }
     let bindings = library_bindings(&tokens);
     validate_profile(&tokens, &bindings)?;

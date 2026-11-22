@@ -1,5 +1,10 @@
 # Validation
 
+The latest branch state is an **unreleased 0.2.0 development preview**. Historical
+results below describe the three complete profiles; the large fourth specimen
+remains incomplete. Its current results and explicit unavailable stages are
+recorded under `decompilation/protected/target.validation.md`.
+
 ## Verified specimen
 
 - Payload: 2,276 Adler-32-verified bytes.
@@ -84,3 +89,59 @@ limits and mandatory old-output equality. Synthetic unit tests pin standard
 key-check identities, tagged permutations and both bank directions.
 `tools/verify.ps1` checks all three profiles. Exact final commands/results,
 test count and remaining limits are in `decompilation/sarp/target.validation.md`.
+
+## Optional pretty-output extension (unreleased)
+
+`--pretty` and `CodegenOptions::pretty` operate on the recovered statement tree.
+The bundled SARP and Base85 dialogue outputs independently match
+`tests/fixtures/sarp.pretty.luau`: 39 lines, SHA-256
+`e8e4d0f2e1228c50394f202bd1e7433b01d4c617937c44050cfc660dde8b594d`.
+All three default outputs and protected input/artifact hashes remain unchanged.
+
+Verification performed for this extension:
+
+- `cargo fmt --check`, `cargo test --locked -- --nocapture`, and
+  `cargo build --release --locked` passed.
+- Cargo reported **147 passing tests, zero failures**. The preexisting optional
+  local-decompiler parser check was explicitly skipped because that optional
+  executable is unavailable; it is not a performed parser validation.
+- `tools/verify.ps1 -RequireExternalTools` passed official Luau 0.747
+  compile-only (`--null`) and static analysis for all three defaults and all
+  four pretty/comment/strict flag combinations (15 CLI outputs each).
+- Real's **static `check-script` tool** reported zero errors and zero warnings
+  for the exact generated pretty dialogue. No executor/client was invoked.
+
+The added regressions cover lookup/call order, predicate identity, multiple
+live branch results, nil/false distinctions, aliases/self-reference, duplicate
+and invalid keys, allocation/escape/read barriers, scalar arity, packed `.n`
+counts, expression precedence, source comments, and cleanup depth limits.
+Pretty cleanup does not reinterpret unknown operations or conceal errors.
+Compilation and static checking are not runtime-equivalence proofs.
+Neither protected inputs nor generated Lua/Luau were executed in these checks.
+
+## Large four-fragment SARP preview (incomplete)
+
+The independent `VmProfile::SarpLarge` adapter certifies the full executable
+token skeleton with only four payload literals masked. The bundled source
+SHA-256 is `1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe`.
+Transport agrees on every one of 568176 bytes. Independent diagnostics pass
+46/46 initializer checks, 26/26 root/first-child cipher checks and six hash
+vectors; the sparse artifact reader matches all 142045 positions.
+
+Partial lowering completes 666 states, with 62 pending, before rejecting
+helper 25 generic iteration at prototype 140804, PC 140992. Complete linked IR,
+default Luau and pretty Luau are unavailable. `--inspect` exits 1 with a clearly
+labeled incomplete report; no output file is replaced, even with `--force`.
+
+The full aggregate passed formatting, locked Cargo tests/build, official Luau
+0.747 compile-only/static analysis on 15 old-profile CLI outputs and 20
+synthetic manual-IR outputs, and the expected fourth-profile rejection.
+Cargo reported 179 successful test results and no failures; the optional local
+decompiler parser check explicitly skipped. Five saved emitted baselines and
+38 old protected input/artifact/manifest/profile-source hashes remain identical.
+No program, VM, interpreter, executor or client was run in this pass.
+
+These are preview regression checks, not a completion or runtime-equivalence
+proof. Cargo remains 0.2.0; no new release is published. See the protected
+analysis/validation reports for exact reproduction commands and required loop
+contracts.

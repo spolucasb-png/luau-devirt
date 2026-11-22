@@ -1,0 +1,432 @@
+{
+  "source_sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "tokens": 145089,
+  "wrapper_sha256": "7dfe43e60fb3b1d70aba68dadebf59c35b88280e436681315eb7ebab67cbd105",
+  "fragments": {
+    "_pc0": {
+      "length": 177562,
+      "literal_token": 375
+    },
+    "_pc1": {
+      "length": 177551,
+      "literal_token": 370
+    },
+    "_pc2": {
+      "length": 177559,
+      "literal_token": 365
+    },
+    "_pc3": {
+      "length": 177548,
+      "literal_token": 380
+    }
+  },
+  "functions": [
+    {
+      "name": "initB",
+      "first_token": 482,
+      "last_token": 1216,
+      "byte_start": 711669,
+      "byte_end": 713337
+    },
+    {
+      "name": "initOnce",
+      "first_token": 1218,
+      "last_token": 2957,
+      "byte_start": 713338,
+      "byte_end": 717514
+    },
+    {
+      "name": "__index",
+      "first_token": 2061,
+      "last_token": 2085,
+      "byte_start": 715338,
+      "byte_end": 715406
+    },
+    {
+      "name": "__add",
+      "first_token": 2087,
+      "last_token": 2105,
+      "byte_start": 715407,
+      "byte_end": 715458
+    },
+    {
+      "name": "__len",
+      "first_token": 2107,
+      "last_token": 2114,
+      "byte_start": 715459,
+      "byte_end": 715489
+    },
+    {
+      "name": "__call",
+      "first_token": 2116,
+      "last_token": 2131,
+      "byte_start": 715490,
+      "byte_end": 715531
+    },
+    {
+      "name": "U",
+      "first_token": 2959,
+      "last_token": 4661,
+      "byte_start": 717515,
+      "byte_end": 721664
+    },
+    {
+      "name": "initC",
+      "first_token": 4663,
+      "last_token": 142978,
+      "byte_start": 721665,
+      "byte_end": 1009331
+    },
+    {
+      "name": "MO",
+      "first_token": 5423,
+      "last_token": 6007,
+      "byte_start": 723335,
+      "byte_end": 725051
+    },
+    {
+      "name": "MO2",
+      "first_token": 6009,
+      "last_token": 6674,
+      "byte_start": 725052,
+      "byte_end": 727027
+    },
+    {
+      "name": "_exec",
+      "first_token": 6860,
+      "last_token": 7464,
+      "byte_start": 727533,
+      "byte_end": 728941
+    },
+    {
+      "name": "_exec2",
+      "first_token": 7467,
+      "last_token": 8061,
+      "byte_start": 728948,
+      "byte_end": 730326
+    },
+    {
+      "name": "_dexec",
+      "first_token": 8068,
+      "last_token": 8289,
+      "byte_start": 730344,
+      "byte_end": 730842
+    },
+    {
+      "name": "_dexec2",
+      "first_token": 8292,
+      "last_token": 8503,
+      "byte_start": 730849,
+      "byte_end": 731318
+    },
+    {
+      "name": "__index",
+      "first_token": 8556,
+      "last_token": 8574,
+      "byte_start": 731450,
+      "byte_end": 731500
+    },
+    {
+      "name": "_h_6",
+      "first_token": 8590,
+      "last_token": 8985,
+      "byte_start": 731530,
+      "byte_end": 732473
+    },
+    {
+      "name": "_h_28",
+      "first_token": 8987,
+      "last_token": 10715,
+      "byte_start": 732474,
+      "byte_end": 736489
+    },
+    {
+      "name": "_h_15",
+      "first_token": 10717,
+      "last_token": 11011,
+      "byte_start": 736490,
+      "byte_end": 737162
+    },
+    {
+      "name": "_h_1",
+      "first_token": 11013,
+      "last_token": 11309,
+      "byte_start": 737163,
+      "byte_end": 737840
+    },
+    {
+      "name": "_h_18",
+      "first_token": 11311,
+      "last_token": 11472,
+      "byte_start": 737841,
+      "byte_end": 738162
+    },
+    {
+      "name": "_h_27",
+      "first_token": 11474,
+      "last_token": 11596,
+      "byte_start": 738163,
+      "byte_end": 738402
+    },
+    {
+      "name": "_h_14",
+      "first_token": 11598,
+      "last_token": 12113,
+      "byte_start": 738403,
+      "byte_end": 739583
+    },
+    {
+      "name": "_h_32",
+      "first_token": 12115,
+      "last_token": 12412,
+      "byte_start": 739584,
+      "byte_end": 740265
+    },
+    {
+      "name": "_h_4",
+      "first_token": 12414,
+      "last_token": 12706,
+      "byte_start": 740266,
+      "byte_end": 740932
+    },
+    {
+      "name": "_h_26",
+      "first_token": 12708,
+      "last_token": 13210,
+      "byte_start": 740933,
+      "byte_end": 742084
+    },
+    {
+      "name": "_h_9",
+      "first_token": 13212,
+      "last_token": 14944,
+      "byte_start": 742085,
+      "byte_end": 746109
+    },
+    {
+      "name": "_h_12",
+      "first_token": 14946,
+      "last_token": 15461,
+      "byte_start": 746110,
+      "byte_end": 747290
+    },
+    {
+      "name": "_h_22",
+      "first_token": 15463,
+      "last_token": 15600,
+      "byte_start": 747291,
+      "byte_end": 747560
+    },
+    {
+      "name": "_h_7",
+      "first_token": 15602,
+      "last_token": 16103,
+      "byte_start": 747561,
+      "byte_end": 748709
+    },
+    {
+      "name": "_h_21",
+      "first_token": 16105,
+      "last_token": 16397,
+      "byte_start": 748710,
+      "byte_end": 749381
+    },
+    {
+      "name": "_h_11",
+      "first_token": 16399,
+      "last_token": 16802,
+      "byte_start": 749382,
+      "byte_end": 750344
+    },
+    {
+      "name": "_h_10",
+      "first_token": 16804,
+      "last_token": 17199,
+      "byte_start": 750345,
+      "byte_end": 751289
+    },
+    {
+      "name": "_h_25",
+      "first_token": 17201,
+      "last_token": 19062,
+      "byte_start": 751290,
+      "byte_end": 755492
+    },
+    {
+      "name": "_h_8",
+      "first_token": 19064,
+      "last_token": 20798,
+      "byte_start": 755493,
+      "byte_end": 759523
+    },
+    {
+      "name": "_h_24",
+      "first_token": 20800,
+      "last_token": 21123,
+      "byte_start": 759524,
+      "byte_end": 760264
+    },
+    {
+      "name": "_h_5",
+      "first_token": 21125,
+      "last_token": 21644,
+      "byte_start": 760265,
+      "byte_end": 761455
+    },
+    {
+      "name": "_h_13",
+      "first_token": 21646,
+      "last_token": 21969,
+      "byte_start": 761456,
+      "byte_end": 762196
+    },
+    {
+      "name": "_h_19",
+      "first_token": 21971,
+      "last_token": 22341,
+      "byte_start": 762197,
+      "byte_end": 763048
+    },
+    {
+      "name": "_h_17",
+      "first_token": 22343,
+      "last_token": 23228,
+      "byte_start": 763049,
+      "byte_end": 765204
+    },
+    {
+      "name": "_h_16",
+      "first_token": 23230,
+      "last_token": 23524,
+      "byte_start": 765205,
+      "byte_end": 765878
+    },
+    {
+      "name": "_h_20",
+      "first_token": 23526,
+      "last_token": 24095,
+      "byte_start": 765879,
+      "byte_end": 767172
+    },
+    {
+      "name": "_h_2",
+      "first_token": 24097,
+      "last_token": 24500,
+      "byte_start": 767173,
+      "byte_end": 768134
+    },
+    {
+      "name": "_h_29",
+      "first_token": 24502,
+      "last_token": 25004,
+      "byte_start": 768135,
+      "byte_end": 769285
+    },
+    {
+      "name": "_h_31",
+      "first_token": 25006,
+      "last_token": 25332,
+      "byte_start": 769286,
+      "byte_end": 770031
+    },
+    {
+      "name": "_h_23",
+      "first_token": 25334,
+      "last_token": 25737,
+      "byte_start": 770032,
+      "byte_end": 770994
+    },
+    {
+      "name": "_h_30",
+      "first_token": 25739,
+      "last_token": 26138,
+      "byte_start": 770995,
+      "byte_end": 771946
+    },
+    {
+      "name": "_h_3",
+      "first_token": 26140,
+      "last_token": 26432,
+      "byte_start": 771947,
+      "byte_end": 772614
+    },
+    {
+      "name": "__index",
+      "first_token": 26451,
+      "last_token": 26486,
+      "byte_start": 772657,
+      "byte_end": 772740
+    },
+    {
+      "name": "_dr_7559",
+      "first_token": 33745,
+      "last_token": 35079,
+      "byte_start": 790202,
+      "byte_end": 792897
+    },
+    {
+      "name": "_dr_8415",
+      "first_token": 35081,
+      "last_token": 109988,
+      "byte_start": 792898,
+      "byte_end": 942687
+    },
+    {
+      "name": "_dr_4043",
+      "first_token": 109990,
+      "last_token": 111111,
+      "byte_start": 942688,
+      "byte_end": 944942
+    },
+    {
+      "name": "_dr_301",
+      "first_token": 111113,
+      "last_token": 112227,
+      "byte_start": 944943,
+      "byte_end": 947185
+    },
+    {
+      "name": "_dr_2880",
+      "first_token": 112229,
+      "last_token": 123897,
+      "byte_start": 947186,
+      "byte_end": 970926
+    },
+    {
+      "name": "_dr_2380",
+      "first_token": 123899,
+      "last_token": 125247,
+      "byte_start": 970927,
+      "byte_end": 973640
+    },
+    {
+      "name": "_dr_2094",
+      "first_token": 125249,
+      "last_token": 142913,
+      "byte_start": 973641,
+      "byte_end": 1009161
+    },
+    {
+      "name": "boot",
+      "first_token": 142980,
+      "last_token": 143974,
+      "byte_start": 1009332,
+      "byte_end": 1011606
+    },
+    {
+      "name": "exec",
+      "first_token": 143976,
+      "last_token": 144393,
+      "byte_start": 1011607,
+      "byte_end": 1012549
+    },
+    {
+      "name": "make",
+      "first_token": 144395,
+      "last_token": 145081,
+      "byte_start": 1012550,
+      "byte_end": 1014088
+    }
+  ],
+  "executed": false
+}

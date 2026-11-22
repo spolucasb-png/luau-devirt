@@ -9,6 +9,7 @@ pub mod ir;
 pub mod lifter;
 pub mod optimizer;
 pub mod sarp;
+pub mod sarp_large;
 mod specialize;
 
 pub use cfg::walk_cfg;

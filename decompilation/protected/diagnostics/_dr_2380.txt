@@ -1,0 +1,124 @@
+_dr [ 2380 ] = function ( _drd1 , F , _est , _drd0 , _eps , _eip , _m , _erb , _drd2 ) local _w , _rt , _rm , _hc , _mo , _cm2 , _cm3 , _sg = W , RT , RMAP , HC , MO , CM2 , CM3 , 2380 ;
+local rb , ps , stop , exit , ip , st , sh , _rbs , _r ;
+if _eip then
+rb , ps , stop , exit , ip , st , sh , _rbs , _r = _erb , _eps , 0 , 0 , _eip , _est , _m , 0 , 0
+else
+rb , ps , stop , exit = F [ _cm [ 3 ] ] , F [ _cm [ 5 ] ] , F [ _cm [ 14 ] ] , F [ _cm [ 22 ] ] ;
+ip , st , sh , _rbs , _r = F [ _cm [ 7 ] ] , F [ _cm [ 11 ] ] , _m , F [ _cm [ 12 ] ] , 0
+end
+;
+local _pxs , _pys = _rm [ rb + 5 ] , _rm [ rb + 6 ] ;
+local _u1s , _u2s , _dws = _rm [ rb + 9 ] , _rm [ rb + 10 ] , _rm [ rb + 8 ] ;
+local _go = _rt [ sh ] == _sg ;
+while ip ~= exit and _go and ip ~= 0 and ip ~= stop do
+local _wi = _w [ ip ] ;
+local _wx = bxor ( _wi , ps ) ;
+local op = ( ( _wi - lrot ( st , 14 ) - ps * 35 ) % 4294967296 ) - 1724 ;
+if op < 85 then
+if op < 71 then
+if op < 60 then
+do
+local _sa , _sb = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + bxor ( _w [ ip + 2 ] , st ) ] ;
+F [ _sa ] = _mo ( bxor ( 26 , band ( K1 , 2047 ) ) , 72 , F [ _sb ] ) ;
+F [ _cm [ 1 ] ] = F [ _cm [ 1 ] ] ;
+ip = ip + 5 ;
+st = ( st * 263825 + 3301 ) % 4294967296
+end
+else
+do
+local _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] ;
+local _zv = F [ _cm [ 8 ] ] ;
+F [ _sa ] = bxor ( ( _zv or 0 ) , band ( st , 255 ) ) ;
+if _hc [ bxor ( 118374 , band ( K1 , 4095 ) ) ] == nil then
+ip = 0
+end
+;
+ip = ip + 3 ;
+st = bxor ( ( st * 247317 + 471901 ) % 4294967296 , 3918421507 )
+end
+end
+else
+if op < 79 then
+do
+local _sd , _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + ( ( _w [ ip + 2 ] + st ) % 4294967296 ) ] ;
+F [ _sd ] = bxor ( ( F [ _sa ] or 0 ) , band ( st , 65535 ) ) ;
+F [ _cm [ 9 ] ] = F [ _cm [ 9 ] ] ;
+ip = ip + 5 ;
+st = ( st * 270197 + 171765 ) % 4294967296
+end
+else
+do
+local _sa , _sb = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + bxor ( _w [ ip + 2 ] , st ) ] ;
+F [ _sa ] = _mo ( bxor ( 8 , band ( K1 , 2047 ) ) , 88 , F [ _sb ] ) ;
+F [ _cm [ 15 ] ] = F [ _cm [ 15 ] ] ;
+ip = ip + 3 ;
+st = ( st * 390309 + 782373 ) % 4294967296
+end
+end
+end
+else
+if op < 92 then
+if op < 88 then
+do
+local _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] ;
+local _zv = F [ _cm [ 18 ] ] ;
+F [ _sa ] = bxor ( ( _zv or 0 ) , band ( st , 255 ) ) ;
+if _hc [ bxor ( 110179 , band ( K1 , 4095 ) ) ] == nil then
+ip = 0
+end
+;
+ip = ip + 3 ;
+st = bxor ( ( st * 121961 + 895435 ) % 4294967296 , 3171086593 )
+end
+else
+do
+local _sd , _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + ( ( _w [ ip + 2 ] + st ) % 4294967296 ) ] ;
+F [ _sd ] = bxor ( ( F [ _sa ] or 0 ) , band ( st , 65535 ) ) ;
+F [ _cm [ 19 ] ] = F [ _cm [ 19 ] ] ;
+ip = ip + 3 ;
+st = ( st * 123597 + 504245 ) % 4294967296
+end
+end
+else
+if op < 111 then
+do
+local _sa , _sb = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + bxor ( _w [ ip + 2 ] , st ) ] ;
+F [ _sa ] = _mo ( bxor ( 10 , band ( K1 , 2047 ) ) , 136 , F [ _sb ] ) ;
+F [ _cm [ 21 ] ] = F [ _cm [ 21 ] ] ;
+ip = ip + 5 ;
+st = ( st * 14829 + 1163233 ) % 4294967296
+end
+else
+if op >= 115 then
+do
+local _sd , _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] , _rm [ rb + ( ( _w [ ip + 2 ] + st ) % 4294967296 ) ] ;
+F [ _sd ] = bxor ( ( F [ _sa ] or 0 ) , band ( st , 65535 ) ) ;
+F [ _cm [ 8 ] ] = F [ _cm [ 8 ] ] ;
+ip = ip + 5 ;
+st = ( st * 306625 + 564631 ) % 4294967296
+end
+else
+do
+local _sa = _rm [ rb + ( ( _w [ ip + 1 ] - st ) % 4294967296 ) ] ;
+local _zv = F [ _cm [ 1 ] ] ;
+F [ _sa ] = bxor ( ( _zv or 0 ) , band ( st , 255 ) ) ;
+if _hc [ bxor ( 20078 , band ( K1 , 4095 ) ) ] == nil then
+ip = 0
+end
+;
+ip = ip + 6 ;
+st = bxor ( ( st * 503629 + 225259 ) % 4294967296 , 344212381 )
+end
+end
+end
+end
+end
+;
+_go = _rt [ sh ] == _sg
+end
+;
+F [ _cm [ 7 ] ] = ip ;
+F [ _cm [ 11 ] ] = st ;
+F [ _cm [ 20 ] ] = sh ;
+return ip == 0 or ip == stop or ip == exit
+end

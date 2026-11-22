@@ -14,6 +14,8 @@ fn distributed_regression_fixtures_are_present() {
         "T001-deobfuscated.luau",
         "base85-rotor.lua",
         "sarp.lua",
+        "sarp.pretty.luau",
+        "protected.luau",
     ] {
         assert!(root.join(name).is_file(), "release fixture missing: {name}");
     }

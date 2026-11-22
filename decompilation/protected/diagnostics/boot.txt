@@ -1,0 +1,108 @@
+boot = function ( ... ) if not W then
+initOnce ( bxor ( 263838302 , 153990597 ) )
+end
+;
+local _wi = W ;
+if _wi == nil then
+initOnce ( bxor ( 263838302 , 153990597 ) )
+end
+;
+local tk = bxor ( K0 , ( 595533583 + 2755699720 ) % 4294967296 ) ;
+local _bs = bxor ( K0 , 380571679 ) ;
+local _btok = 346824541 ;
+local hw = bxor ( tk , 266632 ) ;
+local entry = bxor ( W [ hw + 2 ] , bxor ( 3146221740 , K0 ) ) ;
+local est = bxor ( W [ hw + 0 ] , bxor ( 2305819396 , K0 ) ) ;
+local esh = bxor ( W [ hw + 5 ] , bxor ( 3545062758 , K0 ) ) ;
+local mtA = bxor ( W [ hw + 3 ] , bxor ( 1312544370 , K0 ) ) ;
+local mtB = bxor ( W [ hw + 4 ] , bxor ( 3129404073 , K0 ) ) ;
+local size , uc , ar , da , rb , ps = band ( rshift ( mtB , 18 ) , 8191 ) , band ( rshift ( mtA , 19 ) , 1023 ) , bext ( mtA , 29 , 3 ) , band ( mtA , 1 ) , band ( rshift ( mtA , 1 ) , 131071 ) , bext ( mtB , 0 , 16 ) ;
+local aw = da == 1 and rshift ( ar + 1 , 1 ) or 0 ;
+local ub = hw + 7 + aw ;
+local us = uc > 0 and tcreate ( uc ) or nil ;
+for i = 1 , uc do
+us [ i ] = band ( bxor ( W [ ub + i - 1 ] , bxor ( 1434732467 , K0 ) ) , 65535 )
+end
+;
+local _rm , _cm = RMAP , CM ;
+local _sz = size ;
+if _sz < 71 then
+_sz = 71
+end
+;
+local F = tcreate ( _sz ) ;
+local _v0 , _v1 , _v2 , _v3 = ... ;
+local _p1 , _p2 , _tg = U ( 270 , _v0 , 34785 , 47 , 102 , 995 , 743 , 204 , 763676 ) ;
+F [ _cm [ 4 ] ] , F [ _cm [ 2 ] ] = _p1 , _p2 ;
+do
+local _s1 , _s2 = _rm [ rb + 5 ] , _rm [ rb + 6 ] ;
+F [ _s1 ] , F [ _s2 ] = _v0 , _v0
+end
+;
+if da == 1 then
+local wA = ar > 0 and bxor ( W [ hw + 7 ] , bxor ( 431712049 , K0 ) ) or 0 ;
+local wB = ar > 2 and bxor ( W [ hw + 8 ] , bxor ( 431712049 , K0 ) ) or 0 ;
+local a0 , a1 , a2 , a3 = band ( wA , 65535 ) , bext ( wA , 16 , 16 ) , band ( wB , 65535 ) , bext ( wB , 16 , 16 ) ;
+if ar >= 2 then
+local _sa = _rm [ rb + a1 ] ;
+F [ _sa ] = _v1
+end
+;
+if ar >= 3 then
+local _sa = _rm [ rb + a2 ] ;
+F [ _sa ] = _v2
+end
+;
+if ar >= 4 then
+local _sa = _rm [ rb + a3 ] ;
+F [ _sa ] = _v3
+end
+else
+F [ _cm [ 13 ] ] = tpack ( ... )
+end
+;
+F [ _cm [ 3 ] ] = rb ;
+F [ _cm [ 5 ] ] = ps ;
+F [ _cm [ 7 ] ] = entry ;
+F [ _cm [ 11 ] ] = ( est + _tg ) % 4294967296 ;
+F [ _cm [ 20 ] ] = esh ;
+F [ _cm [ 14 ] ] = 0 ;
+F [ _cm [ 22 ] ] = 0 ;
+F [ _cm [ 12 ] ] = 0 ;
+F [ _cm [ 16 ] ] = 0 ;
+local _rk , _rv1 , _rv2 , _rv3 , _rv4 = exec ( 408 , 407 , 332 , 297 , 302 , F , bxor ( K0 , _btok ) , 439 , bxor ( _tg , _bs ) ) ;
+if _rk then
+if _rk == 422210 then
+return _rv1
+elseif _rk == 298197 then
+return _rv1 , _rv2
+elseif _rk == 638771 then
+return
+elseif _rk == 862653 then
+return _rv1 , _rv2 , _rv3
+elseif _rk == 308995 then
+return _rv1 , _rv2 , _rv3 , _rv4
+elseif _rk == 874660 then
+return tunpack ( _rv1 , 1 , _rv1 . n )
+end
+end
+;
+local _rr = 0 ;
+if F [ _cm [ 12 ] ] ~= 0 then
+local _sb = F [ _cm [ 3 ] ] + 5 ;
+local _sx = _rm [ _sb ] ;
+_rr = bxor ( F [ _sx ] , 608916103 )
+end
+;
+local _fst = bxor ( F [ _cm [ 11 ] ] , ( _rr * 69 ) % 4294967296 ) ;
+if F [ _cm [ 10 ] ] == bxor ( _fst , 2601618823 ) then
+local _n = bxor ( F [ _cm [ 6 ] ] , band ( _fst , 65535 ) ) ;
+if _n == 1 then
+return F [ _cm [ 17 ] ]
+end
+;
+if _n > 1 then
+return tunpack ( F [ _cm [ 17 ] ] , 1 , _n )
+end
+end
+end

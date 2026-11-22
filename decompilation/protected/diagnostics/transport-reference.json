@@ -1,0 +1,41 @@
+{
+  "source_sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "fragments": [
+    {
+      "name": "_pc0",
+      "length": 177562,
+      "offset": 0
+    },
+    {
+      "name": "_pc1",
+      "length": 177551,
+      "offset": 177562
+    },
+    {
+      "name": "_pc2",
+      "length": 177559,
+      "offset": 355113
+    },
+    {
+      "name": "_pc3",
+      "length": 177548,
+      "offset": 532672
+    }
+  ],
+  "alphabet": "XzO+#ig=Jk[1qYc:@K)yuaH;~jew6srV7b<n3ptMBdUF$NECQ]foZ,^mT4.!>&52(G09D_hPRW%lI8?SLAxv|",
+  "encoded_bytes": 710220,
+  "decoded_bytes": 568176,
+  "word_count": 142044,
+  "transport_sha256": "b56b453499598f203dc50ffc04d515dd907fd30ec79f23610cc740c17832f69a",
+  "first_eight_words": [
+    "e747ff55",
+    "162cbeb3",
+    "d51d7a23",
+    "c6c2a9ca",
+    "bcdda2dd",
+    "77fc4197",
+    "5e3d7d16",
+    "88503b0b"
+  ],
+  "executed": false
+}

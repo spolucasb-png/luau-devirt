@@ -1,0 +1,81 @@
+initB = function ( _st0 , ws , _ibd0 , ce , _dm , _ibd1 ) local _ist = _st0 ;
+while _ist ~= 0 do
+if _ist < 27104 then
+local _dy = bxor ( _dm , blen ( B ) ) ;
+if _dy == 0 then
+_ist = 27104
+else
+_ist = 0
+end
+else
+if _ist < 58209 then
+local _kt = tcreate ( 64 ) ;
+local ks = 299753647 ;
+for i = 1 , 64 do
+ks = ( ks * 13003 + 3750079167 ) % 4294967296 ;
+_kt [ i ] = 1 + ( ks % 200000 )
+end
+;
+local kb = tcreate ( 64 ) ;
+tmove ( _kt , 1 , 64 , 1 , kb ) ;
+KBOX = kb ;
+if tfreeze then
+tfreeze ( kb )
+end
+;
+_ist = 58209
+else
+local _ba , _bb , _bc = bcreate ( 32768 ) , bcreate ( 32768 ) , bcreate ( 32768 ) ;
+for i = 0 , 16383 do
+local o = lshift ( i , 1 ) ;
+w16 ( _ba , o , i ) ;
+w16 ( _bb , o , i )
+end
+;
+local _ka , _kb = 1074033615 , 2285263105 ;
+for i = 16383 , 1 , - 1 do
+local oi = lshift ( i , 1 ) ;
+_ka = ( _ka * 29983 + 3162639897 ) % 4294967296 ;
+local oj = lshift ( _ka % ( i + 1 ) , 1 ) ;
+local va , vj = r16 ( _ba , oi ) , r16 ( _ba , oj ) ;
+w16 ( _ba , oi , vj ) ;
+w16 ( _ba , oj , va ) ;
+_kb = ( _kb * 29983 + 3162639897 ) % 4294967296 ;
+local ok = lshift ( _kb % ( i + 1 ) , 1 ) ;
+local vb , vk = r16 ( _bb , oi ) , r16 ( _bb , ok ) ;
+w16 ( _bb , oi , vk ) ;
+w16 ( _bb , ok , vb )
+end
+;
+for b = 0 , 16383 do
+local ob = lshift ( b , 1 ) ;
+local pa , pb = r16 ( _ba , ob ) , r16 ( _bb , ob ) ;
+w16 ( _bc , lshift ( pa , 1 ) , ( pb * 4 + ( ( b * 17 + 13025 ) % 16384 ) * 2 + bxor ( bxor ( band ( rshift ( pa , 7 ) , 1 ) , band ( rshift ( pb , 2 ) , 1 ) ) , 1 ) + 43122 ) % 65536 )
+end
+;
+for i = 0 , 16383 do
+local o = lshift ( i , 1 ) ;
+_ka = ( _ka * 29983 + 3162639897 ) % 4294967296 ;
+_kb = ( _kb * 29983 + 3162639897 ) % 4294967296 ;
+w16 ( _ba , o , bor ( r16 ( _ba , o ) , lshift ( bext ( _ka , 20 , 2 ) , 14 ) ) ) ;
+w16 ( _bb , o , bor ( r16 ( _bb , o ) , lshift ( bext ( _kb , 20 , 2 ) , 14 ) ) )
+end
+;
+BL_A = _ba ;
+BL_B = _bb ;
+BL_C = _bc ;
+local _yn = cyield ( K0 ) ;
+if _yn == 0 then
+local _k2 = bxor ( K0 , 1836873615 ) ;
+for _wi = ws , ce do
+_k2 = ( _k2 * 32625 + 2288117495 ) % 4294967296 ;
+local _m2 = bxor ( r16 ( BL_A , lshift ( band ( _k2 , 16383 ) , 1 ) ) , lshift ( r16 ( BL_B , lshift ( band ( rshift ( _k2 , 14 ) , 16383 ) , 1 ) ) , 16 ) , KBOX [ 1 + ( _wi % 64 ) ] , r16 ( BL_C , lshift ( band ( bxor ( _k2 , _wi ) , 16383 ) , 1 ) ) ) ;
+W [ _wi ] = bxor ( W [ _wi ] , _m2 )
+end
+end
+;
+_ist = 0
+end
+end
+end
+end

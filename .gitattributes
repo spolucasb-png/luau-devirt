@@ -4,3 +4,5 @@
 /tests/fixtures/** -text
 /decompilation/message/** -text
 /decompilation/sarp/** -text
+# Retain CRLF where present without mistaking the preserved CR for whitespace.
+/decompilation/protected/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

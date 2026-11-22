@@ -81,6 +81,7 @@ fn strict() -> CodegenOptions {
     CodegenOptions {
         strict: true,
         include_source_comments: false,
+        pretty: false,
     }
 }
 

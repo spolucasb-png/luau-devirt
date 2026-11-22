@@ -22,10 +22,10 @@ jobs:
       - name: Static regression and output verification
         shell: pwsh
         run: ./tools/verify.ps1 -RequireExternalTools
-      - name: Package allowlisted release
+      - name: Package allowlisted development preview
         shell: pwsh
-        run: ./tools/package.ps1 -SkipBuild
+        run: ./tools/package.ps1 -SkipBuild -Preview
       - uses: actions/upload-artifact@v4
         with:
-          name: luau-devirt-release
+          name: luau-devirt-development-preview
           path: dist/*

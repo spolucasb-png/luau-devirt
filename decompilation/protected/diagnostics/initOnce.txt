@@ -1,0 +1,208 @@
+initOnce = function ( sa ) if W then
+return
+end
+;
+local _ist , nw , wt , st , ws , ce , _dm = 32689 , nil , nil , nil , nil , nil , 34315 ;
+while _ist ~= 0 do
+if 21819 < _ist then
+if 32688 < _ist then
+if 51151 > _ist then
+local _b85 = bcreate ( 710220 ) ;
+do
+local _t = bfrom ( _pc2 ) ;
+bcopy ( _b85 , 355113 , _t , 0 , 177559 ) ;
+_pc2 = nil
+end
+;
+do
+local _t = bfrom ( _pc1 ) ;
+bcopy ( _b85 , 177562 , _t , 0 , 177551 ) ;
+_pc1 = nil
+end
+;
+do
+local _t = bfrom ( _pc3 ) ;
+bcopy ( _b85 , 532672 , _t , 0 , 177548 ) ;
+_pc3 = nil
+end
+;
+do
+local _t = bfrom ( _pc0 ) ;
+bcopy ( _b85 , 0 , _t , 0 , 177562 ) ;
+_pc0 = nil
+end
+;
+local _ab = bfrom ( "XzO+#ig=Jk[1qYc:@K)yuaH;~jew6srV7b<n3ptMBdUF$NECQ]foZ,^mT4.!>&52(G09D_hPRW%lI8?SLAxv|" ) ;
+local _d85 = tcreate ( 127 ) ;
+for _i = 0 , 84 do
+_d85 [ r8 ( _ab , _i ) ] = _i
+end
+;
+local _ib = bcreate ( 568176 ) ;
+for _i = 0 , 142043 do
+local _p = _i * 5 ;
+local _v = ( ( ( _d85 [ r8 ( _b85 , _p + 4 ) ] * 85 + _d85 [ r8 ( _b85 , _p + 3 ) ] ) * 85 + _d85 [ r8 ( _b85 , _p + 2 ) ] ) * 85 + _d85 [ r8 ( _b85 , _p + 1 ) ] ) * 85 + _d85 [ r8 ( _b85 , _p ) ] ;
+w32 ( _ib , _i * 4 , bswap ( _v ) )
+end
+;
+local _tk = 577177045 ;
+for _i = 0 , 142043 do
+_tk = ( _tk * 15577 + 3425539465 ) % 4294967296 ;
+w32 ( _ib , _i * 4 , bxor ( r32 ( _ib , _i * 4 ) , _tk ) )
+end
+;
+local _hb = bcreate ( 16 ) ;
+bcopy ( _hb , 0 , _ib , 0 , 16 ) ;
+bcopy ( _ib , 0 , _hb , 0 , 16 ) ;
+B = _ib ;
+_b85 = nil ;
+G = getfenv ( ) ;
+nw = blen ( B ) / 4 ;
+wt = tcreate ( nw ) ;
+st = bxor ( sa , 192128608 ) ;
+for i = 1 , 4 do
+local o = ( i - 1 ) * 4 ;
+st = ( st * 411395 + 479499883 ) % 4294967296 ;
+st = lrot ( st , 11 ) ;
+st = bxor ( st , lshift ( st , 9 ) ) ;
+st = bxor ( st , rshift ( st , 5 ) ) ;
+st = bxor ( st , lshift ( st , 1 ) ) ;
+wt [ i ] = bxor ( r32 ( B , o ) , st )
+end
+;
+_ist = 21820
+else
+TM = { [ "boolean" ] = 63921 , [ "number" ] = 70487 , [ "vector" ] = 24189 , [ "string" ] = 16521 , [ false ] = 30414 , [ "thread" ] = 24189 , [ "function" ] = 24189 , [ "userdata" ] = 24189 , [ "buffer" ] = 24189 , [ 1 ] = 53810 , [ "sym" ] = 51456 , [ "table" ] = 24189 , [ true ] = 85748 , [ 0 ] = 19771 , [ "nil" ] = 24189 } ;
+BM_BOOL = { [ 1 == 1 ] = 24189 , [ 1 == 2 ] = 24189 } ;
+if tfreeze then
+tfreeze ( TM ) ;
+tfreeze ( BM_BOOL )
+end
+;
+_ist = 0
+end
+else
+local bw = r32 ( B , 8 ) ;
+local m0 = bxor ( sa , bw ) ;
+local m1 = ( m0 * 29955 + 504689345 ) % 4294967296 ;
+local _fb = bcreate ( 16 ) ;
+bfill ( _fb , 0 , 90 , 16 ) ;
+wf64 ( _fb , 0 , m1 + wt [ 3 ] + 1048576 ) ;
+local _flo , _fhi = bxor ( ri32 ( _fb , 0 ) , 0 ) , r32 ( _fb , 4 ) ;
+local _cz = clz ( m0 ) * 65537 + crz ( bw ) * 257 + clz ( wt [ 3 ] ) ;
+local _p1 = pcFn ( function ( ) local _e = { } ;
+return _e + 1
+end
+) ;
+local _pf = _p1 and 1 or 0 ;
+local _pe = 0 ;
+local _mx = smt ( { } , { __index = function ( _ , k )
+return k == 1 and m1 or ( k == 2 and _flo or _fhi )
+end
+, __add = function ( _ , v )
+return ( v + _cz + _pf ) % 4294967296
+end
+, __len = function ( )
+return _cz
+end
+, __call = function ( _ , v )
+return bxor ( v , _pe )
+end
+} ) ;
+local _p2 , _mv = pcFn ( function ( )
+return _mx + _mx [ 2 ]
+end
+) ;
+local _kc = ccreate ( function ( _a , _b , _c ) cyield ( bxor ( _a , _b ) ) ;
+cyield ( _c )
+end
+) ;
+local _ok1 , _kpa = cresume ( _kc , _mx [ 1 ] , _mx [ 3 ] , _p2 and _mv or 0 ) ;
+local _ok2 , _kpb = cresume ( _kc ) ;
+_pe = _pf + ( _p2 and 0 or 2 ) + ( _ok1 and 0 or 4 ) + ( _ok2 and 0 or 8 ) ;
+local _t7 = { 27 , 50 } ;
+tins ( _t7 , 2 , 42 ) ;
+local _rm7 = trem ( _t7 , 1 ) ;
+local _s7 = 0 ;
+for _ , _v7 in ipFn ( _t7 ) do
+_s7 = _s7 + _v7
+end
+;
+local _nk7 , _nv7 = nxtFn ( _t7 ) ;
+if _rm7 ~= 27 or _s7 ~= 92 or _nk7 ~= 1 or _nv7 ~= 42 or tcat ( _t7 , "-" ) ~= "42-50" then
+_pe = _pe + 2048
+end
+;
+if mflr ( msqrt ( 225 ) ) ~= 15 or mceil ( 15.1 ) ~= 16 or mmin ( 8 , 3 ) ~= 3 or mmax ( 3 , 8 ) ~= 8 or mabs ( - 27 ) ~= 27 or tnum ( "0xa9" ) ~= 169 then
+_pe = _pe + 16384
+end
+;
+local _x0 = 0 ;
+local _xo , _xr = xpcFn ( function ( ) local _te = { } ;
+return _te + 1
+end
+, function ( ) _x0 = 15 ;
+return 6099
+end
+) ;
+if _xo or _xr ~= 6099 or _x0 ~= 15 then
+_pe = _pe + 16
+end
+;
+local _sp = spack ( "<I4h" , 1954644335 , 11534 ) ;
+local _su1 , _su2 = sunpack ( "<I4h" , _sp ) ;
+if _su1 ~= 1954644335 or _su2 ~= 11534 or tnum ( "h79" , 29 ) ~= 14509 then
+_pe = _pe + 64
+end
+;
+local _f6 = sfmt ( "%04x:%d" , 45522 , 63 ) ;
+if _f6 ~= "b1d2:63" or sbyte ( srev ( ssub ( _f6 , 1 , 4 ) ) , 1 ) ~= 50 then
+_pe = _pe + 1024
+end
+;
+local _tc13 = tcln ( { 29 , 60 , 66 } ) ;
+local _fi13 = tfind ( _tc13 , 60 ) ;
+tclr ( _tc13 ) ;
+if _fi13 ~= 2 or # _tc13 ~= 0 or tfind ( _tc13 , 60 ) ~= nil then
+_pe = _pe + 131072
+end
+;
+K0 = bxor ( ( _mx [ 1 ] + _mx [ 2 ] ) % 4294967296 , lrot ( wt [ 3 ] , 11 ) , _mx [ 3 ] , bswap ( _mx ( m0 ) ) , # _mx ) ;
+K1 = bxor ( 1030971814 , 355957541 ) ;
+ws = bxor ( wt [ 2 ] , bxor ( 2659961469 , K0 ) ) ;
+ce = bxor ( wt [ 4 ] , bxor ( 4067770469 , K0 ) ) ;
+_ist = 8077
+end
+else
+if _ist >= 11922 then
+local _dx = bxor ( r32 ( B , 0 ) , _dm ) ;
+_dm = ( _dm + _dx ) % 4294967296 ;
+_ist = 51151
+else
+for i = ws , ce do
+local o = ( i - 1 ) * 4 ;
+st = ( st * 411395 + 479499883 ) % 4294967296 ;
+st = lrot ( st , 11 ) ;
+st = bxor ( st , lshift ( st , 9 ) ) ;
+st = bxor ( st , rshift ( st , 5 ) ) ;
+st = bxor ( st , lshift ( st , 1 ) ) ;
+wt [ i ] = bxor ( r32 ( B , o ) , st )
+end
+;
+SM = { } ;
+NM = { } ;
+PM = { } ;
+PD = { } ;
+W = wt ;
+_ist = 51151
+end
+end
+end
+;
+local _ibc = ccreate ( initB ) ;
+local _ibo1 , _ibv = cresume ( _ibc , 27104 , ws , 113 , ce , _dm , 840 ) ;
+cresume ( _ibc , bxor ( _ibv or 0 , K0 ) ) ;
+local _icc = ccreate ( initC ) ;
+local _ico1 , _icv = cresume ( _icc , 72 , 59052 , 289 , 225 , 408 , 782 , _dm , ce ) ;
+cresume ( _icc , bxor ( _icv or 0 , bxor ( K0 , 2015398063 ) ) )
+end

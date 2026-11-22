@@ -1,0 +1,225 @@
+U = function ( _uh , _ua , _um , _ue , _ug , _uc , _ud , _uf , _ub ) local _op = bxor ( _um , 43554 ) ;
+local _udx = 25 ;
+local _udy = 34 ;
+if _uf ~= nil then
+_udx = _udx + 1
+end
+;
+if _op < 0 then
+_op = _op + 1
+end
+;
+local _udm = _udx + _udy ;
+if _udm < 0 then
+return 0
+end
+;
+if _op == 11715 then
+local _skv = 0 ;
+if _ub ~= nil then
+_skv = _ub
+end
+;
+local _ds = bxor ( _skv , 1040301 ) - 293041 ;
+local _tp = tFn ( _ua ) ;
+local _u = 6787 ;
+if _tp == "number" then
+_u = band ( _ua , 16383 )
+elseif _tp == "string" then
+_u = band ( # _ua , 16383 )
+elseif _tp == "boolean" then
+if _ua then
+_u = 6864
+else
+_u = 7011
+end
+end
+;
+local _pa = band ( r16 ( BL_A , lshift ( _u , 1 ) ) , 16383 ) ;
+local _pb = band ( r16 ( BL_B , lshift ( _u , 1 ) ) , 16383 ) ;
+local _exp = ( _pb * 4 + ( ( _u * 17 + 13025 ) % 16384 ) * 2 + bxor ( bxor ( band ( rshift ( _pa , 7 ) , 1 ) , band ( rshift ( _pb , 2 ) , 1 ) ) , 1 ) ) % 65536 ;
+local _sbz = ( r16 ( BL_C , lshift ( _pa , 1 ) ) - _exp ) % 65536 ;
+local _tb = 24189 ;
+if _tp ~= "number" and _tp ~= "string" then
+if _tp == "boolean" then
+_tb = BM_BOOL [ _ua ]
+else
+_tb = TM [ _tp ]
+end
+end
+;
+return _pa , ( _exp + _ds ) % 65536 , ( _tb + _sbz + _ds * 65 ) % 4294967296
+else
+if _op >= 35726 then
+if 53722 < _op then
+if _op >= 57440 then
+local _mkv = 0 ;
+if _ub ~= nil then
+_mkv = _ub
+end
+;
+local _dm = ( bxor ( _mkv , 976472 ) - 278200 ) * 83 ;
+local _tp = tFn ( _ua ) ;
+local _w = 6787 ;
+local _tb = 24189 ;
+if _tp == "number" then
+_w = band ( _ua , 16383 ) ;
+local _ac = bor ( lshift ( rshift ( _w , 7 ) , 7 ) , band ( _w , 127 ) ) ;
+_tb = _tb + ( _ac - _w )
+elseif _tp == "string" then
+_w = band ( # _ua , 16383 ) ;
+local _ac = bor ( lshift ( rshift ( _w , 7 ) , 7 ) , band ( _w , 127 ) ) ;
+_tb = _tb + ( _ac - _w )
+elseif _tp == "boolean" then
+if _ua then
+_w = 6320
+else
+_w = 6467
+end
+;
+_tb = BM_BOOL [ _ua ]
+else
+_tb = TM [ _tp ]
+end
+;
+local _o = lshift ( _w , 1 ) ;
+local _pa , _pb = band ( r16 ( BL_A , _o ) , 16383 ) , band ( r16 ( BL_B , _o ) , 16383 ) ;
+local _exp = ( _pb * 4 + ( ( _w * 17 + 13025 ) % 16384 ) * 2 + bxor ( bxor ( band ( rshift ( _pa , 7 ) , 1 ) , band ( rshift ( _pb , 2 ) , 1 ) ) , 1 ) ) % 65536 ;
+local _sbz = ( r16 ( BL_C , lshift ( _pa , 1 ) ) - _exp ) % 65536 ;
+return ( _tb + _sbz + _dm ) % 4294967296
+else
+local _db = bcreate ( 8 ) ;
+local _dv = 0 ;
+if tFn ( _ua ) == "number" then
+_dv = band ( _ua , 65535 )
+end
+;
+w32 ( _db , 0 , _dv ) ;
+w16 ( _db , 4 , bext ( _dv , 0 , 8 ) + 1 ) ;
+local _dr = r16 ( _db , 4 ) ;
+return ( rf64 ( _db , 0 ) + _dr * 13 + 5728 ) % 4294967296
+end
+else
+local _zkv = 0 ;
+if _ub ~= nil then
+_zkv = _ub
+end
+;
+local _dz = ( bxor ( _zkv , 48556 ) - 764977 ) * 65 ;
+local _tp = tFn ( _ua ) ;
+local _b = 6787 ;
+if _tp == "number" then
+_b = band ( _ua , 16383 )
+elseif _tp == "string" then
+_b = band ( # _ua , 16383 )
+elseif _tp == "boolean" then
+if _ua then
+_b = 6864
+else
+_b = 7011
+end
+end
+;
+local _o = lshift ( _b , 1 ) ;
+local _pa , _pb = band ( r16 ( BL_A , _o ) , 16383 ) , band ( r16 ( BL_B , _o ) , 16383 ) ;
+local _exp = ( _pb * 4 + ( ( _b * 17 + 13025 ) % 16384 ) * 2 + bxor ( bxor ( band ( rshift ( _pa , 7 ) , 1 ) , band ( rshift ( _pb , 2 ) , 1 ) ) , 1 ) ) % 65536 ;
+local _sbz = ( r16 ( BL_C , lshift ( _pa , 1 ) ) - _exp ) % 65536 ;
+return ( _sbz + _dz ) % 4294967296
+end
+else
+if _op < 26166 then
+local _sbz = 100 + ( _ua % 97 ) ;
+if tFn ( _uc ) == "table" then
+local _s1 , _s2 = _uc [ CM [ 4 ] ] , _uc [ CM [ 2 ] ] ;
+if _s1 and _s2 then
+_sbz = ( r16 ( BL_C , lshift ( _s1 , 1 ) ) - _s2 ) % 65536
+end
+end
+;
+local _ck = ( bxor ( _sbz , 3893 ) == 42823 ) and ( _ub ~= nil ) ;
+if _ck then
+local _cv = NM [ _ua ] ;
+if _cv ~= nil then
+return _cv
+end
+end
+;
+local _k1v = 0 ;
+if _ub ~= nil then
+_k1v = _ub
+end
+;
+local _k1 = bxor ( _k1v , _sbz ) ;
+local _i = bxor ( _ua , 1433946 ) ;
+local _o = bxor ( W [ 1 ] , bxor ( 2939307859 , K0 ) ) ;
+local _p = _o + ( _i - 1 ) * 8 ;
+local _tb = bcreate ( 8 ) ;
+w32 ( _tb , 0 , bxor ( r32 ( B , _p ) , bxor ( ( 1770095756 + _i * 388145 ) % 4294967296 , bxor ( K0 , _k1 ) ) ) ) ;
+w32 ( _tb , 4 , bxor ( r32 ( B , _p + 4 ) , bxor ( ( 2239952298 + _i * 280443 ) % 4294967296 , bxor ( bxor ( rshift ( K0 , 11 ) , lshift ( K0 , 21 ) ) , bxor ( rshift ( _k1 , 7 ) , lshift ( _k1 , 25 ) ) ) ) ) ) ;
+local _v = rf64 ( _tb , 0 ) ;
+if _ck then
+NM [ _ua ] = _v
+end
+;
+return _v
+else
+if 29712 < _op then
+local _sbz = 100 + ( _ua % 97 ) ;
+if tFn ( _uc ) == "table" then
+local _s1 , _s2 = _uc [ CM [ 4 ] ] , _uc [ CM [ 2 ] ] ;
+if _s1 and _s2 then
+_sbz = ( r16 ( BL_C , lshift ( _s1 , 1 ) ) - _s2 ) % 65536
+end
+end
+;
+local _ck = ( bxor ( _sbz , 3893 ) == 42823 ) and ( _ub ~= nil ) ;
+if _ck then
+local _cv = SM [ _ua ] ;
+if _cv ~= nil then
+return _cv
+end
+end
+;
+local _k1 = 0 ;
+if _ub ~= nil then
+_k1 = _ub
+end
+;
+local _o = bxor ( _ua , 628995 ) ;
+local _ps = bxor ( r32 ( B , _o ) , 3148276683 ) ;
+local _n = bxor ( r32 ( B , _o + 4 ) , bxor ( 1529521387 , _ps ) ) ;
+local _tb = bcreate ( _n ) ;
+local _k = bxor ( _ps , bxor ( K0 , bxor ( _k1 , _sbz ) ) ) ;
+local _d = _o + 8 ;
+local _nw4 = rshift ( _n , 2 ) ;
+for _w = 0 , _nw4 - 1 do
+_k = ( _k * 7971 + 744303207 ) % 4294967296 ;
+w32 ( _tb , _w * 4 , bxor ( r32 ( B , _d + _w * 4 ) , _k ) )
+end
+;
+for _t = _nw4 * 4 , _n - 1 do
+_k = ( _k * 7971 + 744303207 ) % 4294967296 ;
+w8 ( _tb , _t , bxor ( r8 ( B , _d + _t ) , _k % 256 ) )
+end
+;
+local _v = rstr ( _tb , 0 , _n ) ;
+if _ck then
+SM [ _ua ] = _v
+end
+;
+return _v
+else
+local _db = bcreate ( 8 ) ;
+local _dv = 17 ;
+if tFn ( _ua ) == "number" then
+_dv = band ( _ua , 31 )
+end
+;
+w8 ( _db , 0 , 65 + _dv ) ;
+w8 ( _db , 1 , 66 + bext ( _dv , 0 , 4 ) ) ;
+return rstr ( _db , 0 , 2 )
+end
+end
+end
+end
+end

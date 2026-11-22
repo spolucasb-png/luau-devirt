@@ -1,0 +1,4 @@
+INCOMPLETE: sarp-four-fragment-dualstream-large-v1: PC 140992 family=2094 selector=1993: unsupported helper 25 generic iteration: iterator packets, nested dispatcher stop/exit continuations and changing rotor state require an explicit structured-loop IR contract; completed 666 states; 62 pending states
+Transport, initialization, parsed handlers and partial trace are available.
+Complete linked IR, default Luau and pretty Luau are unavailable.
+Existing IR or Luau files, if any, are not certified by this invocation.

@@ -1,0 +1,195 @@
+_h [ 25 ] = function ( _sb , _st , _hb , _de , _he , _db , _cb , _ip , _se , _F , _reg , _ce ) local _rm = RMAP ;
+local _top = _ip ;
+local _rb = _F [ _cm [ 3 ] ] ;
+local _slr = _rm [ _rb + _reg ] ;
+local _t = _F [ _slr ] ;
+local _bd = _top + _db ;
+local _ex = _top + _de ;
+local _ostop , _oexit = _F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] ;
+_F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] = _top , _ex ;
+local _p = _t [ 1 ] ;
+if _F [ _cm [ 12 ] ] == 0 then
+for _iv0 , _iv1 in tunpack ( _p , 1 , _p . n ) do
+_t [ 4 ] , _t [ 5 ] = _iv0 , _iv1 ;
+local _bst = ( _st + _sb ) % 4294967296 ;
+local _bh = _hb % 4294967296 ;
+_F [ _cm [ 7 ] ] = _bd ;
+_F [ _cm [ 11 ] ] = _bst ;
+_F [ _cm [ 20 ] ] = _bh ;
+do
+local _ig = RT [ _bh ] ;
+if _ig >= 2880 then
+if _ig < 7559 then
+if _ig < 4043 then
+if _ig == 2880 then
+_dr [ 2880 ] ( 398 , nil , 919 , _F , _bh , nil , 130 , 985 , nil , 921 , nil )
+end
+else
+if _ig == 4043 then
+_dr [ 4043 ] ( _bh , nil , 743 , _F , 705 , nil , nil , nil )
+end
+end
+else
+if _ig >= 8415 then
+if _ig == 8415 then
+_dr [ 8415 ] ( nil , nil , _F , nil , nil , 338 , 719 , _bh , 984 )
+end
+else
+if _ig == 7559 then
+_dr [ 7559 ] ( nil , 757 , 305 , nil , nil , _bh , nil , _F )
+end
+end
+end
+else
+if _ig >= 2094 then
+if _ig < 2380 then
+if _ig == 2094 then
+_dr [ 2094 ] ( 609 , nil , 501 , 475 , nil , _bh , nil , 534 , _F , nil )
+end
+else
+if _ig == 2380 then
+_dr [ 2380 ] ( 914 , _F , nil , 614 , nil , nil , _bh , nil , 315 )
+end
+end
+else
+if _ig == 301 then
+_dr [ 301 ] ( nil , 408 , _bh , 40 , nil , nil , _F , nil )
+end
+end
+end
+end
+;
+local _nxip = _F [ _cm [ 7 ] ] ;
+if _nxip ~= _top and _nxip ~= 0 and _nxip ~= _ex then
+_exec ( 445 , 402 , 392 , 638 , 486 , _F , 0 , 313 , 0 ) ;
+_nxip = _F [ _cm [ 7 ] ]
+end
+;
+if _nxip ~= _top then
+_F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] = _ostop , _oexit ;
+return _F [ _cm [ 11 ] ] , _F [ _cm [ 20 ] ] , _F [ _cm [ 7 ] ]
+end
+;
+_st = _F [ _cm [ 11 ] ]
+end
+;
+local _est = ( _st + _se ) % 4294967296 ;
+local _eh = _he % 4294967296 ;
+_F [ _cm [ 7 ] ] = _ex ;
+_F [ _cm [ 11 ] ] = _est ;
+_F [ _cm [ 20 ] ] = _eh ;
+_F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] = _ostop , _oexit ;
+return _est , _eh , _ex
+end
+;
+for _iv0 , _iv1 in tunpack ( _p , 1 , _p . n ) do
+_t [ 4 ] , _t [ 5 ] = _iv0 , _iv1 ;
+_rb = _F [ _cm [ 3 ] ] ;
+local _pxs , _pys , _u1s , _u2s = _rm [ _rb + 5 ] , _rm [ _rb + 6 ] , _rm [ _rb + 9 ] , _rm [ _rb + 10 ] ;
+local _r = bxor ( _F [ _pxs ] , _sma ) ;
+local _cur = ( ( _r + _smb ) + _F [ _pys ] ) % 4294967296 ;
+local _sbz = ( ( r16 ( BL_C , lshift ( _F [ _cm [ 4 ] ] , 1 ) ) - _F [ _cm [ 2 ] ] ) % 65536 ) ;
+local _nr = ( _r * 76977 + 2932483154 ) % 4294967296 ;
+local _ls = _F [ _cm [ 12 ] ] ;
+local _nrb = _rb + _ls ;
+if _rb >= _F [ _cm [ 16 ] ] then
+_nrb = _rb - 2 * _ls
+end
+;
+local _bst = ( _st + _sb + _cur + _sbz ) % 4294967296 ;
+local _bh = ( _hb + _cur + _sbz ) % 4294967296 ;
+local _v1 , _v2 = _F [ _u1s ] , _F [ _u2s ] ;
+_F [ _pxs ] , _F [ _u2s ] , _F [ _u1s ] , _F [ _cm [ 3 ] ] = _v2 , _v1 , bxor ( _nr , _sma ) , _nrb ;
+_F [ _pys ] = ( _cb - ( _nr + _smb ) ) % 4294967296 ;
+_F [ _cm [ 7 ] ] = bxor ( _bd , ( _nr * 15 ) % 4294967296 ) ;
+_F [ _cm [ 11 ] ] = bxor ( _bst , ( _nr * 69 ) % 4294967296 ) ;
+_F [ _cm [ 20 ] ] = bxor ( _bh , ( _nr * 99 ) % 4294967296 ) ;
+do
+local _ig = RT [ _bh ] ;
+if _ig >= 2880 then
+if _ig < 7559 then
+if _ig < 4043 then
+if _ig == 2880 then
+_dr [ 2880 ] ( 398 , nil , 919 , _F , _bh , nil , 130 , 985 , nil , 921 , nil )
+end
+else
+if _ig == 4043 then
+_dr [ 4043 ] ( _bh , nil , 743 , _F , 705 , nil , nil , nil )
+end
+end
+else
+if _ig >= 8415 then
+if _ig == 8415 then
+_dr [ 8415 ] ( nil , nil , _F , nil , nil , 338 , 719 , _bh , 984 )
+end
+else
+if _ig == 7559 then
+_dr [ 7559 ] ( nil , 757 , 305 , nil , nil , _bh , nil , _F )
+end
+end
+end
+else
+if _ig >= 2094 then
+if _ig < 2380 then
+if _ig == 2094 then
+_dr [ 2094 ] ( 609 , nil , 501 , 475 , nil , _bh , nil , 534 , _F , nil )
+end
+else
+if _ig == 2380 then
+_dr [ 2380 ] ( 914 , _F , nil , 614 , nil , nil , _bh , nil , 315 )
+end
+end
+else
+if _ig == 301 then
+_dr [ 301 ] ( nil , 408 , _bh , 40 , nil , nil , _F , nil )
+end
+end
+end
+end
+;
+local _rb2 = _F [ _cm [ 3 ] ] ;
+local _sl2 = _rm [ _rb2 + 5 ] ;
+local _r2 = bxor ( _F [ _sl2 ] , _sma ) ;
+local _nxip = bxor ( _F [ _cm [ 7 ] ] , ( _r2 * 15 ) % 4294967296 ) ;
+if _nxip ~= _top and _nxip ~= 0 and _nxip ~= _ex then
+_exec ( 445 , 402 , 392 , 638 , 486 , _F , 0 , 313 , 0 ) ;
+_rb2 = _F [ _cm [ 3 ] ] ;
+_sl2 = _rm [ _rb2 + 5 ] ;
+_r2 = bxor ( _F [ _sl2 ] , _sma ) ;
+_nxip = bxor ( _F [ _cm [ 7 ] ] , ( _r2 * 15 ) % 4294967296 )
+end
+;
+if _nxip ~= _top then
+_F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] = _ostop , _oexit ;
+return _F [ _cm [ 11 ] ] , _F [ _cm [ 20 ] ] , _F [ _cm [ 7 ] ]
+end
+;
+_st = bxor ( _F [ _cm [ 11 ] ] , ( _r2 * 69 ) % 4294967296 )
+end
+;
+_rb = _F [ _cm [ 3 ] ] ;
+local _pxs , _pys , _u1s , _u2s = _rm [ _rb + 5 ] , _rm [ _rb + 6 ] , _rm [ _rb + 9 ] , _rm [ _rb + 10 ] ;
+local _r = bxor ( _F [ _pxs ] , _sma ) ;
+local _cur = ( ( _r + _smb ) + _F [ _pys ] ) % 4294967296 ;
+local _sbz = ( ( r16 ( BL_C , lshift ( _F [ _cm [ 4 ] ] , 1 ) ) - _F [ _cm [ 2 ] ] ) % 65536 ) ;
+local _lx = ( _r * 76977 + 2932483154 ) % 4294967296 ;
+local _ls = _F [ _cm [ 12 ] ] ;
+local _nrb = _rb + _ls ;
+if _rb >= _F [ _cm [ 16 ] ] then
+_nrb = _rb - 2 * _ls
+end
+;
+local _est = ( _st + _se + _cur + _sbz ) % 4294967296 ;
+local _eh = ( _he + _cur + _sbz ) % 4294967296 ;
+local _v1 , _v2 = _F [ _u1s ] , _F [ _u2s ] ;
+_F [ _pxs ] , _F [ _u2s ] , _F [ _u1s ] , _F [ _cm [ 3 ] ] = _v2 , _v1 , bxor ( _lx , _sma ) , _nrb ;
+_F [ _pys ] = ( _ce - ( _lx + _smb ) ) % 4294967296 ;
+local _mip = bxor ( _ex , ( _lx * 15 ) % 4294967296 ) ;
+local _mst = bxor ( _est , ( _lx * 69 ) % 4294967296 ) ;
+local _msh = bxor ( _eh , ( _lx * 99 ) % 4294967296 ) ;
+_F [ _cm [ 7 ] ] = _mip ;
+_F [ _cm [ 11 ] ] = _mst ;
+_F [ _cm [ 20 ] ] = _msh ;
+_F [ _cm [ 14 ] ] , _F [ _cm [ 22 ] ] = _ostop , _oexit ;
+return _mst , _msh , _mip
+end

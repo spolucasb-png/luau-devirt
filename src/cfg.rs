@@ -338,6 +338,11 @@ fn build_program(vm: &DecodedVm, pass: PassData) -> Result<LiftedProgram, String
 /// dispatch-family map, the selector-table rows, and the handler source
 /// resolved from `DecodedVm::source_text`.
 pub fn walk_cfg(vm: &DecodedVm) -> Result<LiftedProgram, String> {
+    if vm.profile == crate::ir::VmProfile::SarpLarge {
+        return crate::sarp_large::analyze(vm)
+            .map(|a| a.program)
+            .map_err(|e| e.to_string());
+    }
     if vm.profile == crate::ir::VmProfile::Sarp {
         return crate::sarp::walk(vm);
     }

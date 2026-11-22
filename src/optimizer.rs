@@ -61,6 +61,7 @@ fn operand_regs(op: &Operand, out: &mut BTreeSet<u16>) {
         Operand::Expression(expr) => value_expr_regs(expr, out),
         Operand::Constant(_)
         | Operand::Argument(_)
+        | Operand::Capture(_)
         | Operand::Global(_)
         | Operand::Environment
         | Operand::SlotMapIndex(_)
@@ -108,6 +109,7 @@ fn inst_dst(inst: &Instruction) -> Option<u16> {
         | Instruction::Concat { dst, .. }
         | Instruction::NewClosure { dst, .. } => Some(dst.physical_slot),
         Instruction::Call { dst: Some(dst), .. } => Some(dst.physical_slot),
+        Instruction::CallWithPackedArgs { dst: Some(dst), .. } => Some(dst.physical_slot),
         Instruction::HaltDispatch { pc_slot, .. } => Some(pc_slot.physical_slot),
         _ => None,
     }
@@ -166,6 +168,18 @@ fn inst_reads(inst: &Instruction) -> BTreeSet<u16> {
                 operand_regs(arg, &mut regs);
             }
         }
+        Instruction::CallWithPackedArgs {
+            function,
+            prefix,
+            arguments,
+            ..
+        } => {
+            operand_regs(function, &mut regs);
+            for arg in prefix {
+                operand_regs(arg, &mut regs);
+            }
+            operand_regs(arguments, &mut regs);
+        }
         Instruction::Concat { values, .. } => {
             for value in values {
                 operand_regs(value, &mut regs);
@@ -210,6 +224,7 @@ fn inst_tag(inst: &Instruction) -> &'static str {
         Instruction::ForPrep { .. } => "ForPrep",
         Instruction::ForLoop { .. } => "ForLoop",
         Instruction::Call { .. } => "Call",
+        Instruction::CallWithPackedArgs { .. } => "CallWithPackedArgs",
         Instruction::Concat { .. } => "Concat",
         Instruction::NewClosure { .. } => "NewClosure",
         Instruction::Tag { .. } => "Tag",
@@ -240,6 +255,7 @@ fn classify(inst: &Instruction, relevant: &BTreeSet<u16>) -> Effect {
         // All of these are observable, may allocate an escaping object, or may
         // throw.  A fold region may not contain them.
         Instruction::Call { .. }
+        | Instruction::CallWithPackedArgs { .. }
         | Instruction::Concat { .. }
         | Instruction::GetTable { .. }
         | Instruction::SetTable { .. }
@@ -289,6 +305,7 @@ fn write_key(inst: &Instruction, relevant: &BTreeSet<u16>) -> String {
             Operand::Constant(value) => format!("C{value:?}"),
             Operand::Expression(_)
             | Operand::Argument(_)
+            | Operand::Capture(_)
             | Operand::Global(_)
             | Operand::Environment => {
                 format!("{op:?}")

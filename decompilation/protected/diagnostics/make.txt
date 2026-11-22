@@ -1,0 +1,40 @@
+make = function ( ups , _mkd3 , _ms , _mkd1 , _mkd0 , tk , _mkd2 ) local _chk = _ms ~= nil and bxor ( bxor ( _ms , K1 ) , 3893 ) == 42823 ;
+local _fm = _chk and FM [ tk ] or nil ;
+if not _fm then
+local _hk = bxor ( K0 , _ms ) ;
+local hw = bxor ( tk , 266632 ) ;
+local entry = bxor ( W [ hw + 2 ] , bxor ( 3146221740 , _hk ) ) ;
+local est = bxor ( W [ hw + 0 ] , bxor ( 2305819396 , _hk ) ) ;
+local esh = bxor ( W [ hw + 5 ] , bxor ( 3545062758 , _hk ) ) ;
+local mtA = bxor ( W [ hw + 3 ] , bxor ( 1312544370 , _hk ) ) ;
+local mtB = bxor ( W [ hw + 4 ] , bxor ( 3129404073 , _hk ) ) ;
+local size , uc , ar , da , rb , ps = band ( rshift ( mtB , 18 ) , 8191 ) , band ( rshift ( mtA , 19 ) , 1023 ) , bext ( mtA , 29 , 3 ) , band ( mtA , 1 ) , band ( rshift ( mtA , 1 ) , 131071 ) , bext ( mtB , 0 , 16 ) ;
+local cStart = bxor ( W [ hw + 6 ] , bxor ( 3330028092 , _hk ) ) ;
+local cLen = bxor ( W [ hw + 1 ] , bxor ( 322097349 , _hk ) ) ;
+local aw = da == 1 and rshift ( ar + 1 , 1 ) or 0 ;
+local ub = hw + 7 + aw ;
+local us = uc > 0 and tcreate ( uc ) or nil ;
+for i = 1 , uc do
+us [ i ] = band ( bxor ( W [ ub + i - 1 ] , bxor ( 1434732467 , _hk ) ) , 65535 )
+end
+;
+local _mp = _chk and 0 or 47247 ;
+entry = entry + ( _mp % 23 ) ;
+est = bxor ( est , _mp ) ;
+if da == 1 then
+local wA = ar > 0 and bxor ( W [ hw + 7 ] , bxor ( 431712049 , _hk ) ) or 0 ;
+local wB = ar > 2 and bxor ( W [ hw + 8 ] , bxor ( 431712049 , _hk ) ) or 0 ;
+local a0 , a1 , a2 , a3 = band ( wA , 65535 ) , bext ( wA , 16 , 16 ) , band ( wB , 65535 ) , bext ( wB , 16 , 16 ) ;
+local _ak = ar == 0 and 140 or ( ar == 1 and 4646 or ( ar == 2 and 7543 or ( ar == 3 and 4439 or 8611 ) ) ) ;
+_fm = AF [ _ak ] ( entry , est , esh , rb , ps , size , uc , us , a0 , a1 , a2 , a3 , tk , bxor ( cStart , band ( K1 , 65535 ) ) , bxor ( _chk and cLen or 0 , band ( rshift ( K1 , 8 ) , 65535 ) ) , bxor ( _hk , K1 ) )
+else
+_fm = AF [ 8548 ] ( entry , est , esh , rb , ps , size , uc , us , tk , bxor ( cStart , band ( K1 , 65535 ) ) , bxor ( _chk and cLen or 0 , band ( rshift ( K1 , 8 ) , 65535 ) ) , bxor ( _hk , K1 ) )
+end
+;
+if _chk then
+FM [ tk ] = _fm
+end
+end
+;
+return _fm ( ups )
+end

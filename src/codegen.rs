@@ -47,6 +47,8 @@ use crate::ir::{
     LiftedProgram, Operand, Register, UnaryOp, ValueExpression,
 };
 
+mod pretty;
+
 /// Frame-slot index of the packed varargs (`var49`, physical slot 3 in the
 /// decoded slot map for this VM).
 const PACKED_VARARGS_SLOT: u16 = 3;
@@ -981,6 +983,8 @@ impl FnAnalysis<'_> {
                 ValueExpression::Unary { op, .. } => {
                     if *op == UnaryOp::Not {
                         LType::Bool
+                    } else if *op == UnaryOp::TypeOf {
+                        LType::Str
                     } else {
                         LType::Num
                     }
@@ -1015,6 +1019,8 @@ impl FnAnalysis<'_> {
                 Instruction::Unary { op, .. } => {
                     if *op == UnaryOp::Not {
                         LType::Bool
+                    } else if *op == UnaryOp::TypeOf {
+                        LType::Str
                     } else {
                         LType::Num
                     }
@@ -1283,6 +1289,7 @@ fn instruction_binding_defs(instr: &Instruction) -> Vec<u16> {
         | Instruction::NewTable { dst }
         | Instruction::NewPackedTable { dst }
         | Instruction::Call { dst: Some(dst), .. }
+        | Instruction::CallWithPackedArgs { dst: Some(dst), .. }
         | Instruction::Concat { dst, .. }
         | Instruction::NewClosure { dst, .. } => vec![dst.physical_slot],
         Instruction::ForPrep { state, .. } => vec![state.physical_slot],
@@ -1301,6 +1308,7 @@ fn instruction_defs(instr: &Instruction) -> Vec<u16> {
         | Instruction::NewTable { dst }
         | Instruction::NewPackedTable { dst }
         | Instruction::Call { dst: Some(dst), .. }
+        | Instruction::CallWithPackedArgs { dst: Some(dst), .. }
         | Instruction::Concat { dst, .. }
         | Instruction::NewClosure { dst, .. } => vec![dst.physical_slot],
         Instruction::SetTable { table, .. }
@@ -1335,6 +1343,17 @@ fn operands_of(instr: &Instruction) -> Vec<&Operand> {
         Instruction::Call { function, args, .. } => {
             let mut out = vec![function];
             out.extend(args.iter());
+            out
+        }
+        Instruction::CallWithPackedArgs {
+            function,
+            prefix,
+            arguments,
+            ..
+        } => {
+            let mut out = vec![function];
+            out.extend(prefix.iter());
+            out.push(arguments);
             out
         }
         Instruction::Concat { values, .. } => values.iter().collect(),
@@ -1900,7 +1919,8 @@ fn cp_transfer(state: &mut BTreeMap<u16, CpValue>, pc: usize, idx: usize, instr:
                 }
             }
         }
-        Instruction::Call { dst: Some(dst), .. } => {
+        Instruction::Call { dst: Some(dst), .. }
+        | Instruction::CallWithPackedArgs { dst: Some(dst), .. } => {
             state.insert(dst.physical_slot, CpValue::PackCall { site });
         }
         Instruction::ForLoop {
@@ -2226,6 +2246,12 @@ impl<'a> FnAnalysis<'a> {
                     ty: LType::Any,
                 })
             }
+            Operand::Capture(index) => Some(Rendered {
+                text: format!("capture{index}"),
+                needs_name: false,
+                compound: false,
+                ty: LType::Any,
+            }),
         }
     }
 }
@@ -2256,6 +2282,7 @@ impl<'a> FnAnalysis<'a> {
                     }
                     UnaryOp::Length => format!("#{}", parenthesize(&inner.text, inner.compound)),
                     UnaryOp::BitNot => format!("~{}", parenthesize(&inner.text, inner.compound)),
+                    UnaryOp::TypeOf => format!("capturedType({})", inner.text),
                 };
                 Some(Rendered {
                     text,
@@ -2264,6 +2291,7 @@ impl<'a> FnAnalysis<'a> {
                     ty: match op {
                         UnaryOp::Not => LType::Bool,
                         UnaryOp::Length => LType::Num,
+                        UnaryOp::TypeOf => LType::Str,
                         _ => LType::Num,
                     },
                 })
@@ -2362,6 +2390,7 @@ impl<'a> FnAnalysis<'a> {
                     UnaryOp::Negate => format!("-{}", parenthesize(&inner.text, inner.compound)),
                     UnaryOp::Length => format!("#{}", parenthesize(&inner.text, inner.compound)),
                     UnaryOp::BitNot => format!("~{}", parenthesize(&inner.text, inner.compound)),
+                    UnaryOp::TypeOf => format!("capturedType({})", inner.text),
                 };
                 Some(Rendered {
                     text,
@@ -2370,6 +2399,7 @@ impl<'a> FnAnalysis<'a> {
                     ty: match op {
                         UnaryOp::Not => LType::Bool,
                         UnaryOp::Length => LType::Num,
+                        UnaryOp::TypeOf => LType::Str,
                         _ => LType::Num,
                     },
                 })
@@ -3519,10 +3549,12 @@ impl<'a> Emitter<'a> {
                     }
                     UnaryOp::Length => format!("#{}", parenthesize(&inner.text, inner.compound)),
                     UnaryOp::BitNot => format!("~{}", parenthesize(&inner.text, inner.compound)),
+                    UnaryOp::TypeOf => format!("capturedType({})", inner.text),
                 };
                 let ty = match op {
                     UnaryOp::Not => LType::Bool,
                     UnaryOp::Length => LType::Num,
+                    UnaryOp::TypeOf => LType::Str,
                     _ => LType::Num,
                 };
                 self.store_line.insert(site, Some((text, ty, false)));
@@ -3705,7 +3737,7 @@ impl<'a> Emitter<'a> {
                     .ok_or_else(|| format!("PC {pc}: cannot render packed append source"))?;
                 let counter = format!("tupleIndex_{pc}_{idx}");
                 self.store_line.insert(site, Some((
-                    format!("for {counter} = 1, {}.n do\n{}[{}.n + {counter}] = {}[{counter}]\nend\n{}.n += {}.n", values.text, table.text, table.text, values.text, table.text, values.text),
+                    format!("local __append_old_{pc}_{idx} = {}.n\nfor {counter} = 1, {}.n do\n{}[__append_old_{pc}_{idx} + {counter}] = {}[{counter}]\nend\n{}.n += {}.n", table.text, values.text, table.text, values.text, table.text, values.text),
                     LType::Any, true,
                 )));
             }
@@ -3853,7 +3885,12 @@ impl<'a> Emitter<'a> {
                     Instruction::Return { .. } | Instruction::ReturnPacked { .. } => true,
                     Instruction::Raw { .. } | Instruction::NewClosure { .. } => true,
                     Instruction::Call { dst: None, .. } => true,
+                    Instruction::CallWithPackedArgs { dst: None, .. } => true,
                     Instruction::Call { dst: Some(dst), .. } => {
+                        let slot = dst.physical_slot;
+                        !(!self.effective_name_needed(slot) && self.ctx.moved_calls.contains(&site))
+                    }
+                    Instruction::CallWithPackedArgs { dst: Some(dst), .. } => {
                         let slot = dst.physical_slot;
                         !(!self.effective_name_needed(slot) && self.ctx.moved_calls.contains(&site))
                     }
@@ -4855,6 +4892,7 @@ fn instruction_dst(instr: &Instruction) -> Option<u16> {
         | Instruction::NewTable { dst }
         | Instruction::NewPackedTable { dst }
         | Instruction::Call { dst: Some(dst), .. }
+        | Instruction::CallWithPackedArgs { dst: Some(dst), .. }
         | Instruction::Concat { dst, .. }
         | Instruction::NewClosure { dst, .. } => Some(dst.physical_slot),
         Instruction::ForLoop { state, .. } => Some(state.physical_slot),
@@ -4898,6 +4936,7 @@ fn render_operand_name(operand: &Operand) -> String {
         Operand::SlotMapIndex(slot) => format!("slot{slot}"),
         Operand::Word(word) => format!("word{word}"),
         Operand::Unknown(id) => format!("unknown{id}"),
+        Operand::Capture(index) => format!("capture{index}"),
     }
 }
 
@@ -5040,6 +5079,9 @@ fn emit_module(program: &LiftedProgram, options: &CodegenOptions) -> Result<Stri
     if options.strict {
         let _ = writeln!(out, "--!strict");
     }
+    if uses_type_intrinsic(program) {
+        let _ = writeln!(out, "\nlocal capturedType = type");
+    }
     let mut leaves = Vec::new();
     for block in program.blocks.values() {
         for instruction in &block.instructions {
@@ -5159,13 +5201,28 @@ fn emit_module(program: &LiftedProgram, options: &CodegenOptions) -> Result<Stri
 // Public API
 // =========================================================================
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug)]
 struct DataAtom {
     text: String,
     binding: Option<usize>,
     constant: Option<Constant>,
+    expression: pretty::Expr,
 }
+impl PartialEq for DataAtom {
+    fn eq(&self, other: &Self) -> bool {
+        // Presentation metadata must not change the conservative renderer's
+        // preexisting binding/constant identity or its default output.
+        self.text == other.text && self.binding == other.binding && self.constant == other.constant
+    }
+}
+impl Eq for DataAtom {}
+
 type DataBindings = BTreeMap<u16, DataAtom>;
+
+struct DataBody {
+    text: String,
+    statements: pretty::Body,
+}
 
 /// An order-preserving renderer for acyclic, captured-environment dataflow.
 /// It shares the ordinary emitter's validated CFG, postdominators, IR, literal
@@ -5173,10 +5230,13 @@ type DataBindings = BTreeMap<u16, DataAtom>;
 /// table reads and external calls each remain one explicit evaluation.
 struct DataEmitter<'a> {
     analysis: &'a FnAnalysis<'a>,
+    program: &'a LiftedProgram,
     names: Vec<String>,
     live: BTreeMap<usize, BTreeSet<u16>>,
     steps: usize,
     source_comments: bool,
+    capture_count: usize,
+    vararg_mode: bool,
 }
 
 impl DataEmitter<'_> {
@@ -5186,44 +5246,170 @@ impl DataEmitter<'_> {
                 text: render_constant(c),
                 binding: None,
                 constant: Some(c.clone()),
+                expression: pretty::Expr::Constant(c.clone()),
             },
             Operand::Environment => DataAtom {
                 text: "environment".to_owned(),
                 binding: None,
                 constant: None,
+                expression: pretty::Expr::Environment,
             },
             Operand::Register(r) => values
                 .get(&r.physical_slot)
                 .cloned()
                 .ok_or_else(|| format!("uninitialized data register {}", r.physical_slot))?,
+            Operand::Argument(index) => {
+                if *index >= 4096 { return Err("captured argument index budget exceeded".to_owned()); }
+                DataAtom {
+                        text: format!("arg{index}"),
+                        binding: None,
+                        constant: None,
+                        expression: pretty::Expr::External(format!("arg{index}")),
+                }
+            }
+            Operand::Capture(index) => {
+                if *index >= self.capture_count {
+                    return Err(format!(
+                        "captured dataflow capture index {index} is outside the proved capture count {}",
+                        self.capture_count
+                    ));
+                }
+                DataAtom {
+                    text: format!("capture{index}"),
+                    binding: None,
+                    constant: None,
+                    expression: pretty::Expr::External(format!("capture{index}")),
+                }
+            }
+            Operand::Global(path) => {
+                let text = render_global_path(path);
+                DataAtom {
+                    text: text.clone(),
+                    binding: None,
+                    constant: None,
+                    expression: pretty::Expr::External(text),
+                }
+            }
             Operand::Expression(e) => {
-                let text = match e.as_ref() {
-                    ValueExpression::Unary { op, value } => format!(
-                        "{}({})",
-                        match op {
-                            UnaryOp::Not => "not ",
-                            UnaryOp::Negate => "-",
-                            UnaryOp::Length => "#",
-                            _ => return Err("unsupported data unary expression".to_owned()),
-                        },
-                        self.atom(value, values)?.text
-                    ),
-                    ValueExpression::Binary { op, left, right } => format!(
-                        "({}) {} ({})",
-                        self.atom(left, values)?.text,
-                        binary_op_symbol(*op),
-                        self.atom(right, values)?.text
-                    ),
+                let (text, expression) = match e.as_ref() {
+                    ValueExpression::Unary { op, value } => {
+                        let value = self.atom(value, values)?;
+                        (
+                            if *op == UnaryOp::TypeOf {
+                                format!("capturedType({})", value.text)
+                            } else {
+                                format!(
+                                    "{}({})",
+                                    match op {
+                                        UnaryOp::Not => "not ",
+                                        UnaryOp::Negate => "-",
+                                        UnaryOp::Length => "#",
+                                        _ =>
+                                            return Err(
+                                                "unsupported data unary expression".to_owned()
+                                            ),
+                                    },
+                                    value.text
+                                )
+                            },
+                            pretty::Expr::Unary {
+                                op: *op,
+                                value: Box::new(value.expression),
+                            },
+                        )
+                    }
+                    ValueExpression::Binary { op, left, right } => {
+                        let left = self.atom(left, values)?;
+                        let right = self.atom(right, values)?;
+                        (
+                            format!("({}) {} ({})", left.text, binary_op_symbol(*op), right.text),
+                            pretty::Expr::Binary {
+                                op: *op,
+                                left: Box::new(left.expression),
+                                right: Box::new(right.expression),
+                            },
+                        )
+                    }
+                    ValueExpression::Index { table, index } => {
+                        let table = self.atom(table, values)?;
+                        let index = self.atom(index, values)?;
+                        (
+                            format!("{}[{}]", table.text, index.text),
+                            pretty::Expr::Index {
+                                table: Box::new(table.expression),
+                                index: Box::new(index.expression),
+                            },
+                        )
+                    }
                     _ => return Err("data expression requires explicit evaluation".to_owned()),
                 };
                 DataAtom {
                     text,
                     binding: None,
                     constant: None,
+                    expression,
                 }
             }
-            _ => return Err("unresolved data operand in captured-environment renderer".to_owned()),
+            Operand::SlotMapIndex(slot) => {
+                if *slot == PACKED_VARARGS_SLOT {
+                    if !self.vararg_mode { return Err("packed varargs in a fixed-arity frame are unsupported".to_owned()); }
+                    DataAtom {
+                        text: "packedArguments".to_owned(),
+                        binding: None,
+                        constant: None,
+                        expression: pretty::Expr::External("packedArguments".to_owned()),
+                    }
+                } else {
+                    return Err(format!("unproved private frame slot {slot} in captured dataflow"));
+                }
+            }
+            Operand::Word(word) => {
+                return Err(format!(
+                    "unsupported captured-dataflow operand: raw word reference {word} is not a proved value"
+                ))
+            }
+            Operand::Unknown(id) => {
+                return Err(format!(
+                    "unsupported captured-dataflow operand: unresolved VM operand #{id} is not a proved value"
+                ))
+            }
         })
+    }
+    fn fixed_packet_count(
+        &self,
+        packet: &DataAtom,
+        count: Option<usize>,
+        text: &mut String,
+        statements: &mut pretty::Body,
+        indent: &str,
+    ) -> Result<(), String> {
+        let Some(count) = count else {
+            return Ok(());
+        };
+        if count > 65536 {
+            return Err("fixed result arity budget exceeded".to_owned());
+        }
+        writeln!(text,"{indent}for tupleIndex = {}, {}.n do\n{indent}\t{}[tupleIndex] = nil\n{indent}end\n{indent}{}.n = {count}",count+1,packet.text,packet.text,packet.text).map_err(|e|e.to_string())?;
+        statements.push(pretty::Statement::ForNum {
+            var: "tupleIndex".to_owned(),
+            start: pretty::Expr::Constant(Constant::Integer((count + 1) as i64)),
+            limit: pretty::Expr::Index {
+                table: Box::new(packet.expression.clone()),
+                index: Box::new(pretty::Expr::Constant(Constant::String(b"n".to_vec()))),
+            },
+            step: None,
+            body: vec![pretty::Statement::SetTable {
+                table: packet.expression.clone(),
+                index: pretty::Expr::External("tupleIndex".to_owned()),
+                value: pretty::Expr::Constant(Constant::Nil),
+            }],
+        });
+        statements.push(pretty::Statement::SetTable {
+            table: packet.expression.clone(),
+            index: pretty::Expr::Constant(Constant::String(b"n".to_vec())),
+            value: pretty::Expr::Constant(Constant::Integer(count as i64)),
+        });
+        Ok(())
     }
     fn bind(&mut self, hint: &str) -> DataAtom {
         let id = self.names.len();
@@ -5232,6 +5418,7 @@ impl DataEmitter<'_> {
             text: format!("recoveredValue{id}"),
             binding: Some(id),
             constant: None,
+            expression: pretty::Expr::Binding(id),
         }
     }
     fn suggest(&mut self, atom: &DataAtom, hint: &str) {
@@ -5336,21 +5523,40 @@ impl DataEmitter<'_> {
             ),
         })
     }
+    fn condition_expression(
+        &self,
+        c: &Condition,
+        values: &DataBindings,
+    ) -> Result<pretty::Expr, String> {
+        Ok(match c {
+            Condition::Truthy(v) => self.atom(v, values)?.expression,
+            Condition::Falsey(v) => pretty::Expr::Unary {
+                op: UnaryOp::Not,
+                value: Box::new(self.atom(v, values)?.expression),
+            },
+            Condition::Compare { op, left, right } => pretty::Expr::Binary {
+                op: *op,
+                left: Box::new(self.atom(left, values)?.expression),
+                right: Box::new(self.atom(right, values)?.expression),
+            },
+        })
+    }
     fn walk(
         &mut self,
         mut pc: usize,
         stop: Option<usize>,
         mut values: DataBindings,
         depth: usize,
-    ) -> Result<(String, DataBindings), String> {
+    ) -> Result<(DataBody, DataBindings), String> {
         if depth > 64 {
             return Err("structured dataflow nesting exceeds 64".to_owned());
         }
         let mut text = String::new();
+        let mut statements = vec![];
         let indent = "\t".repeat(depth);
         loop {
             if Some(pc) == stop {
-                return Ok((text, values));
+                return Ok((DataBody { text, statements }, values));
             }
             self.steps += 1;
             if self.steps > 4096 {
@@ -5364,6 +5570,10 @@ impl DataEmitter<'_> {
                     block.end_pc.saturating_sub(1)
                 )
                 .map_err(|e| e.to_string())?;
+                statements.push(pretty::Statement::Comment(format!(
+                    "Source VM words {pc}..{}",
+                    block.end_pc.saturating_sub(1)
+                )));
             }
             let mut index = 0;
             while index < block.instructions.len() {
@@ -5381,6 +5591,7 @@ impl DataEmitter<'_> {
                         .copied()
                         .flatten()
                         .ok_or("data branch has no common postdominator")?;
+                    let condition_expression = self.condition_expression(condition, &values)?;
                     let condition = self.condition(condition, &values)?;
                     let (yes, yes_values) =
                         self.walk(*then_target, Some(join), values.clone(), depth + 1)?;
@@ -5388,6 +5599,8 @@ impl DataEmitter<'_> {
                         self.walk(*else_target, Some(join), values.clone(), depth + 1)?;
                     let mut yes_suffix = String::new();
                     let mut no_suffix = String::new();
+                    let mut yes_statements = yes.statements;
+                    let mut no_statements = no.statements;
                     let mut merged = values.clone();
                     let mut phis: BTreeMap<(String, String), DataAtom> = BTreeMap::new();
                     for slot in self.live.get(&join).cloned().unwrap_or_default() {
@@ -5416,31 +5629,54 @@ impl DataEmitter<'_> {
                                 _ => &hint,
                             };
                             let atom = self.bind(hint);
-                            if no.is_empty() && values.values().any(|v| v == &b) {
+                            if no.text.is_empty() && values.values().any(|v| v == &b) {
                                 writeln!(text, "{indent}local {}: any = {}", atom.text, b.text)
                                     .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing phi binding")?,
+                                    annotation: Some("any"),
+                                    value: Some(b.expression.clone()),
+                                });
                             } else {
                                 writeln!(text, "{indent}local {}: any", atom.text)
                                     .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing phi binding")?,
+                                    annotation: Some("any"),
+                                    value: None,
+                                });
                                 writeln!(no_suffix, "{indent}\t{} = {}", atom.text, b.text)
                                     .map_err(|e| e.to_string())?;
+                                no_statements.push(pretty::Statement::Assign {
+                                    binding: atom.binding.ok_or("missing phi binding")?,
+                                    value: b.expression.clone(),
+                                });
                             }
                             writeln!(yes_suffix, "{indent}\t{} = {}", atom.text, a.text)
                                 .map_err(|e| e.to_string())?;
+                            yes_statements.push(pretty::Statement::Assign {
+                                binding: atom.binding.ok_or("missing phi binding")?,
+                                value: a.expression.clone(),
+                            });
                             phis.insert((a.text, b.text), atom.clone());
                             atom
                         };
                         merged.insert(slot, atom);
                     }
                     writeln!(text, "{indent}if {condition} then").map_err(|e| e.to_string())?;
-                    text.push_str(&yes);
+                    text.push_str(&yes.text);
                     text.push_str(&yes_suffix);
-                    if !no.is_empty() || !no_suffix.is_empty() {
+                    if !no.text.is_empty() || !no_suffix.is_empty() {
                         writeln!(text, "{indent}else").map_err(|e| e.to_string())?;
-                        text.push_str(&no);
+                        text.push_str(&no.text);
                         text.push_str(&no_suffix);
                     }
                     writeln!(text, "{indent}end").map_err(|e| e.to_string())?;
+                    statements.push(pretty::Statement::If {
+                        condition: condition_expression,
+                        yes: yes_statements,
+                        no: no_statements,
+                    });
                     values = merged;
                     pc = join;
                     break;
@@ -5460,6 +5696,11 @@ impl DataEmitter<'_> {
                         let atom = self.bind("tableValue");
                         writeln!(text, "{indent}local {}: {{ [any]: any }} = {{}}", atom.text)
                             .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing table binding")?,
+                            annotation: Some("{ [any]: any }"),
+                            value: Some(pretty::Expr::Table(vec![])),
+                        });
                         values.insert(dst.physical_slot, atom);
                     }
                     Instruction::GetTable { dst, table, index } => {
@@ -5473,6 +5714,14 @@ impl DataEmitter<'_> {
                         let atom = self.bind(&hint);
                         writeln!(text, "{indent}local {} = {expression}", atom.text)
                             .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing read binding")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Index {
+                                table: Box::new(table.expression),
+                                index: Box::new(self.atom(index, &values)?.expression),
+                            }),
+                        });
                         values.insert(dst.physical_slot, atom);
                     }
                     Instruction::SetTable {
@@ -5506,6 +5755,11 @@ impl DataEmitter<'_> {
                             value_atom.text
                         )
                         .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::SetTable {
+                            table: table.expression,
+                            index: self.atom(index, &values)?.expression,
+                            value: value_atom.expression,
+                        });
                     }
                     Instruction::Call {
                         dst,
@@ -5519,47 +5773,496 @@ impl DataEmitter<'_> {
                             .map(|a| self.atom(a, &values).map(|v| v.text))
                             .collect::<Result<Vec<_>, _>>()?;
                         let expression = format!("{}({})", function_atom.text, rendered.join(", "));
+                        let call = pretty::Expr::Call {
+                            function: Box::new(function_atom.expression.clone()),
+                            args: args
+                                .iter()
+                                .map(|a| self.atom(a, &values).map(|v| v.expression))
+                                .collect::<Result<Vec<_>, _>>()?,
+                        };
                         if let Some(packet) = dst {
-                            let Some(Instruction::GetTable {
-                                dst: scalar,
-                                table: Operand::Register(source),
-                                index: Operand::Constant(Constant::Integer(1)),
-                            }) = block.instructions.get(index + 1)
-                            else {
-                                return Err(
-                                    "captured dataflow requires a scalar packet projection"
-                                        .to_owned(),
-                                );
-                            };
-                            if source != packet
-                                || *result_count != Some(1)
-                                || self
-                                    .analysis
-                                    .uses
-                                    .get(&packet.physical_slot)
-                                    .is_none_or(|u| u.as_slice() != [(pc, index + 1)])
-                            {
-                                return Err(
-                                    "call packet has additional uses or unknown arity".to_owned()
-                                );
+                            if *result_count == Some(1) {
+                                let Some(Instruction::GetTable {
+                                    dst: scalar,
+                                    table: Operand::Register(source),
+                                    index: Operand::Constant(Constant::Integer(1)),
+                                }) = block.instructions.get(index + 1)
+                                else {
+                                    return Err(
+                                        "captured dataflow requires a scalar packet projection"
+                                            .to_owned(),
+                                    );
+                                };
+                                if source != packet
+                                    || self
+                                        .analysis
+                                        .uses
+                                        .get(&packet.physical_slot)
+                                        .is_none_or(|u| u.as_slice() != [(pc, index + 1)])
+                                {
+                                    return Err("call packet has additional uses or unknown arity"
+                                        .to_owned());
+                                }
+                                let atom =
+                                    self.bind(&self.call_hint(&function_atom, args, &values));
+                                writeln!(text, "{indent}local {} = {expression}", atom.text)
+                                    .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing scalar call binding")?,
+                                    annotation: None,
+                                    value: Some(call),
+                                });
+                                values.insert(scalar.physical_slot, atom);
+                                index += 1;
+                            } else {
+                                // Unknown-arity full result packet. Preserve the
+                                // complete table.pack result; a later [1] read
+                                // is just an index into that packet.
+                                let packed_text = format!("capturedPack({expression})");
+                                let packed_call = pretty::Expr::Call {
+                                    function: Box::new(pretty::Expr::External(
+                                        "capturedPack".to_owned(),
+                                    )),
+                                    args: vec![pretty::Expr::Expand(Box::new(call))],
+                                };
+                                let atom = self.bind("value");
+                                writeln!(text, "{indent}local {} = {packed_text}", atom.text)
+                                    .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing packet binding")?,
+                                    annotation: None,
+                                    value: Some(packed_call),
+                                });
+                                self.fixed_packet_count(
+                                    &atom,
+                                    *result_count,
+                                    &mut text,
+                                    &mut statements,
+                                    &indent,
+                                )?;
+                                values.insert(packet.physical_slot, atom);
                             }
-                            let atom = self.bind(&self.call_hint(&function_atom, args, &values));
-                            writeln!(text, "{indent}local {} = {expression}", atom.text)
-                                .map_err(|e| e.to_string())?;
-                            values.insert(scalar.physical_slot, atom);
-                            index += 1;
                         } else {
                             writeln!(text, "{indent}{expression}").map_err(|e| e.to_string())?;
+                            statements.push(pretty::Statement::Call(call));
                         }
+                    }
+                    Instruction::CallWithPackedArgs {
+                        dst,
+                        function,
+                        prefix,
+                        arguments,
+                        result_count,
+                    } => {
+                        let function_atom = self.atom(function, &values)?;
+                        let prefix_rendered = prefix
+                            .iter()
+                            .map(|a| {
+                                let atom = self.atom(a, &values)?;
+                                let text = if matches!(atom.expression, pretty::Expr::Call { .. }) {
+                                    format!("({})", atom.text)
+                                } else {
+                                    atom.text
+                                };
+                                Ok::<String, String>(text)
+                            })
+                            .collect::<Result<Vec<_>, _>>()?;
+                        let arguments_atom = self.atom(arguments, &values)?;
+                        let mut call_args = prefix_rendered.clone();
+                        call_args.push(format!(
+                            "capturedUnpack({}, 1, {}.n)",
+                            arguments_atom.text, arguments_atom.text
+                        ));
+                        let expression =
+                            format!("{}({})", function_atom.text, call_args.join(", "));
+                        let prefix_exprs = prefix
+                            .iter()
+                            .map(|a| self.atom(a, &values).map(|v| v.expression))
+                            .collect::<Result<Vec<_>, _>>()?;
+                        let mut call_expr_args = prefix_exprs;
+                        call_expr_args.push(pretty::Expr::Expand(Box::new(pretty::Expr::Call {
+                            function: Box::new(pretty::Expr::External("capturedUnpack".to_owned())),
+                            args: vec![
+                                arguments_atom.expression.clone(),
+                                pretty::Expr::Constant(Constant::Integer(1)),
+                                pretty::Expr::Index {
+                                    table: Box::new(arguments_atom.expression.clone()),
+                                    index: Box::new(pretty::Expr::Constant(Constant::String(
+                                        b"n".to_vec(),
+                                    ))),
+                                },
+                            ],
+                        })));
+                        let call = pretty::Expr::Call {
+                            function: Box::new(function_atom.expression.clone()),
+                            args: call_expr_args,
+                        };
+                        if let Some(packet) = dst {
+                            if *result_count == Some(1) {
+                                let Some(Instruction::GetTable {
+                                    dst: scalar,
+                                    table: Operand::Register(source),
+                                    index: Operand::Constant(Constant::Integer(1)),
+                                }) = block.instructions.get(index + 1)
+                                else {
+                                    return Err(
+                                        "captured dataflow requires a scalar packet projection"
+                                            .to_owned(),
+                                    );
+                                };
+                                if source != packet
+                                    || self
+                                        .analysis
+                                        .uses
+                                        .get(&packet.physical_slot)
+                                        .is_none_or(|u| u.as_slice() != [(pc, index + 1)])
+                                {
+                                    return Err("call packet has additional uses or unknown arity"
+                                        .to_owned());
+                                }
+                                let atom =
+                                    self.bind(&self.call_hint(&function_atom, &prefix, &values));
+                                writeln!(text, "{indent}local {} = {expression}", atom.text)
+                                    .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing scalar call binding")?,
+                                    annotation: None,
+                                    value: Some(call),
+                                });
+                                values.insert(scalar.physical_slot, atom);
+                                index += 1;
+                            } else {
+                                // Unknown-arity full result packet. Preserve the
+                                // complete table.pack result; a later [1] read
+                                // is just an index into that packet.
+                                let packed_text = format!("capturedPack({expression})");
+                                let packed_call = pretty::Expr::Call {
+                                    function: Box::new(pretty::Expr::External(
+                                        "capturedPack".to_owned(),
+                                    )),
+                                    args: vec![pretty::Expr::Expand(Box::new(call))],
+                                };
+                                let atom = self.bind("value");
+                                writeln!(text, "{indent}local {} = {packed_text}", atom.text)
+                                    .map_err(|e| e.to_string())?;
+                                statements.push(pretty::Statement::Local {
+                                    binding: atom.binding.ok_or("missing packet binding")?,
+                                    annotation: None,
+                                    value: Some(packed_call),
+                                });
+                                self.fixed_packet_count(
+                                    &atom,
+                                    *result_count,
+                                    &mut text,
+                                    &mut statements,
+                                    &indent,
+                                )?;
+                                values.insert(packet.physical_slot, atom);
+                            }
+                        } else {
+                            writeln!(text, "{indent}{expression}").map_err(|e| e.to_string())?;
+                            statements.push(pretty::Statement::Call(call));
+                        }
+                    }
+                    Instruction::NewPackedTable { dst } => {
+                        let atom = self.bind("tableValue");
+                        writeln!(text, "{indent}local {} = {{ n = 0 }}", atom.text)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing packed table binding")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Table(vec![(
+                                pretty::Expr::Constant(Constant::String(b"n".to_vec())),
+                                pretty::Expr::Constant(Constant::Integer(0)),
+                            )])),
+                        });
+                        values.insert(dst.physical_slot, atom);
+                    }
+                    Instruction::PushPacked { table, value } => {
+                        let table = self.atom(table, &values)?;
+                        let value = self.atom(value, &values)?;
+                        writeln!(text, "{indent}{}.n = {}.n + 1", table.text, table.text)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::SetTable {
+                            table: table.expression.clone(),
+                            index: pretty::Expr::Constant(Constant::String(b"n".to_vec())),
+                            value: pretty::Expr::Binary {
+                                op: BinaryOp::Add,
+                                left: Box::new(pretty::Expr::Index {
+                                    table: Box::new(table.expression.clone()),
+                                    index: Box::new(pretty::Expr::Constant(Constant::String(
+                                        b"n".to_vec(),
+                                    ))),
+                                }),
+                                right: Box::new(pretty::Expr::Constant(Constant::Integer(1))),
+                            },
+                        });
+                        writeln!(
+                            text,
+                            "{indent}{}[{}.n] = {}",
+                            table.text, table.text, value.text
+                        )
+                        .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::SetTable {
+                            table: table.expression.clone(),
+                            index: pretty::Expr::Index {
+                                table: Box::new(table.expression.clone()),
+                                index: Box::new(pretty::Expr::Constant(Constant::String(
+                                    b"n".to_vec(),
+                                ))),
+                            },
+                            value: value.expression.clone(),
+                        });
+                    }
+                    Instruction::Append { table, value } => {
+                        let table = self.atom(table, &values)?;
+                        let value = self.atom(value, &values)?;
+                        writeln!(
+                            text,
+                            "{indent}{}[#{} + 1] = {}",
+                            table.text, table.text, value.text
+                        )
+                        .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::SetTable {
+                            table: table.expression.clone(),
+                            index: pretty::Expr::Binary {
+                                op: BinaryOp::Add,
+                                left: Box::new(pretty::Expr::Unary {
+                                    op: UnaryOp::Length,
+                                    value: Box::new(table.expression.clone()),
+                                }),
+                                right: Box::new(pretty::Expr::Constant(Constant::Integer(1))),
+                            },
+                            value: value.expression.clone(),
+                        });
+                    }
+                    Instruction::AppendPacked {
+                        table,
+                        values: vals,
+                    } => {
+                        let table = self.atom(table, &values)?;
+                        let vals = self.atom(vals, &values)?;
+                        let old_count = self.bind("value");
+                        writeln!(text, "{indent}local {} = {}.n", old_count.text, table.text)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: old_count.binding.ok_or("missing append old count")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Index {
+                                table: Box::new(table.expression.clone()),
+                                index: Box::new(pretty::Expr::Constant(Constant::String(
+                                    b"n".to_vec(),
+                                ))),
+                            }),
+                        });
+                        let counter = format!("tupleIndex");
+                        writeln!(text, "{indent}for {counter} = 1, {}.n do", vals.text)
+                            .map_err(|e| e.to_string())?;
+                        // pretty ForNum
+                        let counter = "tupleIndex";
+                        let body = vec![pretty::Statement::SetTable {
+                            table: table.expression.clone(),
+                            index: pretty::Expr::Binary {
+                                op: BinaryOp::Add,
+                                left: Box::new(pretty::Expr::Binding(
+                                    old_count.binding.ok_or("missing append old count")?,
+                                )),
+                                right: Box::new(pretty::Expr::External(counter.to_owned())),
+                            },
+                            value: pretty::Expr::Index {
+                                table: Box::new(vals.expression.clone()),
+                                index: Box::new(pretty::Expr::External(counter.to_owned())),
+                            },
+                        }];
+                        statements.push(pretty::Statement::ForNum {
+                            var: counter.to_owned(),
+                            start: pretty::Expr::Constant(Constant::Integer(1)),
+                            limit: pretty::Expr::Index {
+                                table: Box::new(vals.expression.clone()),
+                                index: Box::new(pretty::Expr::Constant(Constant::String(
+                                    b"n".to_vec(),
+                                ))),
+                            },
+                            step: None,
+                            body,
+                        });
+                        // update n count
+                        statements.push(pretty::Statement::SetTable {
+                            table: table.expression.clone(),
+                            index: pretty::Expr::Constant(Constant::String(b"n".to_vec())),
+                            value: pretty::Expr::Binary {
+                                op: BinaryOp::Add,
+                                left: Box::new(pretty::Expr::Index {
+                                    table: Box::new(table.expression.clone()),
+                                    index: Box::new(pretty::Expr::Constant(Constant::String(
+                                        b"n".to_vec(),
+                                    ))),
+                                }),
+                                right: Box::new(pretty::Expr::Index {
+                                    table: Box::new(vals.expression.clone()),
+                                    index: Box::new(pretty::Expr::Constant(Constant::String(
+                                        b"n".to_vec(),
+                                    ))),
+                                }),
+                            },
+                        });
+                        writeln!(
+                            text,
+                            "{indent}\t{}[{}.n + {counter}] = {}[{counter}]",
+                            table.text, table.text, vals.text
+                        )
+                        .map_err(|e| e.to_string())?;
+                        writeln!(text, "{indent}end").map_err(|e| e.to_string())?;
+                        writeln!(
+                            text,
+                            "{indent}{}.n = {}.n + {}.n",
+                            table.text, table.text, vals.text
+                        )
+                        .map_err(|e| e.to_string())?;
+                    }
+                    Instruction::Unary { dst, op, src } => {
+                        let src = self.atom(src, &values)?;
+                        let text_expr = match op {
+                            UnaryOp::Not => format!("not {}", src.text),
+                            UnaryOp::Negate => format!("-{}", src.text),
+                            UnaryOp::Length => format!("#{}", src.text),
+                            UnaryOp::BitNot => format!("~{}", src.text),
+                            UnaryOp::TypeOf => format!("capturedType({})", src.text),
+                        };
+                        let atom = self.bind("value");
+                        writeln!(text, "{indent}local {} = {}", atom.text, text_expr)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing unary binding")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Unary {
+                                op: *op,
+                                value: Box::new(src.expression),
+                            }),
+                        });
+                        values.insert(dst.physical_slot, atom);
+                    }
+                    Instruction::Binary {
+                        dst,
+                        op,
+                        left,
+                        right,
+                    } => {
+                        let left = self.atom(left, &values)?;
+                        let right = self.atom(right, &values)?;
+                        let text_expr =
+                            format!("({}) {} ({})", left.text, binary_op_symbol(*op), right.text);
+                        let atom = self.bind("value");
+                        writeln!(text, "{indent}local {} = {}", atom.text, text_expr)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing binary binding")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Binary {
+                                op: *op,
+                                left: Box::new(left.expression),
+                                right: Box::new(right.expression),
+                            }),
+                        });
+                        values.insert(dst.physical_slot, atom);
+                    }
+                    Instruction::Concat { dst, values: vals } => {
+                        let mut parts = Vec::new();
+                        let mut exprs = Vec::new();
+                        for v in vals {
+                            let a = self.atom(v, &values)?;
+                            parts.push(a.text.clone());
+                            exprs.push(a.expression.clone());
+                        }
+                        let text_expr = parts.join(" .. ");
+                        let atom = self.bind("value");
+                        writeln!(text, "{indent}local {} = {}", atom.text, text_expr)
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing concat binding")?,
+                            annotation: None,
+                            value: Some(pretty::Expr::Concat(exprs)),
+                        });
+                        values.insert(dst.physical_slot, atom);
+                    }
+                    Instruction::NewClosure {
+                        dst,
+                        prototype_word,
+                        captures,
+                    } => {
+                        let entry = self
+                            .program
+                            .prototype_entries
+                            .get(prototype_word)
+                            .copied()
+                            .ok_or_else(|| {
+                                format!("unlinked closure prototype {prototype_word}")
+                            })?;
+                        let rendered_caps: Vec<String> = captures
+                            .iter()
+                            .map(|c| self.atom(c, &values).map(|v| v.text))
+                            .collect::<Result<_, _>>()?;
+                        let cap_exprs: Vec<pretty::Expr> = captures
+                            .iter()
+                            .map(|c| self.atom(c, &values).map(|v| v.expression))
+                            .collect::<Result<_, _>>()?;
+                        let factory = format!("vm_factory_{}", entry);
+                        let expression = if rendered_caps.is_empty() {
+                            format!("{}()", factory)
+                        } else {
+                            format!("{}({})", factory, rendered_caps.join(", "))
+                        };
+                        let atom = self.bind("closureValue");
+                        writeln!(text, "{indent}local {} = {}", atom.text, expression)
+                            .map_err(|e| e.to_string())?;
+                        let args = cap_exprs;
+                        // pretty call
+                        let pretty_call = pretty::Expr::Call {
+                            function: Box::new(pretty::Expr::External(factory.clone())),
+                            args,
+                        };
+                        statements.push(pretty::Statement::Local {
+                            binding: atom.binding.ok_or("missing closure binding")?,
+                            annotation: None,
+                            value: Some(pretty_call),
+                        });
+                        values.insert(dst.physical_slot, atom);
+                    }
+                    Instruction::Return { values: returns } => {
+                        if returns.is_empty() {
+                            return Ok((DataBody { text, statements }, values));
+                        }
+                        let atoms = returns
+                            .iter()
+                            .map(|v| self.atom(v, &values))
+                            .collect::<Result<Vec<_>, _>>()?;
+                        let rendered: Vec<String> = atoms.iter().map(|a| a.text.clone()).collect();
+                        writeln!(text, "{indent}return {}", rendered.join(", "))
+                            .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::Return(
+                            atoms.into_iter().map(|a| a.expression).collect(),
+                        ));
+                        return Ok((DataBody { text, statements }, values));
+                    }
+                    Instruction::ReturnPacked { values: vals } => {
+                        let v = self.atom(vals, &values)?;
+                        writeln!(
+                            text,
+                            "{indent}return capturedUnpack({}, 1, {}.n)",
+                            v.text, v.text
+                        )
+                        .map_err(|e| e.to_string())?;
+                        statements.push(pretty::Statement::ReturnPacked(v.expression.clone()));
+                        return Ok((DataBody { text, statements }, values));
                     }
                     Instruction::Jump { target } => {
                         pc = *target;
                         break;
                     }
-                    Instruction::Return { values: returns } if returns.is_empty() => {
-                        return Ok((text, values));
-                    }
-                    Instruction::Nop => {}
+                    Instruction::Nop
+                    | Instruction::Tag { .. }
+                    | Instruction::KeyUpdate { .. }
+                    | Instruction::BankSwitch { .. } => {}
                     _ => {
                         return Err(format!(
                             "unsupported captured-dataflow instruction at {pc}: {instruction:?}"
@@ -5579,16 +6282,69 @@ fn emit_captured_dataflow(
     program: &LiftedProgram,
     options: &CodegenOptions,
 ) -> Result<String, String> {
-    if program.entry_points.len() != 1 {
-        return Err(
-            "captured dataflow with multiple prototypes requires closure emission".to_owned(),
-        );
+    // Infer capture counts from linked NewClosure sites; all sites for one
+    // prototype must agree.
+    let mut capture_counts: BTreeMap<usize, usize> = BTreeMap::new();
+    for block in program.blocks.values() {
+        for instr in &block.instructions {
+            if let Instruction::NewClosure {
+                prototype_word,
+                captures,
+                ..
+            } = instr
+            {
+                if let Some(entry) = program.prototype_entries.get(prototype_word) {
+                    let count = captures.len();
+                    if let Some(existing) = capture_counts.get(entry) {
+                        if *existing != count {
+                            return Err(format!(
+                                "capture count mismatch for closure prototype entry {entry}"
+                            ));
+                        }
+                    } else {
+                        capture_counts.insert(*entry, count);
+                    }
+                }
+            }
+        }
     }
-    let entry = program.entry_points[0];
-    let analysis = FnAnalysis::new(program, entry)?;
-    if !analysis.loop_heads.is_empty() {
-        return Err("captured dataflow retains a loop requiring additional structuring".to_owned());
+
+    let root_entry = program
+        .root_entry
+        .unwrap_or_else(|| program.entry_points.first().copied().unwrap_or(0));
+    capture_counts.entry(root_entry).or_insert(0);
+
+    let mut entries: Vec<usize> = program.entry_points.clone();
+    if !entries.contains(&root_entry) {
+        entries.push(root_entry);
     }
+    entries.sort_unstable();
+    entries.dedup();
+    for block in program.blocks.values() {
+        for instruction in &block.instructions {
+            if let Instruction::NewClosure {
+                prototype_word,
+                captures,
+                ..
+            } = instruction
+            {
+                let target = program
+                    .prototype_entries
+                    .get(prototype_word)
+                    .ok_or("unlinked captured closure prototype")?;
+                if *target == root_entry || !entries.contains(target) {
+                    return Err(
+                        "captured closure factory target is not a declared child entry".to_owned(),
+                    );
+                }
+                if captures.len() > 4096 {
+                    return Err("capture count budget exceeded".to_owned());
+                }
+            }
+        }
+    }
+
+    // Liveness over the whole (possibly multi-entry) graph.
     let mut live: BTreeMap<usize, BTreeSet<u16>> = program
         .blocks
         .keys()
@@ -5628,16 +6384,321 @@ fn emit_captured_dataflow(
     if !converged {
         return Err("captured dataflow liveness budget exceeded".to_owned());
     }
+
+    // Render non-root entries as functions first.
+    let mut output = String::new();
+    if options.strict {
+        output.push_str("--!strict\n\n");
+    }
+    // Standard helpers are captured before any program effect so later
+    // environment/table edits cannot change their semantics. This preamble
+    // must precede child declarations, which may reference these names.
+    output.push_str(
+        "-- Statically recovered from the VM; external calls retain their source order.\n",
+    );
+    if uses_type_intrinsic(program) {
+        output.push_str("local capturedType = type\n");
+    }
+    let uses_packets = program.blocks.values().flat_map(|block| &block.instructions).any(|instruction| {
+        matches!(instruction, Instruction::CallWithPackedArgs { .. } | Instruction::ReturnPacked { .. })
+        || matches!(instruction, Instruction::Call { dst: Some(_), result_count, .. } if *result_count != Some(1))
+        || operand_leaves_of(instruction).iter().any(|operand| matches!(operand, Operand::SlotMapIndex(slot) if *slot == PACKED_VARARGS_SLOT))
+    });
+    if uses_packets {
+        output.push_str(
+            "local capturedPack = table[\"pack\"]\nlocal capturedUnpack = table[\"unpack\"]\n",
+        );
+    }
+    if program
+        .blocks
+        .values()
+        .flat_map(|block| &block.instructions)
+        .any(|instruction| {
+            operand_leaves_of(instruction)
+                .iter()
+                .any(|operand| matches!(operand, Operand::Argument(_)))
+        })
+    {
+        output.push_str("local capturedSelect = select\n");
+    }
+    output.push_str("local environment = getfenv()\n\n");
+    // Forward-declare every factory so a child body that creates a closure
+    // of a later-defined entry resolves a local, not a global.
+    let child_entries: Vec<usize> = entries
+        .iter()
+        .copied()
+        .filter(|e| *e != root_entry)
+        .collect();
+    for &entry in &child_entries {
+        let _ = writeln!(output, "local vm_factory_{}", entry);
+    }
+    if !child_entries.is_empty() {
+        output.push('\n');
+    }
+    let mut child_decls: Vec<String> = Vec::new();
+    for &entry in &entries {
+        if entry == root_entry {
+            continue;
+        }
+        let analysis = FnAnalysis::new(program, entry)?;
+        if !analysis.loop_heads.is_empty() {
+            return Err(
+                "captured dataflow retains a loop requiring additional structuring".to_owned(),
+            );
+        }
+        let capture_count = capture_counts.get(&entry).copied().unwrap_or(0);
+        let fixed_param_count = match program.parameters.get(&entry) {
+            Some(Some(n)) => Some(*n),
+            _ => None,
+        };
+        // Argument/vararg discovery.
+        let mut arg_max: Option<usize> = None;
+        let mut uses_varargs = false;
+        for block in analysis.blocks.values() {
+            for instr in &block.instructions {
+                for op in operand_leaves_of(instr) {
+                    match op {
+                        Operand::Argument(i) => {
+                            arg_max = Some(arg_max.map_or(*i, |m| m.max(*i)));
+                        }
+                        Operand::SlotMapIndex(s) if *s == PACKED_VARARGS_SLOT => {
+                            uses_varargs = true;
+                        }
+                        _ => {}
+                    }
+                }
+            }
+        }
+        if (arg_max.is_some() || uses_varargs) && !program.parameters.contains_key(&entry) {
+            return Err("captured entry parameter mode is not proved".to_owned());
+        }
+        if uses_varargs && fixed_param_count.is_some() {
+            return Err("packed varargs in a fixed-arity frame are unsupported".to_owned());
+        }
+        if fixed_param_count.is_some_and(|n| n > 4096) {
+            return Err("fixed parameter count budget exceeded".to_owned());
+        }
+        let mut emitter = DataEmitter {
+            analysis: &analysis,
+            program,
+            names: vec![],
+            live: live.clone(),
+            steps: 0,
+            source_comments: options.include_source_comments,
+            capture_count,
+            vararg_mode: fixed_param_count.is_none(),
+        };
+        let (body, _) = emitter.walk(entry, None, BTreeMap::new(), 0)?;
+        // names
+        let mut names = BTreeMap::new();
+        let mut pretty_names = BTreeMap::new();
+        let mut used: BTreeSet<String> = BTreeSet::new();
+        used.insert("environment".to_owned());
+        used.insert("capturedPack".to_owned());
+        used.insert("capturedUnpack".to_owned());
+        used.insert("capturedSelect".to_owned());
+        used.insert("packedArguments".to_owned());
+        used.insert("tupleIndex".to_owned());
+        if uses_type_intrinsic(program) {
+            used.insert("capturedType".to_owned());
+        }
+        if let Some(max) = arg_max {
+            for i in 0..=max {
+                used.insert(format!("arg{i}"));
+            }
+        }
+        let capture_count = capture_counts.get(&entry).copied().unwrap_or(0);
+        for j in 0..capture_count {
+            used.insert(format!("capture{j}"));
+        }
+        for &e in &entries {
+            used.insert(format!("vm_entry_{}", e));
+            used.insert(format!("vm_factory_{}", e));
+        }
+        for (id, hint) in emitter.names.iter().enumerate() {
+            let mut name = hint.clone();
+            for suffix in 2..=65536 {
+                if used.insert(name.clone()) {
+                    break;
+                }
+                name = format!("{hint}{suffix}");
+            }
+            pretty_names.insert(id, name.clone());
+            names.insert(format!("recoveredValue{id}"), name);
+        }
+        // Captures come first so the factory can forward them without
+        // truncating a trailing vararg splice.
+        let mut params: Vec<String> = Vec::new();
+        for j in 0..capture_count {
+            params.push(format!("capture{j}: any"));
+        }
+        if let Some(n) = fixed_param_count {
+            // Validate that no Argument index exceeds the declared fixed arity.
+            if let Some(max) = arg_max {
+                if max as usize + 1 > n {
+                    return Err(format!(
+                        "captured dataflow fixed parameter count {n} is smaller than used argument index {max}"
+                    ));
+                }
+            }
+            for i in 0..n {
+                params.push(format!("arg{i}: any"));
+            }
+        } else {
+            // Vararg mode: keep the full packed varargs and bind each Argument
+            // via select so the prefix is not consumed.
+            if uses_varargs || arg_max.is_some() {
+                params.push("...: any".to_owned());
+            }
+        }
+        let sig = if params.is_empty() {
+            "...: any".to_owned()
+        } else {
+            params.join(", ")
+        };
+        let cap_params: Vec<String> = (0..capture_count).map(|j| format!("capture{j}")).collect();
+        let mut decl = String::new();
+        let _ = writeln!(decl, "local function vm_entry_{}({})", entry, sig);
+        emit_argument_prefix(&mut decl, fixed_param_count, arg_max, uses_varargs)?;
+        if options.pretty {
+            let pretty_body = pretty::render(body.statements, &pretty_names)?;
+            for line in pretty_body.lines() {
+                if line.trim().is_empty() {
+                    decl.push('\n');
+                } else {
+                    let _ = writeln!(decl, "\t{}", line);
+                }
+            }
+        } else {
+            let renamed = renamed_text(&body.text, &names);
+            for line in renamed.lines() {
+                if line.trim().is_empty() {
+                    decl.push('\n');
+                } else {
+                    let _ = writeln!(decl, "\t{}", line);
+                }
+            }
+        }
+        let _ = writeln!(decl, "end");
+        // Factory is assigned (not re-declared) because it was forward-declared
+        // above; this keeps later-defined factories visible to earlier bodies.
+        let _ = writeln!(
+            decl,
+            "vm_factory_{} = function({})",
+            entry,
+            cap_params.join(", ")
+        );
+        let _ = writeln!(decl, "\treturn function(...: any)");
+        if capture_count == 0 {
+            let _ = writeln!(decl, "\t\treturn vm_entry_{}(...)", entry);
+        } else {
+            let mut fwd: Vec<String> = cap_params.clone();
+            fwd.push("...".to_owned());
+            let _ = writeln!(decl, "\t\treturn vm_entry_{}({})", entry, fwd.join(", "));
+        }
+        let _ = writeln!(decl, "\tend");
+        let _ = writeln!(decl, "end");
+        decl.push('\n');
+        child_decls.push(decl);
+    }
+
+    for decl in &child_decls {
+        output.push_str(decl);
+    }
+
+    let analysis = FnAnalysis::new(program, root_entry)?;
+    if !analysis.loop_heads.is_empty() {
+        return Err("captured dataflow retains a loop requiring additional structuring".to_owned());
+    }
+    let root_capture_count = capture_counts.get(&root_entry).copied().unwrap_or(0);
+    let root_fixed_param_count = match program.parameters.get(&root_entry) {
+        Some(Some(n)) => Some(*n),
+        _ => None,
+    };
+    // Root captures are not supported by any validated contract; reject them
+    // explicitly rather than inventing wrapper parameters.
+    if root_capture_count > 0 {
+        return Err(
+            "root closure captures are not supported by the captured dataflow emitter".to_owned(),
+        );
+    }
+    // Check leaves for Capture.
+    let mut leaves = Vec::new();
+    for block in analysis.blocks.values() {
+        for instr in &block.instructions {
+            for op in operand_leaves_of(instr) {
+                collect_operand_leaves(op, &mut leaves);
+            }
+        }
+    }
+    if leaves.iter().any(|o| matches!(o, Operand::Capture(_))) {
+        return Err(
+            "root closure captures are not supported by the captured dataflow emitter".to_owned(),
+        );
+    }
     let mut emitter = DataEmitter {
         analysis: &analysis,
+        program,
         names: vec![],
-        live,
+        live: live.clone(),
         steps: 0,
         source_comments: options.include_source_comments,
+        capture_count: root_capture_count,
+        vararg_mode: root_fixed_param_count.is_none(),
     };
-    let (body, _) = emitter.walk(entry, None, BTreeMap::new(), 0)?;
+    let (body, _) = emitter.walk(root_entry, None, BTreeMap::new(), 0)?;
+    // Argument/vararg discovery for the root.
+    let mut root_arg_max: Option<usize> = None;
+    let mut root_uses_varargs = false;
+    for block in analysis.blocks.values() {
+        for instr in &block.instructions {
+            for op in operand_leaves_of(instr) {
+                match op {
+                    Operand::Argument(i) => {
+                        root_arg_max = Some(root_arg_max.map_or(*i, |m| m.max(*i)));
+                    }
+                    Operand::SlotMapIndex(s) if *s == PACKED_VARARGS_SLOT => {
+                        root_uses_varargs = true;
+                    }
+                    _ => {}
+                }
+            }
+        }
+    }
+    if (root_arg_max.is_some() || root_uses_varargs)
+        && !program.parameters.contains_key(&root_entry)
+    {
+        return Err("captured root parameter mode is not proved".to_owned());
+    }
+    if root_uses_varargs && root_fixed_param_count.is_some() {
+        return Err("packed varargs in a fixed-arity frame are unsupported".to_owned());
+    }
+    if root_fixed_param_count.is_some_and(|n| n > 4096) {
+        return Err("fixed parameter count budget exceeded".to_owned());
+    }
     let mut names = BTreeMap::new();
+    let mut pretty_names = BTreeMap::new();
     let mut used = BTreeSet::from(["environment".to_owned()]);
+    used.insert("capturedPack".to_owned());
+    used.insert("capturedUnpack".to_owned());
+    used.insert("capturedSelect".to_owned());
+    used.insert("packedArguments".to_owned());
+    used.insert("tupleIndex".to_owned());
+    for &entry in &entries {
+        used.insert(format!("vm_entry_{entry}"));
+        used.insert(format!("vm_factory_{entry}"));
+    }
+    if uses_type_intrinsic(program) {
+        used.insert("capturedType".to_owned());
+    }
+    if let Some(max) = root_arg_max {
+        for i in 0..=max {
+            used.insert(format!("arg{i}"));
+        }
+    }
+    for j in 0..root_capture_count {
+        used.insert(format!("capture{j}"));
+    }
     for (id, hint) in emitter.names.iter().enumerate() {
         let mut name = hint.clone();
         for suffix in 2..=65536 {
@@ -5646,15 +6707,105 @@ fn emit_captured_dataflow(
             }
             name = format!("{hint}{suffix}");
         }
+        pretty_names.insert(id, name.clone());
         names.insert(format!("recoveredValue{id}"), name);
     }
-    let mut output = String::new();
-    if options.strict {
-        output.push_str("--!strict\n\n");
+
+    let root_needs_wrapper = root_arg_max.is_some() || root_uses_varargs || root_capture_count > 0;
+    if root_needs_wrapper {
+        let mut params: Vec<String> = Vec::new();
+        for j in 0..root_capture_count {
+            params.push(format!("capture{j}: any"));
+        }
+        if let Some(n) = match program.parameters.get(&root_entry) {
+            Some(Some(n)) => Some(*n),
+            _ => None,
+        } {
+            if root_arg_max.is_some_and(|max| max >= n) {
+                return Err("root argument exceeds proved fixed parameter count".to_owned());
+            }
+            for i in 0..n {
+                params.push(format!("arg{i}: any"));
+            }
+        } else {
+            params.push("...: any".to_owned());
+        }
+        let sig = if params.is_empty() {
+            "...: any".to_owned()
+        } else {
+            params.join(", ")
+        };
+        let _ = writeln!(output, "local function vm_entry_{}({})", root_entry, sig);
+        emit_argument_prefix(
+            &mut output,
+            root_fixed_param_count,
+            root_arg_max,
+            root_uses_varargs,
+        )?;
+        if options.pretty {
+            let pretty_body = pretty::render(body.statements, &pretty_names)?;
+            for line in pretty_body.lines() {
+                if line.trim().is_empty() {
+                    output.push('\n');
+                } else {
+                    let _ = writeln!(output, "\t{}", line);
+                }
+            }
+        } else {
+            let renamed = renamed_text(&body.text, &names);
+            for line in renamed.lines() {
+                if line.trim().is_empty() {
+                    output.push('\n');
+                } else {
+                    let _ = writeln!(output, "\t{}", line);
+                }
+            }
+        }
+        let _ = writeln!(output, "end");
+        let _ = writeln!(output, "return vm_entry_{}(...)", root_entry);
+    } else {
+        if options.pretty {
+            output.push_str(&pretty::render(body.statements, &pretty_names)?);
+        } else {
+            output.push_str(&renamed_text(&body.text, &names));
+        }
     }
-    output.push_str("-- Statically recovered from the VM; external calls retain their source order.\nlocal environment = getfenv()\n\n");
-    output.push_str(&renamed_text(&body, &names));
     Ok(output)
+}
+
+fn operand_leaves_of(instruction: &Instruction) -> Vec<&Operand> {
+    let mut leaves = vec![];
+    for operand in operands_of(instruction) {
+        collect_operand_leaves(operand, &mut leaves);
+    }
+    leaves
+}
+
+fn emit_argument_prefix(
+    output: &mut String,
+    fixed: Option<usize>,
+    max: Option<usize>,
+    packed: bool,
+) -> Result<(), String> {
+    if fixed.is_none() {
+        if packed {
+            output.push_str("\tlocal packedArguments = capturedPack(...)\n");
+        }
+        if let Some(max) = max {
+            if max >= 4096 {
+                return Err("captured argument index budget exceeded".to_owned());
+            }
+            for index in 0..=max {
+                writeln!(
+                    output,
+                    "\tlocal arg{index}: any = capturedSelect({}, ...)",
+                    index + 1
+                )
+                .map_err(|e| e.to_string())?;
+            }
+        }
+    }
+    Ok(())
 }
 
 fn uses_captured_environment(program: &LiftedProgram) -> bool {
@@ -5669,6 +6820,70 @@ fn uses_captured_environment(program: &LiftedProgram) -> bool {
     leaves.iter().any(|o| matches!(o, Operand::Environment))
 }
 
+fn uses_type_intrinsic(program: &LiftedProgram) -> bool {
+    fn operand(value: &Operand) -> bool {
+        let Operand::Expression(expr) = value else {
+            return false;
+        };
+        match expr.as_ref() {
+            ValueExpression::Unary { op, value } => *op == UnaryOp::TypeOf || operand(value),
+            ValueExpression::Binary { left, right, .. }
+            | ValueExpression::Index {
+                table: left,
+                index: right,
+            } => operand(left) || operand(right),
+            ValueExpression::PermutationParity { value, .. } => operand(value),
+        }
+    }
+    fn condition(value: &Condition) -> bool {
+        match value {
+            Condition::Truthy(value) | Condition::Falsey(value) => operand(value),
+            Condition::Compare { left, right, .. } => operand(left) || operand(right),
+        }
+    }
+    program
+        .blocks
+        .values()
+        .flat_map(|b| &b.instructions)
+        .any(|i| match i {
+            Instruction::Unary {
+                op: UnaryOp::TypeOf,
+                ..
+            } => true,
+            Instruction::Move { src, .. } | Instruction::Unary { src, .. } => operand(src),
+            Instruction::Binary { left, right, .. } => operand(left) || operand(right),
+            Instruction::GetTable { table, index, .. } => operand(table) || operand(index),
+            Instruction::SetTable {
+                table,
+                index,
+                value,
+            } => operand(table) || operand(index) || operand(value),
+            Instruction::Call { function, args, .. } => {
+                operand(function) || args.iter().any(operand)
+            }
+            Instruction::CallWithPackedArgs {
+                function,
+                prefix,
+                arguments,
+                ..
+            } => operand(function) || prefix.iter().any(operand) || operand(arguments),
+            Instruction::Concat { values, .. } | Instruction::Return { values } => {
+                values.iter().any(operand)
+            }
+            Instruction::NewClosure { captures, .. } => captures.iter().any(operand),
+            Instruction::Append { table, value } | Instruction::PushPacked { table, value } => {
+                operand(table) || operand(value)
+            }
+            Instruction::AppendPacked { table, values } => operand(table) || operand(values),
+            Instruction::Branch { condition: c, .. } | Instruction::Compare { condition: c } => {
+                condition(c)
+            }
+            Instruction::ReturnPacked { values } => operand(values),
+            Instruction::Tag { value } => operand(value),
+            _ => false,
+        })
+}
+
 /// Emit a readable strict Luau module for a lifted program.
 ///
 /// The output is a complete `--!strict` chunk (when `options.strict`) with one
@@ -5676,6 +6891,10 @@ fn uses_captured_environment(program: &LiftedProgram) -> bool {
 /// control flow where the IR supports it, conservative constant propagation
 /// and dead-register elimination, and explicit fallback rendering for `Raw`
 /// instructions. See the module documentation for the full conventions.
+///
+/// `options.pretty` additionally cleans up the IR-derived acyclic captured-
+/// environment statement tree. Other emitters keep their already structured
+/// output; unknown operations and tuple arities are never hidden by cleanup.
 pub fn emit_luau(program: &LiftedProgram, options: &CodegenOptions) -> Result<String, String> {
     if program.blocks.is_empty() {
         return Err("lifted program contains no basic blocks".to_owned());
@@ -5821,6 +7040,7 @@ mod tests {
         CodegenOptions {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         }
     }
 
@@ -6528,6 +7748,7 @@ mod tests {
         let options = CodegenOptions {
             strict: false,
             include_source_comments: false,
+            pretty: false,
         };
         let emitted = emit_t001(&options);
         assert!(!emitted.contains("--!strict"));
@@ -6545,6 +7766,7 @@ mod tests {
         let options = CodegenOptions {
             strict: true,
             include_source_comments: true,
+            pretty: false,
         };
         let emitted = emit_t001(&options);
         assert!(emitted.contains("-- PC 096 (family 6094)"));

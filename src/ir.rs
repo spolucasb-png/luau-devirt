@@ -9,6 +9,7 @@ pub enum VmProfile {
     Adler32Lcg5Word,
     Base85Rotor3Bank,
     Sarp,
+    SarpLarge,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -128,6 +129,9 @@ pub enum Operand {
     Constant(Constant),
     /// Zero-based source function argument, before VM parameter copies.
     Argument(usize),
+    /// A value captured by a source-proved closure factory. Captured tables
+    /// and boxes preserve reference identity; this is not an invented register.
+    Capture(usize),
     /// A path through the captured global environment, e.g. table.concat.
     Global(Vec<Vec<u8>>),
     /// The environment captured once by the protected wrapper's getfenv().
@@ -188,6 +192,9 @@ pub enum UnaryOp {
     Not,
     Length,
     BitNot,
+    /// Standard Luau `type`, captured by the certified wrapper before program
+    /// effects. This is not a lookup of a mutable `environment.type` property.
+    TypeOf,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -276,6 +283,15 @@ pub enum Instruction {
         function: Operand,
         args: Vec<Operand>,
         /// Known packed result arity; `None` preserves every returned value.
+        result_count: Option<usize>,
+    },
+    /// Prefix scalar values followed by a packed varargs splice:
+    /// `function(prefix..., table.unpack(arguments, 1, arguments.n))`.
+    CallWithPackedArgs {
+        dst: Option<Register>,
+        function: Operand,
+        prefix: Vec<Operand>,
+        arguments: Operand,
         result_count: Option<usize>,
     },
     Concat {
@@ -368,6 +384,9 @@ pub struct LiftedProgram {
 pub struct CodegenOptions {
     pub strict: bool,
     pub include_source_comments: bool,
+    /// Optional, proved presentation cleanup. The conservative output remains
+    /// byte-identical when this is false.
+    pub pretty: bool,
 }
 
 impl Default for CodegenOptions {
@@ -375,6 +394,7 @@ impl Default for CodegenOptions {
         Self {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         }
     }
 }

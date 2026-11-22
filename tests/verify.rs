@@ -2600,6 +2600,7 @@ fn emitted_luau_markers_match_baseline() {
         &CodegenOptions {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         },
     );
     assert!(
@@ -2654,6 +2655,7 @@ fn emitted_luau_markers_match_baseline() {
         &CodegenOptions {
             strict: false,
             include_source_comments: false,
+            pretty: false,
         },
     );
     assert!(
@@ -2667,6 +2669,7 @@ fn emitted_luau_markers_match_baseline() {
         &CodegenOptions {
             strict: true,
             include_source_comments: true,
+            pretty: false,
         },
     );
     assert!(
@@ -2700,6 +2703,7 @@ fn emitted_luau_matches_baseline_output_modulo_rename() {
         &CodegenOptions {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         },
     );
 
@@ -2757,6 +2761,7 @@ fn emitted_luau_passes_local_syntax_validation() {
         &CodegenOptions {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         },
     );
 
@@ -2814,6 +2819,7 @@ fn emitted_luau_compiles_without_execution() {
         &CodegenOptions {
             strict: true,
             include_source_comments: false,
+            pretty: false,
         },
     );
 

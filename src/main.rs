@@ -12,19 +12,22 @@ fn help() {
     println!(
         "luau-devirt {}\n\
          Static devirtualizer for independently certified Luau VM profiles.\n\
-         Profiles: Adler-32/LCG, Base85/rotor, and SARP/dual-stream.\n\n\
+          Complete profiles: Adler-32/LCG, Base85/rotor, and five-fragment SARP.\n\
+          Development preview: four-fragment large SARP (partial, fail-closed).\n\n\
          Usage: luau-devirt <input.lua> [options]\n\n\
          Options:\n\
            -o, --output <path>  Write the result to a file; otherwise use stdout\n\
            --force              Replace an existing output file safely\n\
             --inspect            Inspect metadata/profile analysis without Luau emission\n\
+            --pretty             Safely simplify recovered code for comfortable reading\n\
            --comments           Include source-address comments in Luau output\n\
            --no-strict          Omit the --!strict directive\n\
            -V, --version        Print the release version\n\
            -h, --help           Print this help\n\
            --                   Treat subsequent arguments as input filenames\n\n\
          Examples:\n\
-           luau-devirt sample.lua -o recovered.luau\n\
+            luau-devirt sample.lua -o recovered.luau\n\
+            luau-devirt sample.lua --pretty -o readable.luau\n\
            luau-devirt sample.lua --inspect\n\n\
          The input and its virtual instructions are never executed.\n\
          Unsupported profiles and instructions fail explicitly.",
@@ -43,6 +46,18 @@ fn argument_error(message: impl AsRef<str>) -> ! {
 }
 
 fn inspect(vm: &DecodedVm) -> Result<String, String> {
+    if luau_devirt::sarp_large::is_profile(vm) {
+        let mut out=format!("Profile: {}\nWrapper fingerprint: {}\nSource SHA-256: {}\nPayload bytes: {}\nRaw u32 words: {}\nInitially populated W words: {}\nDecoded range: {}..={} (one-based)\nInitializer argument: {}\nMaster key: {}\nSlot-map entries: {}\nRoot prototype: {}\n",luau_devirt::sarp_large::PROFILE,luau_devirt::sarp_large::WRAPPER_SHA256,vm.source_sha256.as_deref().unwrap_or("unknown"),vm.payload.len(),vm.raw_words.len(),vm.decoded_words.iter().flatten().count(),vm.decoded_range.0,vm.decoded_range.1,vm.initialization_argument,vm.master_key,vm.slot_map.len()-1,vm.entry_prototype);
+        let analysis = match luau_devirt::sarp_large::analyze(vm) {
+            Ok(analysis) => analysis,
+            Err(error) => {
+                writeln!(out,"Status: INCOMPLETE / unsupported VM semantics\n{error}\nNo complete IR, default Luau or pretty Luau is certified.").map_err(|e|e.to_string())?;
+                return Err(out);
+            }
+        };
+        writeln!(out,"Status: reachable IR traversal complete (no runtime execution)\nDiscovered prototypes: {}\nAnalyzed dispatcher states: {}\nReachable instruction addresses: {}\nString records referenced: {}\nNumber records referenced: {}\nLuau emission: not requested by --inspect",analysis.prototypes.len(),analysis.trace.len(),analysis.program.blocks.len(),analysis.strings.len(),analysis.numbers.len()).map_err(|e|e.to_string())?;
+        return Ok(out);
+    }
     if luau_devirt::sarp::is_profile(vm) {
         let analysis = luau_devirt::sarp::analyze(vm)?;
         let unresolved = analysis
@@ -256,6 +271,10 @@ fn main() {
             }
             if argument == "--comments" {
                 options.include_source_comments = true;
+                continue;
+            }
+            if argument == "--pretty" {
+                options.pretty = true;
                 continue;
             }
             if argument == "--no-strict" {

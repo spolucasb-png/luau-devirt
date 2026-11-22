@@ -1,0 +1,101 @@
+_h [ 9 ] = function ( _sv , _pxs , _cne , _hd1 , _hp1 , _pys , _st , _hd0 , _rb , _seq , _x , _hne , _ceq , _dne , _F , _deq , _u1s , _m32 , _heq , _hp2 , _sne , _ip , _u2s ) local _r = bxor ( _F [ _pxs ] , _sma ) ;
+local _cur = ( ( _r + _smb ) + _F [ _pys ] + ( 1 - band ( _r , 1 ) ) * 65537 ) % 4294967296 ;
+local _nr = ( _r * 76977 + 2932483154 ) % 4294967296 ;
+local _ls = _F [ _cm [ 12 ] ] ;
+local _sbz = ( ( r16 ( BL_C , lshift ( _F [ _cm [ 4 ] ] , 1 ) ) - _F [ _cm [ 2 ] ] ) % 65536 ) ;
+local _v1 , _v2 = _F [ _u1s ] , _F [ _u2s ] ;
+local _tx = tFn ( _x ) ;
+local _zb = 0 ;
+if _tx == "number" and _x % 1 == 0 and _x >= - 2147483648 and _x <= 2147483647 then
+_zb = band ( _x , 16383 )
+elseif _tx == "string" then
+_zb = band ( # _x , 16383 )
+end
+;
+local _zo = lshift ( _zb , 1 ) ;
+local _zpa , _zpb = band ( r16 ( BL_A , _zo ) , 16383 ) , band ( r16 ( BL_B , _zo ) , 16383 ) ;
+local _zexp = ( _zpb * 4 + ( ( _zb * 17 + 13025 ) % 16384 ) * 2 + bxor ( bxor ( band ( rshift ( _zpa , 7 ) , 1 ) , band ( rshift ( _zpb , 2 ) , 1 ) ) , 1 ) ) % 65536 ;
+local _z = ( r16 ( BL_C , lshift ( _zpa , 1 ) ) - _zexp ) % 65536 ;
+local _eq = false ;
+local _kvIp , _kvSh = 0 , 0 ;
+if _tx == "number" and _x % 1 == 0 and _x >= - 2147483648 and _x <= 2147483647 then
+local _u = bxor ( _x , 0 ) ;
+local _ck = bxor ( K1 , _sbz , _sv ) ;
+local _w0 = bxor ( _u , _m32 , _ck ) ;
+local _w1 = bxor ( _w0 , rshift ( _w0 , 15 ) ) ;
+local _a1 = r16 ( BL_A , lshift ( band ( _w1 , 16383 ) , 1 ) ) ;
+local _a2 = r16 ( BL_B , lshift ( band ( rshift ( _w1 , 14 ) , 16383 ) , 1 ) ) ;
+local _a3 = r16 ( BL_C , lshift ( band ( bxor ( rshift ( _w1 , 18 ) , _a1 , _a2 ) , 16383 ) , 1 ) ) ;
+local _h1 = bxor ( ( _w1 * 85131 + lrot ( _w0 , 19 ) + _a1 * 65537 + _a2 + _st ) % 4294967296 , lrot ( _a3 , 12 ) ) ;
+local _t2 = bxor ( _h1 , lrot ( _h1 , 9 ) , _m32 ) ;
+local _b1 = r16 ( BL_A , lshift ( band ( _t2 , 16383 ) , 1 ) ) ;
+local _b2 = r16 ( BL_B , lshift ( band ( rshift ( _t2 , 14 ) , 16383 ) , 1 ) ) ;
+local _b3 = r16 ( BL_C , lshift ( band ( bxor ( _t2 , _b1 , _b2 ) , 16383 ) , 1 ) ) ;
+local _h2 = bxor ( ( _t2 * 109467 + _b1 * 65537 + _b2 * 257 + _b3 + _st ) % 4294967296 , rrot ( _h1 , 19 ) ) ;
+local _t3 = bxor ( _h2 , _h1 , lrot ( _w0 , 12 ) ) ;
+local _c1 = r16 ( BL_A , lshift ( band ( _t3 , 16383 ) , 1 ) ) ;
+local _c2 = r16 ( BL_B , lshift ( band ( rshift ( _t3 , 14 ) , 16383 ) , 1 ) ) ;
+local _c3 = r16 ( BL_C , lshift ( band ( bxor ( _h2 , _c1 , _c2 ) , 16383 ) , 1 ) ) ;
+local _h3 = bxor ( ( _t3 * 121053 + _c1 * 65537 + _c2 * 257 + _c3 + clz ( _w0 ) * 131 + crz ( _h1 ) * 17 ) % 4294967296 , bswap ( _h2 ) ) ;
+local _t4 = bxor ( _h3 , lrot ( _h2 , 19 ) , _m32 ) ;
+local _d1 = r16 ( BL_A , lshift ( band ( _t4 , 16383 ) , 1 ) ) ;
+local _d2 = r16 ( BL_B , lshift ( band ( rshift ( _t4 , 14 ) , 16383 ) , 1 ) ) ;
+local _d3 = r16 ( BL_C , lshift ( band ( bxor ( _h3 , _d1 , _d2 ) , 16383 ) , 1 ) ) ;
+local _hr , _tr , _jfb = _h3 , _t4 , bcreate ( 16 ) ;
+w32 ( _jfb , 0 , _w0 ) ;
+w32 ( _jfb , 4 , _h1 ) ;
+w32 ( _jfb , 8 , _h2 ) ;
+w32 ( _jfb , 12 , _t3 ) ;
+local _jr = 1 ;
+while _jr <= 320 do
+local _doff = band ( _hr , 1 ) * 8 ;
+wf64 ( _jfb , _doff , _tr + _hr * 0.0009765625 + _jr ) ;
+local _jlo , _jhi = r32 ( _jfb , _doff ) , r32 ( _jfb , _doff + 4 ) ;
+local _i16 = ( ri16 ( _jfb , band ( rshift ( _tr , 3 ) , 7 ) * 2 ) + 65536 ) % 65536 ;
+local _kw = KBOX [ 1 + band ( bxor ( _hr , _jr ) , 63 ) ] ;
+local _s1 = r16 ( BL_A , lshift ( band ( bxor ( _tr , _jlo , _i16 ) , 16383 ) , 1 ) ) ;
+local _s2 = r16 ( BL_B , lshift ( band ( bxor ( rshift ( _tr , 14 ) , _jhi ) , 16383 ) , 1 ) ) ;
+local _s3 = r16 ( BL_C , lshift ( band ( bxor ( _hr , _s1 , _s2 , _kw ) , 16383 ) , 1 ) ) ;
+local _nh = bxor ( ( _tr * 85131 + _hr + _s1 * 65537 + _s2 * 257 + _s3 + _kw + _i16 * 13 + clz ( _tr ) * 29 + crz ( _hr ) * 19 + _jr * 997 ) % 4294967296 , lrot ( _hr , 12 ) , bswap ( _s3 ) , _jlo ) ;
+_tr = bxor ( _nh , rrot ( _tr , 9 ) , _m32 , _st , _jhi ) ;
+local _woff = band ( _jr , 3 ) * 4 ;
+w32 ( _jfb , _woff , bxor ( r32 ( _jfb , _woff ) , _nh ) ) ;
+_hr = _nh ;
+_jr = _jr + 1
+end
+;
+local _pk1 = bxor ( ( _hr * 121053 + _d1 * 65537 + _d3 + _m32 ) % 4294967296 , lrot ( _d2 , 9 ) , rrot ( _h1 , 12 ) , _tr ) ;
+local _pk2 = bxor ( ( _tr * 85131 + _hr + _d2 * 65537 + _d1 + _st ) % 4294967296 , lrot ( _d3 , 19 ) , rrot ( _b3 , 9 ) , _h3 ) ;
+if _pk1 == _hp1 and _pk2 == _hp2 then
+_eq = true ;
+_kvIp = ( bxor ( _hr , _d3 , lrot ( _c1 , 13 ) ) + _b2 * 65537 ) % 4294967296 ;
+_kvSh = ( bxor ( _tr , _d1 , rrot ( _c2 , 11 ) ) + _b1 * 65537 ) % 4294967296
+end
+end
+;
+if _eq then
+local _nrb = _rb - _ls ;
+if _rb <= _F [ _cm [ 16 ] ] - 2 * _ls then
+_nrb = _rb + 2 * _ls
+end
+;
+_F [ _pxs ] , _F [ _u1s ] , _F [ _u2s ] , _F [ _cm [ 3 ] ] = _v1 , _v2 , bxor ( _nr , _sma ) , _nrb ;
+_F [ _pys ] = ( ( _ceq + _kvSh ) % 4294967296 - ( _nr + _smb ) ) % 4294967296 ;
+local _mip = ( ( ( _ip + _deq + _kvIp ) % 4294967296 + _nr * 23 ) % 4294967296 ) ;
+local _mst = bxor ( ( _st + _seq + _cur + _sbz + _z + _kvIp ) % 4294967296 , ( _nr * 93 ) % 4294967296 ) ;
+local _msh = ( ( ( _heq + _cur + _sbz + _z + _kvSh ) % 4294967296 + _nr * 125 ) % 4294967296 ) ;
+return _mst , _msh , _mip
+else
+local _nrb = _rb + _ls ;
+if _rb >= _F [ _cm [ 16 ] ] then
+_nrb = _rb - 2 * _ls
+end
+;
+_F [ _pxs ] , _F [ _u2s ] , _F [ _u1s ] , _F [ _cm [ 3 ] ] = _v2 , _v1 , bxor ( _nr , _sma ) , _nrb ;
+_F [ _pys ] = ( _cne - ( _nr + _smb ) ) % 4294967296 ;
+local _mip = ( ( _ip + _dne + _nr * 23 ) % 4294967296 ) ;
+local _mst = bxor ( ( _st + _sne + _cur + _sbz + _z ) % 4294967296 , ( _nr * 93 ) % 4294967296 ) ;
+local _msh = ( ( ( _hne + _cur + _sbz + _z ) % 4294967296 + _nr * 125 ) % 4294967296 ) ;
+return _mst , _msh , _mip
+end
+end

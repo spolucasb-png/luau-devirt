@@ -1,5 +1,30 @@
 # Changelog
 
+## Unreleased
+
+- Keep Cargo version 0.2.0 as a development preview: the large four-fragment
+  SARP target is incomplete; there is no 0.3.0 release or new published archive.
+- Add an independent four-fragment token certificate, complete transport and
+  initializer, bounded source parser and partial linked-prototype traversal.
+- Add source-proved caller/entry tails, captured type facts, explicit packed
+  arguments, invocation-local cached-frame read guards, decode-once/overlap
+  checks and mutable-metadata re-certification.
+- Bundle the pinned large specimen and genuine diagnostic artifacts. Independent
+  references match transport, every present/absent W position, first-child lazy
+  code and six 320-round hash vectors, without running Lua/Luau or a VM.
+- Stop explicitly at helper 25 generic iteration after 666 states; complete
+  linked IR and default/pretty Luau for the large target are unavailable.
+- Add incomplete CLI/output-preservation tests and aggregate checks. Packaging
+  requires `-Preview` and uses separate development-preview archive names.
+- Added opt-in `--pretty` / `CodegenOptions::pretty` presentation cleanup for
+  acyclic captured-environment dataflow; default output is unchanged.
+- Reconstructed safe table initializers and predicate-carrying `and`/`or`
+  expressions; removed only adjacent, single-use evaluation temporaries.
+- Added nil/false, call/lookup order, alias, tuple-arity, precedence, source-
+  comment and cleanup-budget regressions and a generated pretty-output fixture.
+- Aggregate verification compiles/analyzes pretty flag combinations for all
+  three profiles. Binary packaging includes the generated pretty example.
+
 ## 0.2.0 — 2026-11-21
 
 - Added independently certified SARP fragment/byteswap/dual-stream support in

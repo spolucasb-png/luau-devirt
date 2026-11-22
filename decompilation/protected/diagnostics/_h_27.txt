@@ -1,0 +1,7 @@
+_h [ 27 ] = function ( _rr , _hd1 , _hd3 , _F , _hd0 , _sh , _st , _hd2 ) _F [ _cm [ 6 ] ] = band ( _st , 65535 ) ;
+_F [ _cm [ 17 ] ] = nil ;
+_F [ _cm [ 7 ] ] = ( ( _rr * 15 ) % 4294967296 ) ;
+_F [ _cm [ 11 ] ] = bxor ( _st , ( _rr * 69 ) % 4294967296 ) ;
+_F [ _cm [ 20 ] ] = bxor ( _sh , ( _rr * 99 ) % 4294967296 ) ;
+_F [ _cm [ 10 ] ] = bxor ( _st , _ek )
+end

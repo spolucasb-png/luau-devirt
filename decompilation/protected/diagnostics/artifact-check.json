@@ -1,0 +1,13 @@
+{
+  "source_sha256": "1496f231da48222f5aa52d84829e9ad4ef5481eb237f56c6be1b9645dd7136fe",
+  "fixture_bytes_compared": true,
+  "sparse_word_positions_compared": 142045,
+  "sparse_image_bytes": 170145,
+  "present_words": 7022,
+  "absent_words": 135023,
+  "malformed_images_rejected": 4,
+  "transport_bytes_match": true,
+  "incomplete_status_verified": true,
+  "executed_lua": false,
+  "devirtualization_claim": false
+}

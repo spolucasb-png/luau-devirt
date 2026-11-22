@@ -1,0 +1,39 @@
+_h [ 19 ] = function ( _st , _hd1 , _rb , _hd3 , _tk , _hd5 , _hd0 , _hd4 , _hd2 , _F ) local _rm = RMAP ;
+local _sbz = ( ( r16 ( BL_C , lshift ( _F [ _cm [ 4 ] ] , 1 ) ) - _F [ _cm [ 2 ] ] ) % 65536 ) ;
+local _ck = bxor ( K1 , _sbz ) ;
+local _hk = bxor ( K0 , _ck ) ;
+local _ps ;
+if bxor ( _sbz , 3893 ) == 42823 then
+_ps = PM [ _tk ]
+end
+;
+if not _ps then
+local _hw = bxor ( _tk , 266632 ) ;
+local _mA = bxor ( W [ _hw + 3 ] , bxor ( 1312544370 , _hk ) ) ;
+local _mB = bxor ( W [ _hw + 4 ] , bxor ( 3129404073 , _hk ) ) ;
+local _uc = band ( rshift ( _mA , 19 ) , 1023 ) ;
+local _aw = band ( _mA , 1 ) == 1 and rshift ( bext ( _mA , 29 , 3 ) + 1 , 1 ) or 0 ;
+local _ub = _hw + 7 + _aw ;
+_ps = tcreate ( _uc ) ;
+for _i = 1 , _uc do
+_ps [ _i ] = band ( rshift ( bxor ( W [ _ub + _i - 1 ] , bxor ( 1434732467 , _hk ) ) , 16 ) , 65535 )
+end
+;
+if bxor ( _sbz , 3893 ) == 42823 then
+PM [ _tk ] = _ps
+end
+end
+;
+local _uc = # _ps ;
+if _uc == 0 then
+return make ( nil , 309 , _ck , 26 , 828 , _tk , 192 )
+end
+;
+local _cp = tcreate ( _uc ) ;
+for _i = 1 , _uc do
+local _sl = _rm [ _rb + _ps [ _i ] ] ;
+_cp [ _i ] = _F [ _sl ]
+end
+;
+return make ( _cp , 377 , _ck , 122 , 356 , _tk , 175 )
+end
